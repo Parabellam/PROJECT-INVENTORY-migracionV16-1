@@ -1,0 +1,162 @@
+<div
+  *ngIf="
+    permissions.permi7per == 'uLuiTT5rFVcPzoX' ||
+    permissions.permi7per == 'EmxZBnH3nJ2xrG2'
+  "
+  class="calambombo"
+>
+  <div class="card container mb-5 shadow-lg co w-75" data-aos="fade-right">
+    <h3 class="text-center">Editar Periféricos</h3>
+    <form action="" #f="ngForm" class="form">
+      <div class="row mt-3">
+        <div class="col">
+          <div class="">
+            <label for="" class="pa">Tipo de Periférico</label>
+            <select
+              type="text"
+              name="tipo"
+              id="tipo"
+              class="form-select"
+              [(ngModel)]="accesorio.tipo"
+              required
+            >
+              <option *ngFor="let item of tipoPeriferico">
+                {{ item }}
+              </option>
+            </select>
+            <div class="mt-2">
+              <input
+                [(ngModel)]="accesorio.tipo"
+                class="form-control"
+                placeholder="Ingresa Otro Tipo"
+                name="tipo"
+                id="tipo"
+              />
+            </div>
+          </div>
+          <div class="mt-2">
+            <label for="" class="pa">Fecha de Factura</label>
+            <input
+              type="date"
+              name="fecha_factura"
+              id="factura"
+              class="form-control"
+              [(ngModel)]="accesorio.fecha_factura"
+              (ngModelChange)="updateMaxDate()"
+              required
+              [max]="currentDate"
+            />
+          </div>
+          <div class="mt-2">
+            <label for="" class="pa">Orden de Factura</label>
+            <input
+              type="text"
+              name="orden"
+              id="factura"
+              class="form-control"
+              [(ngModel)]="accesorio.orden"
+              required
+            />
+          </div>
+          <div class="mt-2">
+            <label for="" class="pa">N° Factura</label>
+            <input
+              type="text"
+              name="factura"
+              id="factura"
+              class="form-control"
+              [(ngModel)]="accesorio.factura"
+              required
+            />
+          </div>
+          <div class="mt-2">
+            <label for="" class="pa">Ruta Archivo</label>
+            <input
+              type="text"
+              name="rutaArchivo"
+              id="rutaArchivo"
+              class="form-control"
+              [(ngModel)]="accesorio.rutaArchivo"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div class="">
+            <label for="" class="pa">Precio</label>
+            <input
+              class="form-control"
+              [(ngModel)]="accesorio.precio"
+              name="precio"
+              id="precio"
+              required
+              appOnlyNumbers
+              appSeparateThousands
+            />
+          </div>
+          <div class="mt-2">
+            <label for="" class="pa">Estado</label>
+            <select
+              class="form-select text-uppercase"
+              aria-label="Default select example"
+              name="estado"
+              id="estado"
+              [(ngModel)]="accesorio.estado"
+              disabled
+            >
+              <option *ngFor="let item of estado">{{ item }}</option>
+            </select>
+          </div>
+
+          <div
+            *ngIf="
+              accesorio.estado == 'Disponible' &&
+              permissions.permi7per == 'uLuiTT5rFVcPzoX'
+            "
+          >
+            <div class="mt-2">
+              <label for="" class="pa">¿Dar de Baja?</label>
+              <select
+                class="form-select text-uppercase"
+                aria-label="Default select example"
+                name="mostrar"
+                id="mostrar"
+                [(ngModel)]="accesorio.mostrar"
+                (change)="fileDescartar(accesorio.id)"
+                required
+              >
+                <option *ngFor="let item of mostrar">{{ item }}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="mt-2">
+            <label for="" class="pa">Observaciones</label>
+            <textarea
+              name="observaciones"
+              cols="70"
+              rows="4"
+              class="form-control"
+              [(ngModel)]="accesorio.observaciones"
+              required
+            ></textarea>
+          </div>
+        </div>
+        <div class="pa">
+          <div class="form-group mt-2 mx w-25">
+            <button
+              class="btn bot btn-sm m-1"
+              (click)="onUpdate()"
+              [disabled]="f.invalid"
+            >
+              Actualizar
+            </button>
+            <button class="btn botr btn-sm m-1" [routerLink]="['/perifericos/ver']">
+              Regresar
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <br />
+</div>

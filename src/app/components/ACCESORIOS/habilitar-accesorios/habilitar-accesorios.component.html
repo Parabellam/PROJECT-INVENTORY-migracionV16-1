@@ -1,0 +1,98 @@
+<div
+  *ngIf="permissions.permi17hpe == 'zH31IvM3Sz8Z9Sb'"
+  class="container"
+  data-aos="fade-right"
+>
+  <div class="ms-5">
+    <div class="p-3 container" data-aos="fade-right">
+      <div class="mb-4 border-top-0" data-aos="fade-right">
+        <h2 class="text-shadow text-uppercase">Periféricos Ocultos</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6 w-25"></div>
+        <div class="col-md-6 search d-flex">
+          <label for="" class="p"><b>BUSCAR</b></label>
+          <input
+            type="search"
+            class="form-control w-50 shadow end"
+            name="filterPost"
+            [(ngModel)]="filterPost"
+          />
+        </div>
+      </div>
+      <span class="mt-5 float-end">
+        <strong>Total de Resultados:</strong>
+        {{
+          filterPost === ""
+            ? accesorioFiltrados.length
+            : (accesorioFiltrados | accesorio : filterPost).length
+        }}
+      </span>
+    </div>
+
+    <div class="mt-4" data-aos="fade-right" data-aos-duration="900">
+      <table
+        id="table"
+        class="table table-sm container bg-white text-center table-responsive shadow-lg"
+      >
+        <thead class="th">
+          <tr>
+            <th>Tipo de Periférico</th>
+            <th>Precio</th>
+            <th>Factura</th>
+            <th>Fecha Factura</th>
+            <th>Orden de Compra</th>
+            <th>Estado</th>
+            <th>Observaciones</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <ng-container
+            *ngFor="
+              let item of accesorio
+                | accesorio : filterPost
+                | paginate : { itemsPerPage: 10, currentPage: page }
+            "
+          >
+            <ng-container
+              *ngIf="
+                item.mostrar === 'Si' &&
+                item.mostrar_cliente === clienteSeleccionado
+              "
+            >
+              <tr>
+                <td>{{ item.tipo }}</td>
+                <td [appFormatNumber]="item.precio">{{ item.precio }}</td>
+                <td>{{ item.factura }}</td>
+                <td>{{ item.fecha_factura }}</td>
+                <td>{{ item.orden }}</td>
+                <td>{{ item.estado }}</td>
+                <td>{{ item.observaciones }}</td>
+                <td class="text-uppercase text-center">
+                  <div class="h">
+                    <button
+                      class="btn bel text-dark mx-auto"
+                      routerLink="/perifericos/habilitar/{{ item.id }} "
+                      title="Ver y Editar Configuración"
+                    >
+                      <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </ng-container>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+
+    <pagination-controls
+      class="text-center"
+      (pageChange)="page = $event"
+      previousLabel="Anterior"
+      nextLabel="Siguiente"
+    ></pagination-controls>
+  </div>
+</div>

@@ -1,0 +1,45 @@
+<div
+  *ngIf="permissions.permi18tickets == 'sz3Kqfh0k3qtIWU'"
+  style="padding: 10px 10px 11px"
+>
+  <div class="card container bg-dark cont w-50 mt-4" data-aos="fade-right">
+    <div class="row">
+      <div class="card shadow-lg">
+        <div class="card-head">
+          <h3 class="text-center">Editar Parámetros</h3>
+        </div>
+        <hr />
+        <div class="card-body">
+          <form action="" #f="ngForm">
+            <div class="form-group">
+              <label for="">Tiempo</label>
+              <input
+                type="text"
+                name="tiempo"
+                id="tiempo"
+                class="form-control"
+                [(ngModel)]="sla.tiempo"
+              />
+            </div>
+            <hr class="mt-5" />
+            <div class="form-group float-end mt-2 d-flex">
+              <button
+                class="btn bot btn-sm"
+                (click)="onUpdate()"
+                [disabled]="f.invalid"
+              >
+                Actualizar
+              </button>
+              <button
+                class="btn botr btn-sm"
+                [routerLink]="['/tickets/parametros']"
+              >
+                Regresar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,105 @@
+<div
+  *ngIf="permissions.permi13hcl == 'CeqDviy5LbbP8Vj'"
+  class="container"
+  data-aos="fade-right"
+>
+  <div class="ms-5">
+    <div class="p-2 container" data-aos="fade-right">
+      <div class="mb-4 border-top-0" data-aos="fade-right">
+        <h2 class="text-shadow text-uppercase">Clientes Ocultos</h2>
+      </div>
+      <br />
+
+      <div class="d-flex align-items-center">
+        <div class="me-1">
+          <label for="" class="mx-1"><b>Mostrar</b></label>
+        </div>
+
+        <div class="me-2 w-10">
+          <select
+            name="ipp"
+            id="ipp"
+            class="form-select mx-2 shadow end"
+            [(ngModel)]="ipp"
+            (change)="ippclick(ipp)"
+          >
+            <option *ngFor="let item of ippdd">{{ item }}</option>
+          </select>
+        </div>
+
+        <div class="float start w-75">
+          <label for="" class="mx-1"><b>registros</b></label>
+        </div>
+
+        <div class="is-relative me-2 d-flex align-items-center w-25">
+          <label for="" class="mx-1"><b>Buscar</b></label>
+          <input
+            type="search"
+            class="form-control shadow end w-100"
+            name="filterPost"
+            id="filterPost"
+            [(ngModel)]="filterPost"
+            (input)="resetPage()"
+          />
+        </div>
+      </div>
+
+      <span class="mt-4 float-end">
+        <strong>Total de Resultados:</strong>
+        {{
+          filterPost === ""
+            ? clienteFiltrados.length
+            : (clienteFiltrados | cliente : filterPost).length
+        }}
+      </span>
+    </div>
+    <div class="mt-2" data-aos="fade-right" data-aos-duration="900">
+      <table
+        id="table"
+        class="table table-sm container bg-white text-center table-responsive shadow-lg"
+      >
+        <thead class="th">
+          <tr>
+            <!-- Visualmente los campos Nombre y Codigo están al revés -->
+            <th>Nombre</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <ng-container
+            *ngFor="
+              let item of clientes
+                | cliente : filterPost
+                | paginate : { itemsPerPage: selectedIpp, currentPage: page }
+            "
+          >
+            <ng-container *ngIf="item.mostrar === 'Si'">
+              <tr>
+                <td>{{ item.codigo }}</td>
+                <td>
+                  <div class="d-flex h">
+                    <button
+                      class="btn bel text-dark mx-auto"
+                      routerLink="/clientes/editar/{{ item.id }} "
+                      title="Editar"
+                    >
+                      <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </ng-container>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+
+    <pagination-controls
+      class="text-center paginacion"
+      (pageChange)="page = $event"
+      previousLabel="Anterior"
+      nextLabel="Siguiente"
+    ></pagination-controls>
+  </div>
+</div>

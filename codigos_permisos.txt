@@ -1,0 +1,110 @@
+  Códigos generados para cada permiso (5 códigos por cada módulo)
+
+  1.- dbOMGslVUkJBKmi // asignaciones case 'SIN PERMISOS':
+   2.- Awoa1mUqQvKbjbV // asignaciones case 'VER':
+   3.- UEtPmNDwhrfIgt0 // asignaciones case 'VER Y EXPORTAR':
+   4.- 1gxYGKqZnikfUZu // asignaciones case 'VER Y CREAR/EDITAR':
+   5.- LRWAgJ6Lp8WeyGn // asignaciones case 'VER, CREAR/EDITAR E INHABILITAR':
+   6.- gVxrbcmdKJ3GOup
+   7.- 13QQo6vCrU6Ld7H
+   8.- jt3A1zV8PrGgbBK
+   9.- drzwGAHVb602GWL
+   10.- sJocm9Vp1kqeQlr
+   11.- cpohJfFiOv5yMzb
+   12.- M3cBVSTaIWHJ1sG
+   13.- YACMHArAq0qBl1U
+   14.- atbZw0plcoEaucF
+   15.- FIaw1HHFHTlpY5B
+   16.- pVcFgaocC78MPa0
+   17.- Sjy1wcui39ZBMrn
+   18.- z8Wzh4te4a8q0sX
+   19.- gLM2KweKZBD5Rtw
+   20.- CyJlhVqcyf4Yx5q
+   21.- oWdOWKAwdL17OvP
+   22.- mKCrnh9NqM3GDFa
+   23.- L0YtYwHDo4l83RP
+   24.- UAZkeJDNF7pOhuV
+   25.- CfDSYV3qEt07d7a
+   26.- EeWQHX7VHt0mf1q
+   27.- ftVXCWeFJJa4ljZ
+   28.- LT8npsAKUZ8Ikvu
+   29.- JnNCNG8fu9OD9pS
+   30.- M9Csxpgi4jkdt4n
+   31.- T4lQ7hNVocnhTaj
+   32.- sMcpUli2VOEA41j
+   33.- pByuNT3KvphzTP7
+   34.- EmxZBnH3nJ2xrG2
+   35.- uLuiTT5rFVcPzoX
+   36.- dMuOOCZCk3lA7Eo
+   37.- GTbnxLGw2otSag4
+   38.- WlUJ8lgrWcui0Hy
+   39.- 8IlNUd0FNJuhSpd
+   40.- 0Y4oNoiABbnNIK5
+   41.- HXtNBu9Bw3cJzak
+   42.- IDAMHc7AGXpcfMy
+   43.- hQxqN1kkm5Wb7eX
+   44.- lrrX9taf07qNxMs
+   45.- IToGYuj9agiXK2K
+   46.- f23rcZ0ZEB3IvVK
+   47.- 2nYnNJcWDX3Txwq
+   48.- NY30gidbqABW9K2
+   49.- m7HI003lIchj8FN
+   50.- FlMKuG1RnzRXA2E
+   51.- frdNbYyR3kxAlgI
+   52.- aMHhE8uRxQ9lRBD
+   53.- FCThk6XJfiPG327
+   54.- L8v95Wl5c6pJA4o
+   55.- fISN5iSOhlim92d
+   56.- tzSQisvdUpC3w3W
+   57.- IwkHK6Zh0wlZewK
+   58.- SA85MCrHZEVUi0h
+   59.- CMNtYx5D34NnsOb
+   60.- oQ5fIsYrt2qfiNZ
+   61.- 5iWwfKRrBB8VfvX
+   62.- McTge3NAsOQMqAn
+   63.- 22Y1Krxc7D8Xvkh
+   64.- 4tt0ARBQvK4e037
+   65.- CeqDviy5LbbP8Vj
+   66.- wjKeXfLu713WIEe
+   67.- VLBCcZURkhioh7N
+   68.- Nqfr5LqHLYbN2Yh
+   69.- fjvUXgTJL1ss8Ls
+   70.- 9qT23HdNEHoK1EZ
+   71.- sYGM0awMDWTdMoi
+   72.- K7AYmFQZNEg6yhM
+   73.- TNXkaRh1tuNEvyS
+   74.- BAa7IDeFXUA89hl
+   75.- U32T4jcCvUP8IQ6
+   76.- rMC4qZkB8YRoB0I
+   77.- qrWjfJ3i2Rvdot6
+   78.- JnieFjgioj1RtwN
+   79.- OHrgzmatOatw4Nj
+   80.- UIyuIllroGhsKkJ
+   81.- Yd0JFCYtrTEMJxI
+   82.- ctDkzjCBQlQlxbT
+   83.- FcrGm1KIUxWVjAK
+   84.- IhEIvJ9kzu8oe7N
+   85.- zH31IvM3Sz8Z9Sb
+
+
+
+// Códigos del nombre del localstorage X2 (Ejemplo: D49k1gedp6D49k1gedp6) <- código 1
+  D49k1gedp6:string;
+  nWY8Qnp5Y0:string;
+  JlqmcuqRwf:string;
+  RhaYCnBPxw:string;
+  WPfoE59u4J:string;
+  rM3bOFjzeo:string;
+  ymwTeYg32i:string;
+  mF48JmFg48:string;
+
+  g99XNqkYmJ:string;
+  JVPMKbzc0D:string;
+  XnYr4WVm4p:string;
+
+  KxSEsGkmUS:string;
+  rVogPpaDKG:string;
+  XId5JcLQML:string;
+  nSE7ZxZcxy:string;
+  XOVWi4n21k:string;
+  a6R1mwqVCX:string

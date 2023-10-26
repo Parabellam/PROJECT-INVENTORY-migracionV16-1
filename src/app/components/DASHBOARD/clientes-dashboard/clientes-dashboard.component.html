@@ -1,0 +1,443 @@
+<div data-aos="fade-right">
+  <div class="mt-1" id="pdfContent">
+    <div class="rounded container bg-azul-oscuro shadow ml-28 mr-28">
+      <header
+        class="container bg-white shadow position-relative"
+        style="z-index: 99"
+      >
+        <div class="container mt-2" style="z-index: 99">
+          <button
+            (click)="generatePDF()"
+            id="downloadButton"
+            class="btn btnAdd mt-2 float-end"
+            title="Exportar PDF"
+            style="z-index: 99"
+          >
+            <i class="fa-solid fa-download"></i>
+          </button>
+        </div>
+      </header>
+
+      <header class="rounded container shadow">
+        <div class="row">
+          <div class="col">
+            <h4 class="text-white my-3">INVENTARIO</h4>
+          </div>
+          <div class="col">
+            <h4 class="text-white my-3">
+              Bienvenido {{ userEmail }} a {{ clienteSeleccionado }}
+            </h4>
+          </div>
+        </div>
+
+        <h5 class="text-white text-center mt-2">Resumen Del Mes</h5>
+        <section class="row text-center relative" style="z-index: 999">
+          <div class="col-md-4 fa-2x mt-3 w-25">
+            <div
+              class="d-flex"
+              [routerLink]="['/asignaciones/ver']"
+              title="Asignaciones"
+            >
+              <i
+                class="fa-solid fa-square-poll-vertical icon"
+                style="color: #10478f"
+              ></i>
+              <h6 class="text-white">
+                {{ countAsignacion }} Asignaciones realizadas
+              </h6>
+            </div>
+          </div>
+          <div class="col-md-4 fa-2x mt-3 w-25">
+            <div class="d-flex" [routerLink]="['/equipos/ver']" title="Equipos">
+              <div class="d-flex">
+                <i class="fa-solid fa-laptop icon" style="color: #ee8743"></i>
+                <h6 class="text-white">
+                  {{ countAsignacionEquipos }} Equipos Propios Asignados
+                </h6>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 fa-2x mt-3 w-25">
+            <div
+              class="d-flex"
+              [routerLink]="['/alquilados/ver']"
+              title="Alquilados"
+            >
+              <i
+                class="fa-solid fa-tablet-screen-button icon"
+                style="color: #10478f"
+              ></i>
+              <h6 class="text-white">
+                {{ countAsignacionAlquilados }} Equipos Alquilados Asignados
+              </h6>
+            </div>
+          </div>
+          <div class="col-md-4 fa-2x mt-3 w-25">
+            <div
+              class="d-flex"
+              [routerLink]="['/perifericos/ver']"
+              title="Periféricos"
+            >
+              <div class="d-flex mx-1">
+                <i class="fa-solid fa-keyboard icon" style="color: #ee8743"></i>
+                <h6 class="text-white">
+                  {{ countAsignacionPerifericos }} Periféricos Asignados
+                </h6>
+              </div>
+            </div>
+          </div>
+        </section>
+      </header>
+    </div>
+
+    <!-- El resto de tu contenido HTML -->
+
+    <div class="container mt-2">
+      <div class="row">
+        <div class="rounded col p-3 bg-white shadow">
+          <h4 class="text-center mb-3">Asignaciones</h4>
+          <div style="display: block">
+            <canvas
+              baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              (chartClick)="onChartClickAsignaciones($event)"
+              [legend]="barChartLegend"
+              [type]="barcharType"
+            >
+            </canvas>
+          </div>
+        </div>
+        <div class="rounded col p-3 bg-white shadow perifericos mx-1">
+          <h4 class="text-center mb-3">Periféricos</h4>
+          <div style="display: block">
+            <canvas
+              baseChart
+              [datasets]="barChartDataBar"
+              [labels]="barChartLabelsBar"
+              (chartClick)="onChartClickPerifericos($event)"
+              [options]="barChartOptionsBar"
+              [legend]="barChartLegendBar"
+              [type]="barcharTypeBar"
+            >
+            </canvas>
+          </div>
+        </div>
+
+        <div class="rounded bg-azul-oscuro shadow mt-4">
+          <div class="row text-center">
+            <h4 class="text-white mt-2">Resumen General</h4>
+            <section class="row text-center relative" style="z-index: 999">
+              <div class="col-md-4 fa-2x mt-3 w-25">
+                <div
+                  class="d-flex"
+                  [routerLink]="['/asignaciones/ver']"
+                  title="Asignaciones"
+                >
+                  <i
+                    class="fa-solid fa-square-poll-vertical icon"
+                    style="color: #10478f"
+                  ></i>
+                  <h6 class="text-white">
+                    {{ countAsignacionGlobal }} Asignaciones realizadas
+                  </h6>
+                </div>
+              </div>
+              <div class="col-md-4 fa-2x mt-3 w-25">
+                <div
+                  class="d-flex"
+                  [routerLink]="['/equipos/ver']"
+                  title="Equipos"
+                >
+                  <div class="d-flex">
+                    <i
+                      class="fa-solid fa-laptop icon"
+                      style="color: #ee8743"
+                    ></i>
+                    <h6 class="text-white">
+                      {{ countAsignacionEquiposGlobal }} Equipos Propios
+                      Asignados
+                    </h6>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4 fa-2x mt-3 w-25">
+                <div
+                  class="d-flex"
+                  [routerLink]="['/alquilados/ver']"
+                  title="Alquilados"
+                >
+                  <i
+                    class="fa-solid fa-tablet-screen-button icon"
+                    style="color: #10478f"
+                  ></i>
+                  <h6 class="text-white">
+                    {{ countAsignacionAlquiladosGlobal }} Equipos Alquilados
+                    Asignados
+                  </h6>
+                </div>
+              </div>
+              <div class="col-md-4 fa-2x mt-3 w-25">
+                <div
+                  class="d-flex"
+                  [routerLink]="['/perifericos/ver']"
+                  title="Periféricos"
+                >
+                  <div class="d-flex mx-1">
+                    <i
+                      class="fa-solid fa-keyboard icon"
+                      style="color: #ee8743"
+                    ></i>
+                    <h6 class="text-white">
+                      {{ countAsignacionPerifericosGlobal }} Periféricos
+                      Asignados
+                    </h6>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+
+        <!-- DONAS -->
+        <div class="rounded row bg-white shadow-lg mt-4 ms-1">
+          <h4 class="text-center mb-3">Equipos</h4>
+          <div class="col-md-4">
+            <div style="display: block" style="width: 75%">
+              <canvas
+                baseChart
+                [datasets]="donutChartData1"
+                [labels]="donutChartLabels"
+                [options]="donutChartOptions"
+                [type]="donutChartType"
+                (chartClick)="onChartClick($event)"
+              ></canvas>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div style="display: block" style="width: 75%">
+              <canvas
+                baseChart
+                [datasets]="donutChartData2"
+                [labels]="donutChartLabels2"
+                [options]="donutChartOptions"
+                (chartClick)="onChartClick2($event)"
+                [type]="donutChartType"
+              >
+              </canvas>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div style="display: block" style="width: 75%">
+              <canvas
+                baseChart
+                [datasets]="donutChartData3"
+                [labels]="donutChartLabels3"
+                [options]="donutChartOptions"
+                (chartClick)="onChartClick3($event)"
+                [type]="donutChartType"
+              >
+              </canvas>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded shadow-lg mt-3">
+          <h5 class="text-center mt-2">Cantidad Por Dispositivos</h5>
+          <table
+            class="table table-sm bg-white text-center table-responsive bordered mt-2"
+          >
+            <thead class="th">
+              <tr>
+                <th>Dispositivo</th>
+                <th>Cantidad</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of dispositivos">
+                <td>{{ item.dispositivo }}</td>
+                <td>{{ item.cantidad }}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="row bg-white shadow-lg mt-4">
+      <div class="col-md-4">
+        <div id="pdf-data" style="display: block">
+          <div class="static-labels">
+            <div *ngFor="let label of donutChartLabels; let i = index">
+              <span>{{ label }}: {{ getDonutDataValue(i) }} Unidades</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- no se-->
+      <div class="col-md-4">
+        <div id="pdf-data" style="display: block">
+          <div class="static-labels">
+            <div *ngFor="let label of donutChartLabels2; let i = index">
+              <span>{{ label }}: {{ getDonutDataValue2(i) }} Unidades</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4">
+        <div id="pdf-data" style="display: block">
+          <div class="static-labels">
+            <div *ngFor="let label of donutChartLabels3; let i = index">
+              <span>{{ label }}: {{ getDonutDataValue3(i) }} Unidades</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container mt-3">
+  <div class="row">
+    <div class="col bg-white mt-3">
+      <div class="container">
+        <span class="float-end">
+          <strong>Tickets abiertos:</strong>
+          {{ (ticketsTabla | ticket : filterPost).length }}
+        </span>
+      </div>
+      <!-- Tabla y paginación -->
+      <div>
+        <table
+          id="table1"
+          class="table table-sm bg-white text-center table-responsive shadow-lg"
+        >
+          <thead class="th">
+            <tr>
+              <th>N° Ticket</th>
+              <th>Departamento</th>
+              <th>Fecha Ingreso</th>
+              <th>ANS</th>
+              <th>Asunto</th>
+              <th>Asignado a</th>
+              <th>Días Abierto</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="
+                let item of ticketsTabla
+                  | ticket : filterPost
+                  | paginate
+                    : { itemsPerPage: 5, currentPage: page1, id: 'tabla1' }
+              "
+            >
+              <td>{{ item.numeroTicket }}</td>
+              <td>{{ item.departamento }}</td>
+              <td>{{ item.fechaIngreso }}</td>
+              <td>{{ item.respuesta }}</td>
+              <td>{{ item.asunto }}</td>
+              <td>{{ item.asignadoA }}</td>
+              <td
+                [style.background-color]="
+                  getBackgroundColor(
+                    item.respuesta,
+                    calculateDaysOpen(item.fechaIngreso)
+                  )
+                "
+              >
+                <strong> {{ calculateDaysOpen(item.fechaIngreso) }}</strong>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <pagination-controls
+        id="tabla1"
+        class="text-center paginacion"
+        (pageChange)="page1 = $event"
+        previousLabel="Anterior"
+        nextLabel="Siguiente"
+      ></pagination-controls>
+    </div>
+
+    <div class="col-md-6" style="margin-top: 2px">
+      <div class="container">
+        <span class="float-end" style="margin-top: 3%">
+          <strong>Tickets cerrados:</strong>
+          {{ (ticketsTabla2 | ticket2 : filterPost2).length }}
+        </span>
+        <input
+          class="form-control float-end d-inline-block"
+          type="month"
+          name="fecha_factura"
+          id="fecha_factura"
+          style="margin-right: 5%; width: 32%"
+          [(ngModel)]="selectMes3"
+          (ngModelChange)="getTicketsTable2(); getMonth3(selectMes3)"
+          [max]="getCurrentMonthYear3()"
+        />
+      </div>
+      <!-- Tabla y paginación -->
+      <div>
+        <table
+          id="table2"
+          class="table table-sm container bg-white text-center table-responsive shadow-lg"
+        >
+          <thead class="th">
+            <tr>
+              <th>N° Ticket</th>
+              <th>Departamento</th>
+              <th>Fecha Ingreso</th>
+              <th>ANS</th>
+              <th>Asunto</th>
+              <th>Asignado a</th>
+              <th>Días de Gestión</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="
+                let item of ticketsTabla2
+                  | ticket2 : filterPost2
+                  | paginate
+                    : { itemsPerPage: 5, currentPage: page2, id: 'tabla2' }
+              "
+            >
+              <td>{{ item.numeroTicket }}</td>
+              <td>{{ item.departamento }}</td>
+              <td>{{ item.fechaIngreso }}</td>
+              <td>{{ item.respuesta }}</td>
+              <td>{{ item.asunto }}</td>
+              <td>{{ item.asignadoA }}</td>
+              <td
+                [style.background-color]="
+                  getBackgroundColor(
+                    item.respuesta,
+                    calculateDaysOpen2(item.fechaIngreso, item.fechaCierre)
+                  )
+                "
+              >
+                <strong>
+                  {{
+                    calculateDaysOpen2(item.fechaIngreso, item.fechaCierre)
+                  }}</strong
+                >
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <pagination-controls
+        id="tabla2"
+        class="text-center paginacion"
+        (pageChange)="page2 = $event"
+        previousLabel="Anterior"
+        nextLabel="Siguiente"
+      ></pagination-controls>
+    </div>
+  </div>
+</div>

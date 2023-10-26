@@ -1,0 +1,288 @@
+.hidden-scrollbar {
+  overflow-x: hidden;
+}
+
+.hidden-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+  background-color: #011d46c4;
+}
+
+.hidden-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgb(241, 117, 45);
+}
+
+.subMenu {
+  display: none;
+}
+
+.subMenu.open {
+  display: block;
+}
+
+div {
+  z-index: 12;
+}
+
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+.nav-item:hover a {
+  color: rgb(255, 159, 124);
+  text-decoration: underline;
+}
+
+.log {
+  margin-bottom: 60px;
+}
+.in {
+  margin-left: 10px;
+}
+
+.bf {
+  background-color: rgba(221, 221, 221, 0.719);
+  color: rgb(0, 0, 0);
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+}
+.a {
+  background-color: rgba(221, 221, 221, 0.719);
+}
+
+h1 {
+  color: #fff;
+  margin: 30px auto;
+  display: table;
+  text-align: center;
+}
+i.fa {
+  font-size: 25px;
+  padding: 9px;
+  width: 30px;
+  text-align: center;
+  text-shadow: 1px 1px 1px #000;
+}
+.leftMenu {
+  height: 100%;
+  background-color: #001027;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 50px;
+  transition: all ease 1s;
+  overflow: hidden;
+  transition: 0.5s cubic-bezier(0.8, 0.5, 0.2, 1.4);
+  box-shadow: 1px 4px 8px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hamburger {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: #d65d0d;
+  float: right;
+  margin-right: 15%;
+  margin-top: 1%;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.5);
+  position: relative;
+  transform: rotate(0deg);
+}
+
+.hamburger.open {
+  background-color: tomato;
+  transition: all ease 0.5s;
+}
+
+.hamburger:hover {
+  box-shadow: none;
+  transition: all ease 0.5s;
+  transform: rotate(360deg);
+}
+.hamburger span {
+  width: 60%;
+  height: 3px;
+  background-color: #000;
+  display: block;
+  border-radius: 1px;
+  float: left;
+  margin-left: 20%;
+  transition: all ease 0.3s;
+}
+.hamburger span:nth-child(1) {
+  margin-top: 13px;
+}
+.hamburger span:nth-child(2) {
+  margin-top: 3px;
+}
+.hamburger span:nth-child(3) {
+  margin-top: 3px;
+}
+
+.open span:nth-child(1) {
+  background-color: #fff;
+  transform: rotate(45deg);
+  transition-timing-function: ease-in-out;
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  width: 25px;
+  transition: all ease 0.5s;
+  border-radius: 10px;
+}
+
+.open span:nth-child(2) {
+  background-color: #fff;
+  transition-timing-function: ease-in-out;
+  margin-top: 18px;
+  opacity: 0;
+  transition: all ease 0.5s;
+}
+.open span:nth-child(3) {
+  background-color: #fff;
+  transform: rotate(-45deg);
+  transition-timing-function: ease-in-out;
+  margin-top: 0px;
+  position: absolute;
+  top: 18px;
+  right: 8px;
+  width: 25px;
+  transition: all ease 0.5s;
+  border-radius: 10px;
+}
+
+.openMenu {
+  width: 260px;
+  transition: all ease 1s;
+  overflow: hidden;
+  transition: 0.5s cubic-bezier(0.8, 0.5, 0.2, 1.4);
+}
+
+.leftMenuList {
+  margin-top: 70px;
+  list-style: none;
+  padding: 0;
+}
+
+.leftMenuList li {
+  width: 250px;
+  line-height: 20px;
+  color: hsl(0, 0%, 100%);
+  border-bottom: 1px solid rgb(241, 117, 45);
+  font-size: 10px;
+}
+.leftMenuList li:hover {
+  background-color: #011d46c4;
+  transition: all ease 0.5s;
+  cursor: pointer;
+}
+.leftMenuList li a {
+  text-decoration: none;
+  color: #fff;
+}
+.leftMenuList li a svg {
+  width: 40px;
+  height: 40px;
+  float: left;
+  margin-left: 0px;
+}
+.leftMenuList li a span {
+  text-decoration: none;
+  color: #fff;
+  margin-left: 25px;
+  width: 100%;
+}
+.leftMenuList li ul li {
+  padding: 0px;
+  line-height: 30px;
+  transition: all 0.4s;
+  box-sizing: border-box;
+}
+.leftMenuList li ul li:hover {
+  background: #012a68c4;
+  transition: all 0.4s;
+}
+.leftMenuList li ul li:hover {
+  background: #1f2c759f;
+  transition: all 0.4s;
+}
+.leftMenuList li ul li ul li {
+  padding: 5px;
+  background: #1f38689f;
+}
+.leftMenuList li ul li ul li a span {
+  color: #153253;
+}
+.leftMenuList li ul li ul li:hover {
+  background: #254474;
+}
+
+.dropdown {
+  color: #fff;
+  text-decoration: none;
+  margin-bottom: 5px;
+  display: block;
+  position: relative;
+  transition: 0.5s;
+}
+.active + .dropdownlist {
+  width: 100%;
+  height: auto;
+  line-height: 30px;
+  padding: 0px;
+  margin-left: 0px;
+  background: #1c375cc0;
+  transition: 0.5s;
+}
+.active + .dropdownlist:hover {
+  background: #204e799d;
+}
+.dropdownlist {
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  transition: 0.5s;
+}
+.dropdown:before {
+  font-family: FontAwesome;
+  content: "\f105";
+  transition: all 0.4s;
+  padding-right: 5px;
+  right: 20px;
+  position: absolute;
+  top: 4px;
+}
+
+.dropdown.active:before {
+  font-family: FontAwesome;
+  content: "\f107";
+  transition: all 0.4s;
+  padding-right: 5px;
+}
+.leftMenu:not(.openMenu) li > .dropdownlist {
+  pointer-events: none;
+  height: 0;
+}
+
+.text-shadow {
+  text-shadow: 1px 1px 0px #000;
+}
+
+.menu li ul {
+  text-decoration: none;
+}
+.close {
+  width: 250px;
+}
+
+.fa-2x {
+  margin-left: 10px;
+}
+
+.leftMenu:hover {
+  display: block;
+}

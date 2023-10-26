@@ -1,0 +1,168 @@
+<div
+  *ngIf="
+    permissions.permi5fun == 'mKCrnh9NqM3GDFa' ||
+    permissions.permi5fun == 'L0YtYwHDo4l83RP' ||
+    permissions.permi5fun == 'UAZkeJDNF7pOhuV' ||
+    permissions.permi5fun == 'CfDSYV3qEt07d7a'
+  "
+  class="container"
+  data-aos="fade-right"
+>
+  <div class="ms-5">
+    <div class="p-2 container" data-aos="fade-right">
+      <div class="mb-4 border-top-0" data-aos="fade-right">
+        <h2 class="text-shadow text-uppercase">Funcionarios</h2>
+      </div>
+
+      <button
+        *ngIf="
+          permissions.permi5fun == 'L0YtYwHDo4l83RP' ||
+          permissions.permi5fun == 'UAZkeJDNF7pOhuV' ||
+          permissions.permi5fun == 'CfDSYV3qEt07d7a'
+        "
+        class="btn float-end mx-2 btnAdd"
+        (click)="exportExcel()"
+        title="Exportar Excel"
+      >
+        <i class="fa-solid fa-file-csv fa-2x text-white"></i>
+      </button>
+
+      <div class="container">
+        <div class="row w-25">
+          <div class="col">
+            <button
+              *ngIf="
+                permissions.permi5fun == 'UAZkeJDNF7pOhuV' ||
+                permissions.permi5fun == 'CfDSYV3qEt07d7a'
+              "
+              class="btnAdd fs text-white btn-sm"
+              [routerLink]="'/funcionarios/crear'"
+              title="Agregar Funcionario"
+            >
+              <i class="fa-solid fa-user-plus fa-lg"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <br />
+
+      <div class="d-flex align-items-center">
+        <div class="me-1">
+          <label for="" class="mx-1"><b>Mostrar</b></label>
+        </div>
+
+        <div class="me-2 w-10">
+          <select
+            name="ipp"
+            id="ipp"
+            class="form-select mx-2 shadow end"
+            [(ngModel)]="ipp"
+            (change)="ippclick(ipp)"
+          >
+            <option *ngFor="let item of ippdd" [value]="item">{{ item }}</option>
+          </select>
+        </div>
+
+        <div class="float start w-75">
+          <label for="" class="mx-3"><b>registros</b></label>
+        </div>
+
+        <div class="is-relative me-2 d-flex align-items-center w-25">
+          <label for="" class="mx-1"><b>Buscar</b></label>
+          <input
+            type="search"
+            class="form-control shadow end w-100"
+            name="filterPost"
+            id="filterPost"
+            [(ngModel)]="filterPost"
+            (input)="resetPage()"
+          />
+        </div>
+      </div>
+
+      <span class="mt-4 float-end">
+        <strong>Total de Resultados:</strong>
+        {{
+          filterPost === ""
+            ? funcionario.length
+            : (funcionario | funcionario : filterPost).length
+        }}
+      </span>
+    </div>
+
+    <div class="mt-4" data-aos="fade-right" data-aos-duration="900">
+      <table
+        id="table"
+        class="table table-sm container bg-white text-center table-responsive shadow-lg"
+      >
+        <thead class="th">
+          <tr>
+            <th>Documento</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Celular</th>
+            <th>Observaciones</th>
+            <th>Estado</th>
+            <th
+              *ngIf="
+                permissions.permi5fun == 'UAZkeJDNF7pOhuV' ||
+                permissions.permi5fun == 'CfDSYV3qEt07d7a'
+              "
+            >
+              Acciones
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let item of funcionario
+                | funcionario : filterPost
+                | filtrarMostrados
+                | paginate : { itemsPerPage: selectedIpp, currentPage: page }
+            "
+          >
+            <ng-container>
+              <!-- *ngIf Para ocultar los perfiles que no se usen pero quedan en DB -->
+              <td>{{ item.documento }}</td>
+              <td>{{ item.nombre | truncate : 20 }}</td>
+              <td>{{ item.email | truncate : 20 }}</td>
+              <td>{{ item.celular }}</td>
+              <td>{{ item.observaciones | truncate : 20 }}</td>
+              <td>{{ item.estado }}</td>
+              <td
+                *ngIf="
+                  permissions.permi5fun == 'UAZkeJDNF7pOhuV' ||
+                  permissions.permi5fun == 'CfDSYV3qEt07d7a'
+                "
+              >
+                <div class="d-flex h">
+                  <button
+                    *ngIf="
+                      permissions.permi5fun == 'UAZkeJDNF7pOhuV' ||
+                      permissions.permi5fun == 'CfDSYV3qEt07d7a'
+                    "
+                    class="btn mx-auto bel text-dark"
+                    routerLink="/funcionarios/editar/{{ item.id_funcionario }}"
+                    title="Editar"
+                  >
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                </div>
+              </td>
+            </ng-container>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div data-aos="fade-right">
+      <pagination-controls
+        class="text-center"
+        (pageChange)="page = $event"
+        previousLabel="Anterior"
+        nextLabel="Siguiente"
+      ></pagination-controls>
+    </div>
+  </div>
+</div>

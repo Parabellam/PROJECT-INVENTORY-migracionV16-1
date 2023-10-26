@@ -1,0 +1,191 @@
+<div
+  *ngIf="
+    permissions.permi2alq == 'sJocm9Vp1kqeQlr' ||
+    permissions.permi2alq == 'drzwGAHVb602GWL' ||
+    permissions.permi2alq == 'jt3A1zV8PrGgbBK' ||
+    permissions.permi2alq == '13QQo6vCrU6Ld7H'
+  "
+  class="container"
+  data-aos="fade-right"
+>
+  <div class="ms-5">
+    <div class="p-2 container" data-aos="fade-right">
+      <div class="mb-4 border-top-0" data-aos="fade-right">
+        <h2 class="text-shadow text-uppercase">Alquilados</h2>
+      </div>
+
+      <button
+        *ngIf="
+          permissions.permi2alq == 'sJocm9Vp1kqeQlr' ||
+          permissions.permi2alq == 'drzwGAHVb602GWL' ||
+          permissions.permi2alq == 'jt3A1zV8PrGgbBK'
+        "
+        class="btn float-end mx-2 btnAdd"
+        (click)="exportExcel()"
+        title="Exportar Excel"
+      >
+        <i class="fa-solid fa-file-csv fa-2x text-white"></i>
+      </button>
+
+      <div
+        *ngIf="
+          permissions.permi2alq == 'sJocm9Vp1kqeQlr' ||
+          permissions.permi2alq == 'drzwGAHVb602GWL'
+        "
+        class="container"
+      >
+        <div class="row w-25">
+          <div class="col">
+            <button
+              class="btnAdd fs text-white btn-sm"
+              [routerLink]="['/alquilados/crear']"
+              title="Agregar Alquilado"
+            >
+              <i class="fa-solid fa-truck-ramp-box fa-lg"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <br />
+
+      <div class="d-flex align-items-center">
+        <div class="me-1">
+          <label for="" class="mx-1"><b>Mostrar</b></label>
+        </div>
+
+        <div class="me-2 w-10">
+          <select
+            name="ipp"
+            id="ipp"
+            class="form-select mx-2 shadow end"
+            [(ngModel)]="ipp"
+            (change)="ippclick(ipp)"
+          >
+            <option *ngFor="let item of ippdd">{{ item }}</option>
+          </select>
+        </div>
+
+        <div class="float start w-75">
+          <label for="" class="mx-3"><b>registros</b></label>
+        </div>
+
+        <div class="is-relative me-2 d-flex align-items-center w-25">
+          <label for="" class="mx-1"><b>Buscar</b></label>
+          <input
+            type="search"
+            class="form-control shadow end w-100"
+            name="filterPost"
+            id="filterPost"
+            [(ngModel)]="filterPost"
+            (input)="resetPage()"
+          />
+        </div>
+      </div>
+
+      <span class="mt-4 float-end">
+        <strong>Total de Resultados:</strong>
+        {{
+          filterPost === ""
+            ? alquilado.length
+            : (alquilado | alquilado : filterPost).length
+        }}
+      </span>
+    </div>
+
+    <div class="mt-4" data-aos="fade-right" data-aos-duration="900">
+      <table
+        id="table"
+        class="table table-sm container bg-white text-center table-responsive shadow-lg"
+      >
+        <thead class="th">
+          <tr>
+            <th>Código Equipo</th>
+            <th>Fecha</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Estado</th>
+            <th
+              *ngIf="
+                permissions.permi2alq == 'sJocm9Vp1kqeQlr' ||
+                permissions.permi2alq == 'drzwGAHVb602GWL' ||
+                permissions.permi2alq == 'jt3A1zV8PrGgbBK' ||
+                permissions.permi2alq == '13QQo6vCrU6Ld7H'
+              "
+            >
+              Factura
+            </th>
+            <th
+              *ngIf="
+                permissions.permi2alq == 'sJocm9Vp1kqeQlr' ||
+                permissions.permi2alq == 'drzwGAHVb602GWL'
+              "
+            >
+              Acciones
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <ng-container
+            *ngFor="
+              let item of alquilado
+                | alquilado : filterPost
+                | filtrarMostrados
+                | paginate : { itemsPerPage: selectedIpp, currentPage: page }
+            "
+          >
+            <ng-container>
+              <tr>
+                <td>{{ item.codigo_equipo }}</td>
+                <td>{{ item.fecha }}</td>
+                <td>{{ item.descripcion | truncate : 50 }}</td>
+                <td [appFormatNumber]="item.precio">{{ item.precio }}</td>
+                <td>{{ item.estado }}</td>
+                <td
+                  *ngIf="
+                    permissions.permi2alq == 'sJocm9Vp1kqeQlr' ||
+                    permissions.permi2alq == 'drzwGAHVb602GWL' ||
+                    permissions.permi2alq == 'jt3A1zV8PrGgbBK' ||
+                    permissions.permi2alq == '13QQo6vCrU6Ld7H'
+                  "
+                >
+                  <button
+                    class="btn bel text-dark mx-auto"
+                    (click)="item.rutaArchivo && openNewTab(item.rutaArchivo)"
+                    title="Ruta Archivo"
+                  >
+                    <i class="fa-solid fa-link"></i>
+                  </button>
+                </td>
+
+                <td
+                  *ngIf="
+                    permissions.permi2alq == 'sJocm9Vp1kqeQlr' ||
+                    permissions.permi2alq == 'drzwGAHVb602GWL'
+                  "
+                >
+                  <div class="d-flex justify-content-center">
+                    <button
+                      class="btn text-uppercase bel text-dark"
+                      routerLink="/alquilados/editar/{{ item.id }} "
+                      title="Editar"
+                    >
+                      <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </ng-container>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+
+    <pagination-controls
+      class="text-center paginacion"
+      (pageChange)="page = $event"
+      previousLabel="Anterior"
+      nextLabel="Siguiente"
+    ></pagination-controls>
+  </div>
+</div>

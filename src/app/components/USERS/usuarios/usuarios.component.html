@@ -1,0 +1,153 @@
+<div
+  *ngIf="
+    permissions.permi11gus == 'aMHhE8uRxQ9lRBD' ||
+    permissions.permi11gus == 'FCThk6XJfiPG327' ||
+    permissions.permi11gus == 'L8v95Wl5c6pJA4o' ||
+    permissions.permi11gus == 'fISN5iSOhlim92d'
+  "
+  class="container"
+  data-aos="fade-right"
+>
+  <div class="ms-5">
+    <div class="p-2 container" data-aos="fade-right">
+      <div class="mb-4 border-top-0" data-aos="fade-right">
+        <h2 class="text-shadow text-uppercase">Usuarios</h2>
+      </div>
+      <div
+        *ngIf="
+          permissions.permi11gus == 'L8v95Wl5c6pJA4o' ||
+          permissions.permi11gus == 'fISN5iSOhlim92d'
+        "
+        class="container"
+      >
+        <div class="row w-25">
+          <div class="col">
+            <button
+              class="btnAdd fs text-white btn-sm"
+              [routerLink]="['/usuarios/crear']"
+              title="Agregar Usuario"
+            >
+              <i class="fa-solid fa-user-plus fa-lg"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="d-flex align-items-center">
+        <div class="me-1">
+          <label for="" class="mx-1"><b>Mostrar</b></label>
+        </div>
+
+        <div class="me-2 w-10">
+          <select
+            name="ipp"
+            id="ipp"
+            class="form-select mx-2 shadow end"
+            [(ngModel)]="ipp"
+            (change)="ippclick(ipp)"
+          >
+            <option *ngFor="let item of ippdd">{{ item }}</option>
+          </select>
+        </div>
+
+        <div class="float start w-75">
+          <label for="" class="mx-3"><b>registros</b></label>
+        </div>
+
+        <div class="is-relative me-2 d-flex align-items-center w-25">
+          <label for="" class="mx-1"><b>Buscar</b></label>
+          <input
+            type="search"
+            class="form-control shadow end w-100"
+            name="filterPost"
+            id="filterPost"
+            [(ngModel)]="filterPost"
+            (input)="resetPage()"
+          />
+        </div>
+      </div>
+
+      <span class="mt-4 float-end"
+        ><strong> Total de Resultados:</strong>
+        {{ (users | usuarios : filterPost).length }}
+      </span>
+    </div>
+    <div
+      class="table-responsive container mt-5 text-center"
+      data-aos="fade-right"
+      data-aos-duration="900"
+    >
+      <table
+        class="table table-sm container bg-white text-center table-responsive shadow"
+      >
+        <thead class="th">
+          <tr>
+            <th>Nombre</th>
+            <th>Cargo</th>
+            <th>Email</th>
+            <th>Rol</th>
+            <th>Clientes</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let item of users
+                | usuarios : filterPost
+                | paginate : { itemsPerPage: selectedIpp, currentPage: page }
+            "
+          >
+            <td>{{ item.nombre }}</td>
+            <td>{{ item.cargo }}</td>
+            <td>{{ item.email }}</td>
+            <td>{{ item.rol }}</td>
+            <td>
+              <ul class="list-inline">
+                <li *ngFor="let i of item.clientes" class="list-inline-item">
+                  {{ i.nombre }}
+                </li>
+              </ul>
+            </td>
+            <td>
+              <div
+                *ngIf="
+                  permissions.permi11gus == 'L8v95Wl5c6pJA4o' ||
+                  permissions.permi11gus == 'fISN5iSOhlim92d'
+                "
+                class="d-flex justify-content-center"
+              >
+                <button
+                  *ngIf="
+                    permissions.permi11gus == 'L8v95Wl5c6pJA4o' ||
+                    permissions.permi11gus == 'fISN5iSOhlim92d'
+                  "
+                  class="btn text-uppercase bel text-dark"
+                  routerLink="/usuarios/editar/{{ item.id }} "
+                  title="Editar"
+                >
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+                <button
+                  *ngIf="permissions.permi11gus == 'fISN5iSOhlim92d'"
+                  class="btn bel text-dark ms-2"
+                  title="Eliminar"
+                  (click)="borrarUsuario(item)"
+                >
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!--paginacion de la tabla -->
+    <pagination-controls
+      class="text-center"
+      (pageChange)="page = $event"
+      previousLabel="Anterior"
+      nextLabel="Siguiente"
+    ></pagination-controls>
+  </div>
+</div>

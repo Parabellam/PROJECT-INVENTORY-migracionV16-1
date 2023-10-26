@@ -1,0 +1,72 @@
+.dd{
+  margin-left: 50px;
+}
+
+/* Alineacion mostrar registros */
+.asdf {
+  margin-top: 1%;
+}
+
+.h {
+  height: 40px;
+  scale: 0.95;
+}
+
+.search {
+  margin-left: 50%;
+  margin-top: -4%;
+}
+
+.btnAdd {
+  background-color: #011431;
+}
+
+.btnAdd:hover {
+  box-shadow: 0 4px 10px #011431;
+  transition: all 0.5s ease;
+}
+
+.th {
+  background-color: rgb(1, 20, 49);
+  color: white;
+}
+
+.bel {
+  background-color: rgb(250, 125, 52);
+  color: white;
+  height: 40px;
+  width: 40px;
+  border-radius: 15px;
+}
+
+.bel:hover {
+  box-shadow: 0 4px 20px rgb(250, 125, 52);
+  transition: all 0.2s ease;
+}
+
+
+.fs{
+  font-size: 20px;
+}
+
+
+.end{
+  margin-left: auto;
+}
+
+.p{
+  margin-left: 200px;
+  margin-top: 14px;
+}
+
+.table{
+  border: solid 1px #a3a9b3;
+}
+
+td {
+  border-right: 1px solid #c9c7c7;
+  padding: auto;
+}
+td:last-child {
+  border-right: none;
+}

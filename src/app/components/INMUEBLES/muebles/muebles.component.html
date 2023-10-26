@@ -1,0 +1,202 @@
+<div
+  *ngIf="
+    permissions.permi3mue == 'M3cBVSTaIWHJ1sG' ||
+    permissions.permi3mue == 'YACMHArAq0qBl1U' ||
+    permissions.permi3mue == 'atbZw0plcoEaucF' ||
+    permissions.permi3mue == 'FIaw1HHFHTlpY5B'
+  "
+  class="container"
+  data-aos="fade-right"
+>
+  <div class="ms-5">
+    <div class="p-2 container" data-aos="fade-right">
+      <div class="mb-4 mx-3 border-top-0" data-aos="fade-right">
+        <h2 class="text-shadow text-uppercase">Muebles y Enseres</h2>
+      </div>
+
+      <button
+        *ngIf="
+          permissions.permi3mue == 'YACMHArAq0qBl1U' ||
+          permissions.permi3mue == 'atbZw0plcoEaucF' ||
+          permissions.permi3mue == 'FIaw1HHFHTlpY5B'
+        "
+        class="btn float-end mx-2 btnAdd"
+        (click)="exportExcel()"
+        title="Exportar Excel"
+      >
+        <i class="fa-solid fa-file-csv fa-2x text-white"></i>
+      </button>
+
+      <div
+        *ngIf="
+          permissions.permi3mue == 'atbZw0plcoEaucF' ||
+          permissions.permi3mue == 'FIaw1HHFHTlpY5B'
+        "
+        class="container"
+      >
+        <div class="row w-25">
+          <div class="col">
+            <button
+              class="btnAdd fs text-white btn-sm"
+              title="Agregar Mueble"
+              [routerLink]="['/muebles/crear']"
+            >
+              <i class="fa-solid fa-couch fa-lg"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <br />
+
+      <div class="d-flex align-items-center">
+        <div class="me-1">
+          <label for="" class="mx-1"><b>Mostrar</b></label>
+        </div>
+
+        <div class="me-2 w-10">
+          <select
+            name="ipp"
+            id="ipp"
+            class="form-select mx-2 shadow end"
+            [(ngModel)]="ipp"
+            (change)="ippclick(ipp)"
+          >
+            <option *ngFor="let item of ippdd">{{ item }}</option>
+          </select>
+        </div>
+
+        <div class="float start w-75">
+          <label for="" class="mx-3"><b>registros</b></label>
+        </div>
+
+        <div class="is-relative me-2 d-flex align-items-center w-25">
+          <label for="" class="mx-1"><b>Buscar</b></label>
+          <input
+            type="search"
+            class="form-control shadow end w-100"
+            name="filterPost"
+            id="filterPost"
+            [(ngModel)]="filterPost"
+            (input)="resetPage()"
+          />
+        </div>
+      </div>
+
+      <span class="mt-4 float-end">
+        <strong>Total de Resultados:</strong>
+        {{
+          filterPost === ""
+            ? muebles.length
+            : (muebles | muebles : filterPost).length
+        }}
+      </span>
+    </div>
+
+    <br />
+    <br />
+
+    <div
+      class="w d-block mx-auto"
+      data-aos="fade-right"
+      data-aos-duration="900"
+    >
+      <table
+        id="table responsive-table"
+        class="table table-sm container bg-white text-center table-responsive shadow-lg"
+      >
+        <thead class="th un_first">
+          <tr>
+            <th>Código Mueble</th>
+            <th>Estado</th>
+            <th>N° Factura</th>
+            <th>Fecha Factura</th>
+            <th>Orden</th>
+            <th>Observaciones</th>
+            <th
+              *ngIf="
+                permissions.permi3mue == 'M3cBVSTaIWHJ1sG' ||
+                permissions.permi3mue == 'YACMHArAq0qBl1U' ||
+                permissions.permi3mue == 'atbZw0plcoEaucF' ||
+                permissions.permi3mue == 'FIaw1HHFHTlpY5B'
+              "
+            >
+              Factura
+            </th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let item of muebles
+                | muebles : filterPost
+                | filtrarMostrados
+                | paginate : { itemsPerPage: selectedIpp, currentPage: page };
+              let i = index
+            "
+          >
+            <ng-container>
+              <td *ngIf="clienteSeleccionado == 'Nexos'">
+                01-0{{ item.codigo_inmueble }}
+              </td>
+              <td *ngIf="clienteSeleccionado != 'Nexos'">
+                {{ item.codigo_inmueble }}
+              </td>
+              <td>{{ item.estado }}</td>
+              <td>{{ item.factura }}</td>
+              <td>{{ item.fecha_factura }}</td>
+              <td>{{ item.orden }}</td>
+              <td>{{ item.observacion }}</td>
+              <td
+                *ngIf="
+                  permissions.permi3mue == 'M3cBVSTaIWHJ1sG' ||
+                  permissions.permi3mue == 'YACMHArAq0qBl1U' ||
+                  permissions.permi3mue == 'atbZw0plcoEaucF' ||
+                  permissions.permi3mue == 'FIaw1HHFHTlpY5B'
+                "
+              >
+                <button
+                  class="btn bel text-dark ms-sm-2"
+                  (click)="item.rutaArchivo && openNewTab(item.rutaArchivo)"
+                  title="Ruta Archivo"
+                >
+                  <i class="fa-solid fa-link"></i>
+                </button>
+              </td>
+              <td>
+                <div class="d-flex justify-content-center">
+                  <button
+                    *ngIf="
+                      permissions.permi3mue == 'atbZw0plcoEaucF' ||
+                      permissions.permi3mue == 'FIaw1HHFHTlpY5B'
+                    "
+                    class="btn text-uppercase bel text-dark"
+                    title="Editar"
+                    routerLink="/muebles/editar/{{ item.id }}"
+                  >
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                  <button
+                    class="btn bel text-dark ms-sm-2"
+                    routerLink="/muebles/ver/{{ item.id }} "
+                    title="Ver Detalles"
+                  >
+                    <i class="fa-solid fa-eye"></i>
+                    <span></span>
+                  </button>
+                </div>
+              </td>
+            </ng-container>
+          </tr>
+        </tbody>
+      </table>
+
+      <pagination-controls
+        class="text-center"
+        (pageChange)="page = $event"
+        previousLabel="Anterior"
+        nextLabel="Siguiente"
+      ></pagination-controls>
+    </div>
+  </div>
+</div>

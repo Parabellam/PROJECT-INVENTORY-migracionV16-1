@@ -1,0 +1,495 @@
+<body (mousemove)="mousemove()">
+  <ng-container *ngIf="canActivate()">
+    <div
+      class="leftMenu"
+      style="z-index: 2"
+      [ngClass]="{ open: isOpen, close: !isOpen }"
+    >
+      <button class="hamburger" title="Menú" (click)="isOpen = !isOpen">
+        <i class="fa-solid fa-bars"></i></button
+      ><span></span><span></span><span></span>
+      <ul class="leftMenuList mt-5">
+        <li
+          *ngIf="clienteSeleccionado == 'Nexos'"
+          class="mt-2"
+          [routerLink]="['/']"
+        >
+          <a class="mx-1" title="Dashboard"
+            ><i class="fa-solid fa-chart-line fa-2x mb-1"></i
+            ><span>DASHBOARD</span></a
+          >
+        </li>
+        <li
+          *ngIf="clienteSeleccionado != 'Nexos'"
+          class="mt-2"
+          [routerLink]="['/inicio-cliente']"
+        >
+          <a class="mx-1" title="Dashboard"
+            ><i class="fa-solid fa-chart-line fa-2x mb-1"></i
+            ><span>DASHBOARD</span></a
+          >
+        </li>
+
+        <li
+          [routerLink]="['/asignaciones/ver']"
+          *ngIf="
+            permissions.permi1asi == 'Awoa1mUqQvKbjbV' ||
+            permissions.permi1asi == 'UEtPmNDwhrfIgt0' ||
+            permissions.permi1asi == '1gxYGKqZnikfUZu' ||
+            permissions.permi1asi == 'LRWAgJ6Lp8WeyGn'
+          "
+        >
+          <a class="drop mx-1" title="Asignaciones"
+            ><i class="fa-solid fa-people-carry-box fa-2x mt-2"></i
+            ><span>ASIGNACIONES</span></a
+          >
+        </li>
+        <li
+          [routerLink]="['/perifericos/ver']"
+          *ngIf="
+            permissions.permi7per == 'uLuiTT5rFVcPzoX' ||
+            permissions.permi7per == 'EmxZBnH3nJ2xrG2' ||
+            permissions.permi7per == 'pByuNT3KvphzTP7' ||
+            permissions.permi7per == 'sMcpUli2VOEA41j'
+          "
+        >
+          <a class="drop mx-1" title="Periféricos"
+            ><i class="fa-regular mt-2 fa-keyboard fa-2x"></i>
+            <span>PERIFÉRICOS</span></a
+          >
+        </li>
+
+        <li
+          *ngIf="
+            permissions.permi4equ == 'CyJlhVqcyf4Yx5q' ||
+            permissions.permi4equ == 'gLM2KweKZBD5Rtw' ||
+            permissions.permi4equ == 'z8Wzh4te4a8q0sX' ||
+            permissions.permi4equ == 'Sjy1wcui39ZBMrn'
+          "
+          [routerLink]="['/equipos/ver']"
+        >
+          <a class="mx-1" title="Equipos"
+            ><i class="fa-solid mt-2 fa-laptop-code fa-2x"></i
+            ><span>EQUIPOS</span></a
+          >
+        </li>
+
+        <li
+          *ngIf="
+            permissions.permi2alq == 'sJocm9Vp1kqeQlr' ||
+            permissions.permi2alq == 'drzwGAHVb602GWL' ||
+            permissions.permi2alq == 'jt3A1zV8PrGgbBK' ||
+            permissions.permi2alq == '13QQo6vCrU6Ld7H'
+          "
+          [routerLink]="['/alquilados/ver']"
+        >
+          <a class="drop" title="Alquilados"
+            ><i class="fa-solid mt-2 fa-truck-ramp-box fa-2x"></i>
+            <span>ALQUILADOS</span></a
+          >
+        </li>
+
+        <li
+          [routerLink]="['/muebles/ver']"
+          *ngIf="
+            permissions.permi3mue == 'FIaw1HHFHTlpY5B' ||
+            permissions.permi3mue == 'atbZw0plcoEaucF' ||
+            permissions.permi3mue == 'YACMHArAq0qBl1U' ||
+            permissions.permi3mue == 'M3cBVSTaIWHJ1sG'
+          "
+        >
+          <a class="drop mx-1" title="Muebles"
+            ><i class="fa-solid mt-2 fa-couch fa-2x"></i><span>MUEBLES</span></a
+          >
+        </li>
+        <li
+          [routerLink]="['/funcionarios/ver']"
+          *ngIf="
+            permissions.permi5fun == 'CfDSYV3qEt07d7a' ||
+            permissions.permi5fun == 'UAZkeJDNF7pOhuV' ||
+            permissions.permi5fun == 'L0YtYwHDo4l83RP' ||
+            permissions.permi5fun == 'mKCrnh9NqM3GDFa'
+          "
+        >
+          <a class="drop mx-2" title="Funcionarios"
+            ><i class="fa-solid fa-user-tie fa-2x mt-2"></i>
+            <span>FUNCIONARIOS</span></a
+          >
+        </li>
+
+        <li
+          *ngIf="
+            permissions.permi6lic == 'ftVXCWeFJJa4ljZ' ||
+            permissions.permi6lic == 'LT8npsAKUZ8Ikvu' ||
+            permissions.permi6lic == 'JnNCNG8fu9OD9pS' ||
+            permissions.permi6lic == 'M9Csxpgi4jkdt4n'
+          "
+          [routerLink]="['/licencias/ver']"
+        >
+          <a class="drop mx-1" title="Licencias"
+            ><i class="fa-solid fa-id-card fa-2x mt-2"></i>
+            <span>LICENCIAS</span></a
+          >
+        </li>
+
+        <li
+          [routerLink]="['/bitacoras/ver']"
+          *ngIf="
+            permissions.permi8bit == '0Y4oNoiABbnNIK5' ||
+            permissions.permi8bit == '8IlNUd0FNJuhSpd' ||
+            permissions.permi8bit == 'WlUJ8lgrWcui0Hy' ||
+            permissions.permi8bit == 'GTbnxLGw2otSag4'
+          "
+        >
+          <a class="drop mx-2" title="Bitácora"
+            ><i class="fa-solid fa-book fa-2x mt-2"></i><span>BITÁCORA</span></a
+          >
+        </li>
+
+        <li
+          *ngIf="
+            permissions.permi9gcl == 'IToGYuj9agiXK2K' ||
+            permissions.permi9gcl == 'lrrX9taf07qNxMs' ||
+            permissions.permi9gcl == 'hQxqN1kkm5Wb7eX' ||
+            permissions.permi9gcl == 'IDAMHc7AGXpcfMy' ||
+            permissions.permi10gpa == 'FlMKuG1RnzRXA2E' ||
+            permissions.permi10gpa == 'm7HI003lIchj8FN' ||
+            permissions.permi10gpa == 'NY30gidbqABW9K2' ||
+            permissions.permi10gpa == '2nYnNJcWDX3Txwq' ||
+            permissions.permi11gus == 'fISN5iSOhlim92d' ||
+            permissions.permi11gus == 'L8v95Wl5c6pJA4o' ||
+            permissions.permi11gus == 'FCThk6XJfiPG327' ||
+            permissions.permi11gus == 'aMHhE8uRxQ9lRBD'
+          "
+          (click)="menuOpen2 = !menuOpen2"
+          (click)="isOpen = false"
+          title="Gestión"
+        >
+          <i class="fa-solid mx-3 fa-screwdriver-wrench mt-2 fa-2x"></i>
+          <span
+            (click)="menuOpen2 = menuOpen2"
+            (click)="isOpen = false"
+            class="drop mx-2"
+            >GESTIÓN <i class="fa-solid fa-arrow-down mx-2"></i
+          ></span>
+          <ul
+            *ngIf="!isOpen"
+            class="hidden-scrollbar"
+            style="max-height: 95px; overflow-y: auto"
+          >
+            <ul *ngIf="menuOpen2" class="menu mx-2">
+              <li
+                *ngIf="
+                  permissions.permi9gcl == 'IToGYuj9agiXK2K' ||
+                  permissions.permi9gcl == 'lrrX9taf07qNxMs' ||
+                  permissions.permi9gcl == 'hQxqN1kkm5Wb7eX' ||
+                  permissions.permi9gcl == 'IDAMHc7AGXpcfMy'
+                "
+                [routerLink]="['/clientes/ver']"
+                (click)="menuOpen2 = false"
+              >
+                <a class="drop mx-1" title="Clientes"
+                  ><i class="fa-solid fa-person-breastfeeding mx-2"></i
+                  >CLIENTES</a
+                >
+              </li>
+              <li
+                *ngIf="
+                  permissions.permi9gcl == 'IToGYuj9agiXK2K' ||
+                  permissions.permi9gcl == 'lrrX9taf07qNxMs' ||
+                  permissions.permi9gcl == 'hQxqN1kkm5Wb7eX' ||
+                  permissions.permi9gcl == 'IDAMHc7AGXpcfMy'
+                "
+                [routerLink]="['/sedes/ver']"
+                (click)="menuOpen2 = false"
+              >
+                <a class="drop mx-1" title="Sedes"
+                  ><i class="fa-solid fa-location-dot mx-2"></i>SEDES</a
+                >
+              </li>
+              <li
+                *ngIf="
+                  permissions.permi11gus == 'fISN5iSOhlim92d' ||
+                  permissions.permi11gus == 'L8v95Wl5c6pJA4o' ||
+                  permissions.permi11gus == 'FCThk6XJfiPG327' ||
+                  permissions.permi11gus == 'aMHhE8uRxQ9lRBD'
+                "
+                (click)="menuOpen2 = false"
+                [routerLink]="['/usuarios/ver']"
+              >
+                <a class="drop mx-1" title="Usuarios"
+                  ><i class="fa-regular fa-circle-user mx-2"></i>USUARIOS</a
+                >
+              </li>
+              <li
+                *ngIf="
+                  permissions.permi10gpa == 'FlMKuG1RnzRXA2E' ||
+                  permissions.permi10gpa == 'm7HI003lIchj8FN' ||
+                  permissions.permi10gpa == 'NY30gidbqABW9K2' ||
+                  permissions.permi10gpa == '2nYnNJcWDX3Txwq'
+                "
+                (click)="menuOpen2 = false"
+                [routerLink]="['/parametros/ver']"
+              >
+                <a class="drop mx-1" title="Parámetros"
+                  ><i class="fa-solid fa-clipboard-list mx-2"></i> PARÁMETROS</a
+                >
+              </li>
+            </ul>
+          </ul>
+        </li>
+
+        <li
+          (click)="menuOpen = !menuOpen"
+          (click)="isOpen = false"
+          title="Habilitar"
+          *ngIf="
+            permissions.permi12hal == 'oQ5fIsYrt2qfiNZ' ||
+            permissions.permi12hal == 'CMNtYx5D34NnsOb' ||
+            permissions.permi12hal == 'SA85MCrHZEVUi0h' ||
+            permissions.permi12hal == 'IwkHK6Zh0wlZewK' ||
+            permissions.permi13hcl == 'CeqDviy5LbbP8Vj' ||
+            permissions.permi13hcl == '4tt0ARBQvK4e037' ||
+            permissions.permi13hcl == '22Y1Krxc7D8Xvkh' ||
+            permissions.permi13hcl == 'McTge3NAsOQMqAn' ||
+            permissions.permi14heq == '9qT23HdNEHoK1EZ' ||
+            permissions.permi14heq == 'fjvUXgTJL1ss8Ls' ||
+            permissions.permi14heq == 'Nqfr5LqHLYbN2Yh' ||
+            permissions.permi14heq == 'VLBCcZURkhioh7N' ||
+            permissions.permi15hfu == 'U32T4jcCvUP8IQ6' ||
+            permissions.permi15hfu == 'BAa7IDeFXUA89hl' ||
+            permissions.permi15hfu == 'TNXkaRh1tuNEvyS' ||
+            permissions.permi15hfu == 'K7AYmFQZNEg6yhM' ||
+            permissions.permi16hmu == 'UIyuIllroGhsKkJ' ||
+            permissions.permi16hmu == 'OHrgzmatOatw4Nj' ||
+            permissions.permi16hmu == 'JnieFjgioj1RtwN' ||
+            permissions.permi16hmu == 'qrWjfJ3i2Rvdot6' ||
+            permissions.permi17hpe == 'zH31IvM3Sz8Z9Sb' ||
+            permissions.permi17hpe == 'IhEIvJ9kzu8oe7N' ||
+            permissions.permi17hpe == 'FcrGm1KIUxWVjAK' ||
+            permissions.permi17hpe == 'ctDkzjCBQlQlxbT'
+          "
+        >
+          <i class="fa-solid fa-eye-slash mt-2 fa-2x"></i>
+          <span
+            (click)="menuOpen = menuOpen"
+            (click)="isOpen = false"
+            class="drop mx-4"
+            >HABILITAR <i class="fa-solid fa-arrow-down mx-2"></i
+          ></span>
+          <ul
+            *ngIf="!isOpen"
+            class="hidden-scrollbar"
+            style="max-height: 90px; overflow-y: auto"
+          >
+            <ul *ngIf="menuOpen" class="menu mx-2">
+              <li
+                *ngIf="
+                  permissions.permi12hal == 'oQ5fIsYrt2qfiNZ' ||
+                  permissions.permi12hal == 'CMNtYx5D34NnsOb' ||
+                  permissions.permi12hal == 'SA85MCrHZEVUi0h' ||
+                  permissions.permi12hal == 'IwkHK6Zh0wlZewK'
+                "
+                (click)="menuOpen = false"
+                [routerLink]="['/alquilados/habilitar']"
+              >
+                <a title="Mostrar Alquilados"
+                  ><i class="fa-solid mt-2 fa-truck-ramp-box mx-2"></i
+                  >ALQUILADOS</a
+                >
+              </li>
+              <li
+                *ngIf="
+                  permissions.permi14heq == '9qT23HdNEHoK1EZ' ||
+                  permissions.permi14heq == 'fjvUXgTJL1ss8Ls' ||
+                  permissions.permi14heq == 'Nqfr5LqHLYbN2Yh' ||
+                  permissions.permi14heq == 'VLBCcZURkhioh7N'
+                "
+                (click)="menuOpen = false"
+                [routerLink]="['/equipos/habilitar']"
+              >
+                <a title="Mostrar Equipos"
+                  ><i class="fa-solid mt-2 fa-laptop-code mx-2"></i>EQUIPOS</a
+                >
+              </li>
+              <li
+                *ngIf="
+                  permissions.permi15hfu == 'U32T4jcCvUP8IQ6' ||
+                  permissions.permi15hfu == 'BAa7IDeFXUA89hl' ||
+                  permissions.permi15hfu == 'TNXkaRh1tuNEvyS' ||
+                  permissions.permi15hfu == 'K7AYmFQZNEg6yhM'
+                "
+                (click)="menuOpen = false"
+                [routerLink]="['/funcionarios/habilitar']"
+              >
+                <a title="Mostrar Funcionarios"
+                  ><i class="fa-solid fa-user-tie mx-2"></i>FUNCIONARIOS</a
+                >
+              </li>
+              <li
+                *ngIf="
+                  permissions.permi16hmu == 'UIyuIllroGhsKkJ' ||
+                  permissions.permi16hmu == 'OHrgzmatOatw4Nj' ||
+                  permissions.permi16hmu == 'JnieFjgioj1RtwN' ||
+                  permissions.permi16hmu == 'qrWjfJ3i2Rvdot6'
+                "
+                (click)="menuOpen = false"
+                [routerLink]="['/muebles/habilitar']"
+              >
+                <a title="Mostrar Muebles y Enseres"
+                  ><i class="fa-solid mt-2 fa-couch mx-2"></i>MUEBLES</a
+                >
+              </li>
+              <li
+                *ngIf="
+                  permissions.permi17hpe == 'zH31IvM3Sz8Z9Sb' ||
+                  permissions.permi17hpe == 'IhEIvJ9kzu8oe7N' ||
+                  permissions.permi17hpe == 'FcrGm1KIUxWVjAK' ||
+                  permissions.permi17hpe == 'ctDkzjCBQlQlxbT'
+                "
+                (click)="menuOpen = false"
+                [routerLink]="['/perifericos/habilitar']"
+              >
+                <a title="Mostrar Periféricos"
+                  ><i class="fa-regular mt-2 fa-keyboard mx-2"></i
+                  >PERIFÉRICOS</a
+                >
+              </li>
+              <li
+                *ngIf="
+                  permissions.permi13hcl == 'CeqDviy5LbbP8Vj' ||
+                  permissions.permi13hcl == '4tt0ARBQvK4e037' ||
+                  permissions.permi13hcl == '22Y1Krxc7D8Xvkh' ||
+                  permissions.permi13hcl == 'McTge3NAsOQMqAn'
+                "
+                (click)="menuOpen = false"
+                [routerLink]="['/clientes/habilitar']"
+              >
+                <a class="drop mx-1" title="Mostrar Clientes"
+                  ><i class="fa-solid fa-person-breastfeeding mx-2"></i>
+                  CLIENTES</a
+                >
+              </li>
+              <li
+                *ngIf="
+                  permissions.permi13hcl == 'CeqDviy5LbbP8Vj' ||
+                  permissions.permi13hcl == '4tt0ARBQvK4e037' ||
+                  permissions.permi13hcl == '22Y1Krxc7D8Xvkh' ||
+                  permissions.permi13hcl == 'McTge3NAsOQMqAn'
+                "
+                (click)="menuOpen = false"
+                [routerLink]="['/sedes/habilitar']"
+              >
+                <a class="drop mx-1" title="Mostrar Sedes"
+                  ><i class="fa-solid fa-location-dot mx-2"></i> SEDES</a
+                >
+              </li>
+            </ul>
+          </ul>
+        </li>
+        <li
+          *ngIf="
+            permissions.permi18tickets == 'sz3Kqfh0k3qtIWU' &&
+            clienteSeleccionado == 'Nexos'
+          "
+          (click)="menuOpen3 = !menuOpen3"
+          (click)="isOpen = false"
+          title="Tickets"
+        >
+          <i class="fa-solid mx-3 fa-ticket mt-2 fa-2x"></i>
+          <span
+            (click)="menuOpen3 = menuOpen3"
+            (click)="isOpen = false"
+            class="drop mx-2"
+            >TICKETS <i class="fa-solid fa-arrow-down mx-2"></i
+          ></span>
+          <ul
+            *ngIf="!isOpen"
+            class="hidden-scrollbar"
+            style="max-height: 95px; overflow-y: auto"
+          >
+            <ul *ngIf="menuOpen3" class="menu mx-2">
+              <li
+                [routerLink]="['/tickets/ver']"
+                *ngIf="
+                  permissions.permi18tickets == 'sz3Kqfh0k3qtIWU' &&
+                  clienteSeleccionado == 'Nexos'
+                "
+                (click)="menuOpen3 = false"
+              >
+                <a class="drop mx-1" title="Tickets"
+                  ><i class="fa-solid fa-ticket mx-2"></i>TICKETS</a
+                >
+              </li>
+              <li
+                *ngIf="
+                  permissions.permi18tickets == 'sz3Kqfh0k3qtIWU' &&
+                  clienteSeleccionado == 'Nexos'
+                "
+                (click)="menuOpen3 = false"
+                [routerLink]="['/tickets/indicadores']"
+              >
+                <a class="drop mx-1" title="Tickets Indicadores"
+                  ><i class="fa-solid fa-chart-line mx-2"></i>INDICADORES</a
+                >
+              </li>
+
+              <li
+                *ngIf="
+                  permissions.permi18tickets == 'sz3Kqfh0k3qtIWU' &&
+                  clienteSeleccionado == 'Nexos'
+                "
+                (click)="menuOpen3 = false"
+                [routerLink]="['/tickets/parametros']"
+              >
+                <a class="drop mx-1" title="Tickets Parámetros"
+                  ><i class="fa-solid fa-clipboard-list mx-2"></i>PARÁMETROS</a
+                >
+              </li>
+            </ul>
+          </ul>
+        </li>
+        <!--<li>
+        <a [routerLink]="['/historial']" class="drop mx-1" title="Historial"
+          ><i class="fa-solid fa-business-time fa-2x mt-2 "></i>
+          <span>HISTORIAL</span></a
+        >
+      </li>-->
+
+        <li (click)="logout()">
+          <a class="drop mx-2" title="Salir"
+            ><i class="fa-solid fa-right-from-bracket fa-2x mt-2"></i>
+            <span> SALIR</span></a
+          >
+        </li>
+
+        <!-- Empresa logeada -->
+        <li class="margin">
+          <a
+            class="drop mx-2 fixed-bottom"
+            title="Bienvenido"
+            style="z-index: -1"
+          >
+            <i class="fa-solid fa-building fa-2x fa-lg"></i>
+            <span
+              >Bienvenido a {{ clienteSeleccionadoCodigo | truncate : 15 }}
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </ng-container>
+  <div (click)="isOpen = true">
+    <router-outlet></router-outlet>
+  </div>
+  <br />
+  <br />
+
+  <footer
+    *ngIf="canActivate()"
+    class="bf py-3 mt-auto text-center container-fluid"
+    (click)="isOpen = true"
+  >
+    <h6>Sitio desarrollado por <strong>Nexos Software&copy;</strong></h6>
+  </footer>
+</body>

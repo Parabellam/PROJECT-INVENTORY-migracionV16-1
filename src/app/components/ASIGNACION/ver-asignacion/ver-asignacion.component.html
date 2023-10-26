@@ -1,0 +1,124 @@
+<div
+  *ngIf="
+    permissions.permi1asi == 'LRWAgJ6Lp8WeyGn' ||
+    permissions.permi1asi == '1gxYGKqZnikfUZu' ||
+    permissions.permi1asi == 'UEtPmNDwhrfIgt0' ||
+    permissions.permi1asi == 'Awoa1mUqQvKbjbV'
+  "
+  class="container cont w-50"
+  style="padding: 20px 10px 11px"
+  data-aos="fade-right"
+  data-aos-duration="800"
+>
+  <div class="row">
+    <div class="card shadow-lg">
+      <div class="card-head">
+        <h3 class="text-center">Ver Asignación</h3>
+      </div>
+      <hr />
+      <div class="card-body">
+        <form action="" #f="ngForm">
+          <div class="mb-1">
+            <label class="form-label">Funcionario</label>
+            <select
+              name="funcionario"
+              id="funcionario"
+              class="form-select"
+              [(ngModel)]="asignacion.funcionario.id_funcionario"
+              disabled
+            >
+              <option value="-1">[Seleccione]</option>
+              <option
+                *ngFor="let item of funcionario"
+                [value]="item.id_funcionario"
+              >
+                {{ item.nombre }}
+              </option>
+            </select>
+          </div>
+          <div class="mt-2">
+            <label class="form-label">Código Dispositivo</label>
+            <select
+              name="equipo"
+              id="equipo"
+              class="form-select"
+              [(ngModel)]="asignacion.codigo_e_a"
+              disabled
+            >
+              <option value="-1">[Seleccione]</option>
+              <option
+                *ngFor="let item of equipo"
+                [value]="asignacion.codigo_e_a"
+              >
+                {{ asignacion.codigo_e_a }}
+              </option>
+            </select>
+          </div>
+          <div class="mt-2">
+            <label class="form-label">Sede</label>
+            <select
+              name="sede"
+              id="sede"
+              class="form-select"
+              [(ngModel)]="asignacion.sede"
+              required
+              disabled
+            >
+              <option value="-1">[Seleccione]</option>
+              <option [value]="item.nombre" *ngFor="let item of sede">
+                {{ item.nombre }}
+              </option>
+            </select>
+          </div>
+          <div class="mt-2">
+            <label class="form-label">Fecha</label>
+            <input
+              type="date"
+              name="fecha_entrega"
+              id="fecha_entrega"
+              [(ngModel)]="asignacion.fecha_entrega"
+              class="form-control"
+              disabled
+            />
+          </div>
+          <div class="mt-2">
+            <label for="" class="form-label">Observaciones</label>
+            <textarea
+              type="text"
+              name="descripcion"
+              id="descripcion"
+              class="form-control"
+              [(ngModel)]="asignacion.descripcion"
+              disabled
+            >
+            </textarea>
+          </div>
+
+          <div class="mt-2">
+            <label for="">Periféricos asignados:</label>
+            <select multiple name="accesorios2" class="form-select" disabled>
+              <ng-container
+                *ngFor="
+                  let accesoriosSeleccionadosAntes of accesoriosSeleccionadosAntes
+                "
+              >
+                <option [value]="accesoriosSeleccionadosAntes.id">
+                  {{ accesoriosSeleccionadosAntes.tipo }}
+                </option>
+              </ng-container>
+            </select>
+          </div>
+
+          <hr />
+          <div class="pa">
+            <div class="form-group float-end mt-2 d-flex">
+              <button class="btn botr btn-sm" [routerLink]="['/asignaciones/ver']">
+                Regresar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

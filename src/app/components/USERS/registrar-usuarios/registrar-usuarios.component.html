@@ -1,0 +1,574 @@
+<div
+  *ngIf="
+    permissions.permi11gus == 'L8v95Wl5c6pJA4o' ||
+    permissions.permi11gus == 'fISN5iSOhlim92d'
+  "
+  class="container cont w-50"
+  style="padding: 20px 10px 11px"
+  data-aos="fade-right"
+>
+  <div class="row">
+    <div class="card shadow-lg">
+      <div class="card-head">
+        <h3 class="text-center mt-1">Registrar Usuario</h3>
+      </div>
+      <hr />
+      <div class="card-body">
+        <form action="" #f="ngForm">
+          <form action="" #f="ngForm" class="form mt-3" method="post">
+            <div class="accordion co" id="accordionExample">
+              <div class="accordion-item co mt-2">
+                <h2 class="accordion-header" id="headingFive">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseFive"
+                    aria-expanded="false"
+                    aria-controls="collapseFive"
+                  >
+                    Cuenta
+                  </button>
+                </h2>
+                <div
+                  id="collapseFive"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="headingFive"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    <div class="form-group">
+                      <label for="">Nombre</label>
+                      <input
+                        type="text"
+                        name="nombre"
+                        id="nombre"
+                        class="form-control"
+                        [(ngModel)]="user.nombre"
+                        required
+                      />
+                    </div>
+
+                    <div class="form-group">
+                      <label for="">Cargo</label>
+                      <input
+                        type="text"
+                        name="nombre"
+                        id="nombre"
+                        class="form-control"
+                        [(ngModel)]="user.cargo"
+                        required
+                      />
+                    </div>
+                    <div class="form-group mt-2">
+                      <label for="">Email</label>
+                      <input
+                        type="email"
+                        name="email"
+                        id="email"
+                        class="form-control"
+                        [(ngModel)]="user.email"
+                        required
+                      />
+                    </div>
+
+                    <div class="form-group mt-2">
+                      <div class="row">
+                        <div class="col">
+                          <label for="">Rol</label>
+                          <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            name="rol"
+                            id="rol"
+                            [(ngModel)]="user.rol"
+                            required
+                          >
+                            <option value="-1">[Seleccione]</option>
+                            <option value="ADMIN">Administrador</option>
+                            <option value="USER">Usuario</option>
+                            <option value="ADMINISTRATIVO">
+                              Administrativo
+                            </option>
+                            <option value="INFRAESTRUCTURA">
+                              Infraestructura
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-group mt-2">
+                      <div class="row">
+                        <div class="col">
+                          <label for="">Contraseña</label>
+
+                          <input
+                            [(ngModel)]="user.password"
+                            [type]="show ? 'text' : 'password'"
+                            style="border-radius: 5px"
+                            class="form-control input_pass passw"
+                            name="password"
+                            id="password"
+                          />
+                        </div>
+
+                        <div class="col mt-4">
+                          <!-- Mostrar Contraseña -->
+                          <a (click)="contrasena()">
+                            <i
+                              id="ver"
+                              style="color: white"
+                              class="fa fa-eye shpassw"
+                            ></i>
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item co mt-2">
+                <h2 class="accordion-header" id="headingFour">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseFour"
+                    aria-expanded="false"
+                    aria-controls="collapseFour"
+                  >
+                    Clientes
+                  </button>
+                </h2>
+                <div
+                  id="collapseFour"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="headingFour"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    <div>
+                      <label for=""
+                        >Clientes para este Usuario (Ctrl + Click para
+                        varios)</label
+                      >
+                      <select
+                        multiple
+                        [(ngModel)]="user.clientes"
+                        name="clientes"
+                        class="form-select"
+                      >
+                        <option *ngFor="let item of cliente" [value]="item">
+                          {{ item.nombre }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="accordion-item co mt-2">
+                <h2 class="accordion-header" id="headingOne">
+                  <button
+                    class="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseThree"
+                    aria-expanded="false"
+                    aria-controls="collapseThree"
+                  >
+                    Permisos
+                  </button>
+                </h2>
+                <div
+                  id="collapseThree"
+                  class="accordion-collapse collapse"
+                  aria-labelledby="headingOne"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div class="accordion-body">
+                    <div class="accordion co" id="accordionExample">
+                      <div class="accordion-item co mt-2">
+                        <h2 class="accordion-header" id="headingQ">
+                          <button
+                            class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#collapseQ"
+                            aria-expanded="false"
+                            aria-controls="collapseQ"
+                          >
+                            Generales
+                          </button>
+                        </h2>
+                        <div
+                          id="collapseQ"
+                          class="accordion-collapse collapse"
+                          aria-labelledby="headingQ"
+                          data-bs-parent="#accordionExample2"
+                        >
+                          <div class="accordion-body">
+                            <div class="mt-2">
+                              <label for="" class="pa">Asignaciones</label>
+                              <select
+                                name="sede"
+                                id="sede"
+                                class="form-select"
+                                [(ngModel)]="user.asignaciones"
+                                required
+                              >
+                                <option value="-1">[Seleccione]</option>
+                                <option *ngFor="let item of sede">
+                                  {{ item }}
+                                </option>
+                              </select>
+                            </div>
+                            <div class="mt-2">
+                              <label for="" class="pa">Alquilados</label>
+                              <select
+                                name="sede"
+                                id="sede"
+                                class="form-select"
+                                [(ngModel)]="user.alquilados"
+                                required
+                              >
+                                <option value="-1">[Seleccione]</option>
+                                <option *ngFor="let item of sede">
+                                  {{ item }}
+                                </option>
+                              </select>
+                            </div>
+                            <div class="mt-2">
+                              <label for="" class="pa">Muebles</label>
+                              <select
+                                name="sede"
+                                id="sede"
+                                class="form-select"
+                                [(ngModel)]="user.muebles"
+                                required
+                              >
+                                <option value="-1">[Seleccione]</option>
+                                <option *ngFor="let item of sede">
+                                  {{ item }}
+                                </option>
+                              </select>
+                            </div>
+
+                            <div class="mt-2">
+                              <label for="" class="pa">Equipos</label>
+                              <select
+                                name="sede"
+                                id="sede"
+                                class="form-select"
+                                [(ngModel)]="user.equipos"
+                                required
+                              >
+                                <option value="-1">[Seleccione]</option>
+                                <option *ngFor="let item of sede">
+                                  {{ item }}
+                                </option>
+                              </select>
+                            </div>
+                            <div class="mt-2">
+                              <label for="" class="pa">Funcionarios</label>
+                              <select
+                                name="sede"
+                                id="sede"
+                                class="form-select"
+                                [(ngModel)]="user.funcionarios"
+                                required
+                              >
+                                <option value="-1">[Seleccione]</option>
+                                <option *ngFor="let item of sede">
+                                  {{ item }}
+                                </option>
+                              </select>
+                            </div>
+                            <div class="mt-2">
+                              <label for="" class="pa">Licencias</label>
+                              <select
+                                name="sede"
+                                id="sede"
+                                class="form-select"
+                                [(ngModel)]="user.licencias"
+                                required
+                              >
+                                <option value="-1">[Seleccione]</option>
+                                <option *ngFor="let item of sede">
+                                  {{ item }}
+                                </option>
+                              </select>
+                            </div>
+                            <div class="mt-2">
+                              <label for="" class="pa">Periféricos</label>
+                              <select
+                                name="sede"
+                                id="sede"
+                                class="form-select"
+                                [(ngModel)]="user.perifericos"
+                                required
+                              >
+                                <option value="-1">[Seleccione]</option>
+                                <option *ngFor="let item of sede">
+                                  {{ item }}
+                                </option>
+                              </select>
+                            </div>
+                            <div class="mt-2">
+                              <label for="" class="pa">Bitácora</label>
+                              <select
+                                name="sede"
+                                id="sede"
+                                class="form-select"
+                                [(ngModel)]="user.bitacora"
+                                required
+                              >
+                                <option value="-1">[Seleccione]</option>
+                                <option *ngFor="let item of sede">
+                                  {{ item }}
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="accordion-item co mt-2">
+                        <h2 class="accordion-header" id="headingQ">
+                          <button
+                            class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#collapseW"
+                            aria-expanded="false"
+                            aria-controls="collapseW"
+                          >
+                            Gestión
+                          </button>
+                        </h2>
+                        <div
+                          id="collapseW"
+                          class="accordion-collapse collapse"
+                          aria-labelledby="headingQ"
+                          data-bs-parent="#accordionExample2"
+                        >
+                          <div class="accordion-body">
+                            <div class="mt-2">
+                              <label for="" class="pa"
+                                >Gestión de Clientes</label
+                              >
+                              <select
+                                name="sede"
+                                id="sede"
+                                class="form-select"
+                                [(ngModel)]="user.g_clientes"
+                                required
+                              >
+                                <option value="-1">[Seleccione]</option>
+                                <option *ngFor="let item of sede">
+                                  {{ item }}
+                                </option>
+                              </select>
+                            </div>
+                            <div class="mt-2">
+                              <label for="" class="pa"
+                                >Gestión de Parámetros</label
+                              >
+                              <select
+                                name="sede"
+                                id="sede"
+                                class="form-select"
+                                [(ngModel)]="user.g_parametros"
+                                required
+                              >
+                                <option value="-1">[Seleccione]</option>
+                                <option *ngFor="let item of sede">
+                                  {{ item }}
+                                </option>
+                              </select>
+                            </div>
+                            <div class="mt-2">
+                              <label for="" class="pa"
+                                >Gestión de Usuarios</label
+                              >
+                              <select
+                                name="sede"
+                                id="sede"
+                                class="form-select"
+                                [(ngModel)]="user.g_usuarios"
+                                required
+                              >
+                                <option value="-1">[Seleccione]</option>
+                                <option *ngFor="let item of sede">
+                                  {{ item }}
+                                </option>
+                              </select>
+                            </div>
+
+                            <div class="mt-2">
+                              <label for="" class="pa">Tickets</label>
+                              <select
+                                name="tickets"
+                                id="tickets"
+                                class="form-select"
+                                [(ngModel)]="user.tickets"
+                                required
+                              >
+                                <option value="-1">[Seleccione]</option>
+                                <option>SIN PERMISOS</option>
+                                <option>VER</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="accordion-item co mt-2">
+                        <h2 class="accordion-header" id="headingQ">
+                          <button
+                            class="accordion-button collapsed"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#collapseE"
+                            aria-expanded="false"
+                            aria-controls="collapseE"
+                          >
+                            Habilitar
+                          </button>
+                        </h2>
+                        <div
+                          id="collapseE"
+                          class="accordion-collapse collapse"
+                          aria-labelledby="headingQ"
+                          data-bs-parent="#accordionExample2"
+                        >
+                          <div class="accordion-body">
+                            <div class="mt-2">
+                              <label for="" class="pa"
+                                >Habilitar Alquilados</label
+                              >
+                              <select
+                                name="sede"
+                                id="sede"
+                                class="form-select"
+                                [(ngModel)]="user.h_alquilados"
+                                required
+                              >
+                                <option value="-1">[Seleccione]</option>
+                                <option *ngFor="let item of sede">
+                                  {{ item }}
+                                </option>
+                              </select>
+                            </div>
+                            <div class="mt-2">
+                              <label for="" class="pa"
+                                >Habilitar Clientes</label
+                              >
+                              <select
+                                name="sede"
+                                id="sede"
+                                class="form-select"
+                                [(ngModel)]="user.h_clientes"
+                                required
+                              >
+                                <option value="-1">[Seleccione]</option>
+                                <option *ngFor="let item of sede">
+                                  {{ item }}
+                                </option>
+                              </select>
+                            </div>
+
+                            <div class="mt-2">
+                              <label for="" class="pa">Habilitar Equipos</label>
+                              <select
+                                name="sede"
+                                id="sede"
+                                class="form-select"
+                                [(ngModel)]="user.h_equipos"
+                                required
+                              >
+                                <option value="-1">[Seleccione]</option>
+                                <option *ngFor="let item of sede">
+                                  {{ item }}
+                                </option>
+                              </select>
+                            </div>
+                            <div class="mt-2">
+                              <label for="" class="pa"
+                                >Habilitar Funcionarios</label
+                              >
+                              <select
+                                name="sede"
+                                id="sede"
+                                class="form-select"
+                                [(ngModel)]="user.h_funcionarios"
+                                required
+                              >
+                                <option value="-1">[Seleccione]</option>
+                                <option *ngFor="let item of sede">
+                                  {{ item }}
+                                </option>
+                              </select>
+                            </div>
+                            <div class="mt-2">
+                              <label for="" class="pa">Habilitar Muebles</label>
+                              <select
+                                name="sede"
+                                id="sede"
+                                class="form-select"
+                                [(ngModel)]="user.h_muebles"
+                                required
+                              >
+                                <option value="-1">[Seleccione]</option>
+                                <option *ngFor="let item of sede">
+                                  {{ item }}
+                                </option>
+                              </select>
+                            </div>
+                            <div class="mt-2">
+                              <label for="" class="pa"
+                                >Habilitar Periféricos</label
+                              >
+                              <select
+                                name="sede"
+                                id="sede"
+                                class="form-select"
+                                [(ngModel)]="user.h_perifericos"
+                                required
+                              >
+                                <option value="-1">[Seleccione]</option>
+                                <option *ngFor="let item of sede">
+                                  {{ item }}
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <hr class="mt-5" />
+          <div class="form-group float-end mt-2 d-flex">
+            <button
+              class="btn bot btn-sm"
+              [disabled]="f.invalid"
+              (click)="onCreate()"
+            >
+              Registrar
+            </button>
+            <button class="btn botr btn-sm" [routerLink]="['/usuarios/ver']">
+              Regresar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,115 @@
+<!--
+<div class="calambombo" >
+<div
+  class="container cont w-50"
+  data-aos="fade-right"
+  data-aos-duration="800"
+>
+  <div class="row">
+    <div class="card shadow-lg">
+      <div class="card-head">
+        <h3 class="text-center">Registrar Asignación</h3>
+      </div>
+      <hr />
+      <div class="card-body">
+        <form action="" #f="ngForm">
+          <div class="mb-1">
+            <label class="form-label">Funcionario a Quien Asigna</label>
+            <select
+              name="funcionario"
+              id="funcionario"
+              class="form-select"
+              [(ngModel)]="asignacion.funcionario.id_funcionario"
+              disabled
+            >
+              <option value="-1">[Seleccione]</option>
+              <option
+                *ngFor="let item of funcionario"
+                [value]="item.id_funcionario"
+              >
+                {{ item.nombre }}
+              </option>
+            </select>
+          </div>
+          <div class="mt-2">
+            <label class="form-label">Equipo a Asignar</label>
+            <select
+              name="equipo"
+              id="equipo"
+              class="form-select"
+              [(ngModel)]="asignacion.equipo.id_equipo"
+              disabled
+            >
+              <option value="-1">[Seleccione]</option>
+              <option *ngFor="let item of equipo" [value]="item.id_equipo">
+                {{ item.parametros.tipo_parametro }}-0{{ item.codigo_equipo }}
+              </option>
+            </select>
+          </div>
+          <div class="mt-2">
+            <label class="form-label">Sede</label>
+            <select
+              name="sede"
+              id="sede"
+              class="form-select"
+              [(ngModel)]="asignacion.sede"
+              disabled
+            >
+              <option value="-1">[Seleccione]</option>
+              <option *ngFor="let item of sede">
+                {{ item }}
+              </option>
+            </select>
+          </div>
+          <div class="mt-2">
+            <label class="form-label">Fecha de Entrega</label>
+            <input
+              type="date"
+              name="fecha_entrega"
+              id="fecha_entrega"
+              [(ngModel)]="asignacion.fecha_entrega"
+              class="form-control"
+              disabled
+            />
+          </div>
+
+          <div class="row m">
+            <div class="col-md-6 ">
+
+            </div>
+            <div class="col-md-6">
+              <div class=" mb-4 mx-4">
+                <label class="pa">¿Habilitar Asignación?</label>
+                <br />
+                <input
+                  class="form-check-input mt-2"
+                  type="checkbox"
+                  id="siguiente-checkbox"
+                  name="siguiente-checkbox"
+                  [(ngModel)]="siguienteCheckboxSeleccionado"
+                />
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div class="pa">
+            <div class="form-group float-end mt-2 d-flex">
+              <button
+                class="btn bot"
+                (click)="onUpdateAsignacion()"
+                [disabled]="f.invalid"
+              >
+                Actualizar
+              </button>
+              <button class="btn botr" [routerLink]="['/asignaciones/habilitar']">
+                Regresar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+-->

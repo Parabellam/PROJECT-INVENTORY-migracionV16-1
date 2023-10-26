@@ -1,0 +1,79 @@
+.calambombo {
+  padding: 20px 10px 11px;
+}
+
+#select * {
+  border-radius: 15px;
+  background-color: orange;
+}
+
+.pa {
+  margin: 15px 0px 5px 0px;
+}
+
+.bot {
+  color: #fff;
+  font-weight: 15px;
+  padding: 0.5em 1.2em;
+  background: #2078eb;
+  border: 2px solid;
+  border-color: #2078eb;
+  position: relative;
+  margin-right: 10px;
+}
+.bot:before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 0px;
+  height: 100%;
+  background: rgba(245, 243, 243, 0.219);
+  transition: all 0.6s ease;
+}
+.bot:hover:before {
+  width: 100%;
+  color: rgba(255, 255, 255, 0.438) !important;
+  box-shadow: 0 4px 20px rgb(5, 125, 238);
+  transition: all 0.5s ease;
+}
+
+.botr {
+  color: #fff;
+  font-weight: 15px;
+  padding: 0.5em 1.2em;
+  background: #8c8d8d;
+  border: 2px solid;
+  border-color: #8c8d8d;
+  position: relative;
+}
+.botr:before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 0px;
+  height: 100%;
+  background: rgba(245, 243, 243, 0.219);
+  transition: all 0.5s ease;
+}
+.botr:hover:before {
+  width: 100%;
+  color: rgba(255, 255, 255, 0.438) !important;
+  box-shadow: 0 4px 20px rgb(153, 153, 153);
+  transition: all 0.5s ease;
+}
+
+
+.cont {
+  width: 600px;
+}
+
+.card{
+  background-color: #011431;
+  color: white;
+}
+
+.m{
+  margin-right: 20px;
+}

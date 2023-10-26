@@ -1,0 +1,176 @@
+<div
+  *ngIf="permissions.permi18tickets == 'sz3Kqfh0k3qtIWU'"
+  class="container"
+  data-aos="fade-right"
+>
+  <div class="ms-5">
+    <div class="p-2 container" data-aos="fade-right">
+      <div class="mb-4 border-top-0" data-aos="fade-right">
+        <h2 class="text-shadow text-uppercase">Tickets</h2>
+      </div>
+
+      <div class="row">
+        <div class="col mt-4">
+          <div class="d-flex align-items-center mx-4">
+            <div class="me-2">
+              <label for="" class="mx-1"><b>Mostrar</b></label>
+            </div>
+
+            <div class="me-2 w-10">
+              <select
+                name="ipp"
+                id="ipp"
+                class="form-select shadow end"
+                [(ngModel)]="selectedIpp"
+                (change)="ippclick(selectedIpp)"
+                (input)="resetPage()"
+              >
+                <option *ngFor="let item of ippdd" [value]="item">{{ item }}</option>
+              </select>
+            </div>
+
+            <div class="w-75">
+              <label for="" class="mx-1"><b>registros</b></label>
+            </div>
+          </div>
+        </div>
+        <div class="col mt-4">
+          <div class="d-flex align-items-center">
+            <label for="" class="mx-1"><b>Buscar</b></label>
+            <input
+              type="search"
+              class="form-control shadow end w-100"
+              name="filterPost"
+              id="filterPost"
+              [(ngModel)]="filterPost"
+              (input)="resetPage()"
+            />
+          </div>
+        </div>
+
+        <div class="col">
+          <form action="" class="float-end">
+            <div class="w-50 d-flex">
+              <div class="">
+                <label for=""><strong>Fecha Inicio</strong></label>
+                <input
+                  type="date"
+                  class="form-control shadow"
+                  [(ngModel)]="dateAgoString"
+                  name="inica"
+                  id="inicia"
+                  (ngModelChange)="
+                    FiltrarBitacoraXFecha(currentDateString, dateAgoString)
+                  "
+                  (input)="resetPage()"
+                />
+              </div>
+              <div class="">
+                <label for=""><strong>Fecha Fin</strong></label>
+                <input
+                  type="date"
+                  class="form-control shadow"
+                  [(ngModel)]="currentDateString"
+                  name="fin"
+                  id="fin"
+                  (ngModelChange)="
+                    FiltrarBitacoraXFecha(currentDateString, dateAgoString)
+                  "
+                  (input)="resetPage()"
+                />
+              </div>
+              <div class="mt-3">
+                <button
+                  class="btn float-end mx-2 btnAdd"
+                  (click)="exportExcel()"
+                  title="Exportar Excel"
+                  (input)="resetPage()"
+                >
+                  <i class="fa-solid fa-file-csv fa-2x text-white"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Div oculto -->
+      <div class="container">
+        <div class="row w-25">
+          <div class="col">
+            <button class="btnAdd hidden fs text-white btn-sm">
+              <i class="fa-solid fa-keyboard"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <br />
+    </div>
+    <div class="col">
+      <span class="mt-1 float-end">
+        <strong>Total de Resultados:</strong>
+        {{
+          filterPost === ""
+            ? tickets.length
+            : (tickets | ticket : filterPost).length
+        }}
+      </span>
+    </div>
+    <div class="" data-aos="fade-right" data-aos-duration="900">
+      <table
+        id="table"
+        class="table table-sm container bg-white text-center table-responsive shadow-lg"
+      >
+        <thead class="th">
+          <th>N° Ticket</th>
+          <th>Usuario</th>
+          <th>Correo</th>
+          <th>Problema</th>
+          <th>Departamento</th>
+          <th>Fecha de Ingreso</th>
+          <th>Prioridad</th>
+          <th>Asunto</th>
+          <th>Asignado a</th>
+          <th>Estado</th>
+          <th>Acción</th>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let i of tickets
+                | ticket : filterPost
+                | paginate : { itemsPerPage: selectedIpp, currentPage: page }
+            "
+          >
+            <td>{{ i.numeroTicket }}</td>
+            <td>{{ i.usuario }}</td>
+            <td>{{ i.correo }}</td>
+            <td class="w-100">{{ i.problema }}</td>
+            <td>{{ i.departamento }}</td>
+            <td>{{ i.fechaIngreso }}</td>
+            <td>{{ i.prioridad }}</td>
+            <td>{{ i.asunto }}</td>
+            <td>{{ i.asignadoA }}</td>
+            <td>{{ i.estadoFinal }}</td>
+            <td>
+              <button
+                class="btn bel text-dark justify-content-center"
+                title="Ver Detalle Ticket"
+                routerLink="/tickets/ver/{{ i.idTicket }}"
+              >
+                <i class="fa-solid fa-eye"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <pagination-controls
+      class="text-center paginacion"
+      (pageChange)="page = $event"
+      previousLabel="Anterior"
+      nextLabel="Siguiente"
+    ></pagination-controls>
+  </div>
+</div>

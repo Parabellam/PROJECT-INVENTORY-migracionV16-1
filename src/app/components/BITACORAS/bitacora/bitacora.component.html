@@ -1,0 +1,181 @@
+<div
+  *ngIf="
+    permissions.permi8bit == 'GTbnxLGw2otSag4' ||
+    permissions.permi8bit == 'WlUJ8lgrWcui0Hy' ||
+    permissions.permi8bit == '8IlNUd0FNJuhSpd' ||
+    permissions.permi8bit == '0Y4oNoiABbnNIK5'
+  "
+  class="container"
+  data-aos="fade-right"
+>
+  <div class="ms-5">
+    <div class="ms-5" data-aos="fade-right" data-aos-duration="900">
+      <div class="mb-4 border-top-0" data-aos="fade-right">
+        <h2 class="text-shadow text-uppercase">Bitácora</h2>
+      </div>
+      <button
+        *ngIf="
+          permissions.permi8bit == 'WlUJ8lgrWcui0Hy' ||
+          permissions.permi8bit == '8IlNUd0FNJuhSpd' ||
+          permissions.permi8bit == '0Y4oNoiABbnNIK5'
+        "
+        class="btn float-end mx-2 btnAdd"
+        routerLink="/bitacoras/export"
+        title="Exportar Excel"
+      >
+        <i class="fa-solid fa-file-csv fa-2x text-white"></i>
+      </button>
+      <!--buton-->
+      <div class="mt-3">
+        <button
+          *ngIf="
+            permissions.permi8bit == '8IlNUd0FNJuhSpd' ||
+            permissions.permi8bit == '0Y4oNoiABbnNIK5'
+          "
+          class="btn btnAdd fs text-white btn-sm"
+          [routerLink]="['/bitacoras/crear']"
+          title="Registrar Bitacora"
+        >
+          <i class="fa-solid fa-book fa-lg"></i>
+        </button>
+      </div>
+      <div class="d-flex">
+        <div class="flex-fill me-2" *ngIf="isNxs">
+          <label for="" class="p mx-1"><b>Tipo Activo</b></label>
+          <select
+            name="filterPost1"
+            id="filterPost1"
+            class="form-select shadow"
+            [(ngModel)]="filterPost1"
+            (change)="resetPage()"
+          >
+            <option value="">Seleccione</option>
+            <option *ngFor="let item of parametro">
+              {{ item.tipo_parametro }}
+            </option>
+          </select>
+        </div>
+
+        <div class="flex-fill me-2">
+          <label for="" class="p mx-1"><b>Código Equipo</b></label>
+          <input
+            type="search"
+            class="form-control shadow end"
+            name="filterPost2"
+            id="filterPost2"
+            [(ngModel)]="filterPost2"
+            (input)="resetPage()"
+          />
+        </div>
+        <div class="flex-fill is-relative">
+          <label for="" class="p mx-1"><b>Buscar</b></label>
+          <input
+            type="search"
+            class="form-control shadow end input"
+            name="filterPost"
+            id="filterPost"
+            [(ngModel)]="filterPost"
+            (input)="resetPage()"
+          />
+        </div>
+      </div>
+      <div class="asdf">
+        <div class="div1">
+          <label for="" class=""><b>Mostrar</b></label>
+        </div>
+        <div class="div2">
+          <select
+            name="ipp"
+            id="ipp"
+            class="form-select mx-2 shadow end"
+            [(ngModel)]="ipp"
+            (change)="ippclick(ipp)"
+          >
+            <option *ngFor="let item of ippdd">
+              {{ item }}
+            </option>
+          </select>
+        </div>
+        <div class="div3">
+          <label for="" class="mx-3"><b> registros</b></label>
+        </div>
+      </div>
+
+      <span class="float-end">
+        <strong>Total de Resultados:</strong>
+        <span
+          *ngIf="
+            filterPost !== '' ||
+            filterPost1 !== '' ||
+            filterPost2 !== '' ||
+            filterPost == '' ||
+            filterPost1 == '' ||
+            filterPost2 == ''
+          "
+        >
+          {{ getResultsCount() }}
+        </span>
+      </span>
+    </div>
+
+    <div
+      class="mt-2 w d-block mx-auto"
+      data-aos="fade-right"
+      data-aos-duration="900"
+    >
+      <table
+        id="table"
+        class="table table-sm container bg-white text-center table-responsive shadow-lg"
+      >
+        <thead class="th">
+          <tr>
+            <th>Código Equipo</th>
+            <th>Actividad</th>
+            <th>Fecha</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container
+            *ngFor="
+              let item of bitacora
+                | bitacora : filterPost
+                | codEquipo : filterPost1
+                | codEquipo2 : filterPost2
+                | filtrarMostradosBitacora
+                | paginate : { itemsPerPage: selectedIpp, currentPage: page }
+            "
+          >
+            <tr>
+              <ng-container>
+                <td>{{ item.codigoEquipo }}</td>
+                <td>{{ item.actividad | truncate : 60 }}</td>
+                <td>{{ item.fecha }}</td>
+                <td class="text-center">
+                  <div class="d-block mx-auto">
+                    <button
+                      class="mx-auto btn bel text-dark"
+                      routerLink="/bitacoras/ver/{{ item.id }} "
+                      title="Ver Detalles"
+                    >
+                      <i class="fa-solid fa-eye a"></i>
+                      <span></span>
+                    </button>
+                  </div>
+                </td>
+              </ng-container>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+
+      <pagination-controls
+        #paginator
+        class="text-center"
+        (pageChange)="page = $event"
+        previousLabel="Anterior"
+        nextLabel="Siguiente"
+      ></pagination-controls>
+    </div>
+  </div>
+</div>

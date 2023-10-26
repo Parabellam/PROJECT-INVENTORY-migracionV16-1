@@ -1,0 +1,444 @@
+<div
+  *ngIf="
+    permissions.permi4equ == 'gLM2KweKZBD5Rtw' ||
+    permissions.permi4equ == 'CyJlhVqcyf4Yx5q'
+  "
+  class="calambombo"
+>
+  <div
+    class="container mt-4 shadow-lg p-3 co w-50 rounded"
+    data-aos="fade-right"
+    data-aos-duration="900"
+  >
+    <h3 class="text-center">Editar Equipo</h3>
+    <form action="" #f="ngForm" class="form" method="post">
+      <div class="accordion co" id="accordionExample">
+        <div class="accordion-item co">
+          <h2 class="accordion-header" id="headingOne">
+            <button
+              class="accordion-button"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseOne"
+              aria-expanded="true"
+              aria-controls="collapseOne"
+            >
+              Clasificación de Inventario
+            </button>
+          </h2>
+          <div
+            id="collapseOne"
+            class="accordion-collapse collapse show"
+            aria-labelledby="headingOne"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body">
+              <div>
+                <label for="" class="pa">Tipo de Activo</label>
+                <select
+                  name="parametro"
+                  id="select-parametro"
+                  class="form-select"
+                  [(ngModel)]="equipo.parametros.id"
+                  disabled
+                >
+                  <option value="">---[Seleccione]</option>
+                  <option *ngFor="let item of parametro" [value]="item.id">
+                    {{ item.descripcion }}
+                  </option>
+                </select>
+              </div>
+              <div class="form-group mt-2">
+                <label for="">Tipo de Dispositivo</label>
+                <select
+                  name="tipoDispositivo"
+                  id="tipoDispositivo"
+                  [(ngModel)]="equipo.tipo"
+                  class="form-select"
+                >
+                <option value="">Seleccione</option>
+                  <option *ngFor="let item of tipo" [value]="item.valor">{{ item.valor }}</option>
+                </select>
+              </div>
+              <div class="mt-2">
+                <label for="" class="pa">Código Equipo</label>
+                <input
+                  type="filterValue"
+                  name="codigo"
+                  id="filterValue"
+                  class="form-control"
+                  [(ngModel)]="equipo.codigo_equipo"
+                  required
+                  [disabled]="!isNxs"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="accordion-item co mt-2">
+          <h2 class="accordion-header" id="headingTwo">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseTwo"
+              aria-expanded="false"
+              aria-controls="collapseTwo"
+            >
+              Características
+            </button>
+          </h2>
+          <div
+            id="collapseTwo"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingTwo"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body">
+              <div class="row">
+                <div class="col">
+                  <div class="mt-2">
+                    <label for="" class="pa">Marca</label>
+                    <input
+                      type="text"
+                      name="marca"
+                      id="marca"
+                      class="form-control"
+                      [(ngModel)]="equipo.marca"
+                      required
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <label for="" class="pa">Modelo</label>
+                    <input
+                      type="text"
+                      name="modelo"
+                      id="modelo"
+                      class="form-control"
+                      [(ngModel)]="equipo.modelo"
+                      required
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <label for="" class="pa">Procesador</label>
+                    <input
+                      type="text"
+                      name="procesador"
+                      id="procesador"
+                      class="form-control"
+                      [(ngModel)]="equipo.procesador"
+                      required
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <label for="" class="pa">Sistema Operativo</label>
+                    <input
+                      type="text"
+                      name="os"
+                      id="os"
+                      class="form-control"
+                      [(ngModel)]="equipo.os"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="mt-2">
+                    <label for="" class="pa">Estado</label>
+                    <select
+                      class="form-select text-uppercase"
+                      aria-label="Default select example"
+                      name="estado"
+                      id="estado"
+                      [(ngModel)]="equipo.estado"
+                      disabled
+                    >
+                      <option *ngFor="let item of estado">{{ item }}</option>
+                    </select>
+                  </div>
+                  <div class="mt-2">
+                    <label for="" class="pa">Ram</label>
+                    <input
+                      type="text"
+                      name="ram"
+                      id="ram"
+                      class="form-control"
+                      [(ngModel)]="equipo.ram"
+                      required
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <label for="" class="pa">Almacenamiento</label>
+                    <input
+                      type="text"
+                      name="almacenamiento"
+                      id="almacenamiento"
+                      class="form-control"
+                      [(ngModel)]="equipo.almacenamiento"
+                      required
+                    />
+                  </div>
+                  <div class="mt-2">
+                    <label for="" class="pa">Serial</label>
+                    <input
+                      type="text"
+                      name="seriall"
+                      id="serial"
+                      class="form-control"
+                      [(ngModel)]="equipo.seriall"
+                      required
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item co mt-2">
+          <h2 class="accordion-header" id="headingThree">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseThree"
+              aria-expanded="false"
+              aria-controls="collapseThree"
+            >
+              Datos de Facturación
+            </button>
+          </h2>
+          <div
+            id="collapseThree"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingThree"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body">
+              <div class="mt-2">
+                <label for="" class="pa">Precio</label>
+                <input
+                  type="text"
+                  name="precio"
+                  id="precio"
+                  class="form-control"
+                  [(ngModel)]="equipo.precio"
+                  required
+                  appOnlyNumbers
+                  appSeparateThousands
+                />
+              </div>
+              <div class="mt-2">
+                <label for="" class="pa">N° Factura</label>
+                <input
+                  type="text"
+                  name="factura"
+                  id="factura"
+                  class="form-control"
+                  [(ngModel)]="equipo.factura"
+                  required
+                />
+              </div>
+              <div class="mt-2">
+                <label for="" class="pa">Orden de Compra</label>
+                <input
+                  type="text"
+                  name="orden_compra"
+                  id="orden_compra"
+                  class="form-control"
+                  [(ngModel)]="equipo.orden"
+                  required
+                />
+              </div>
+              <div class="mt-2">
+                <label for="" class="pa">Fecha Factura</label>
+                <input
+                  type="date"
+                  name="fecha_factura"
+                  id="fecha_factura"
+                  class="form-control"
+                  [(ngModel)]="equipo.fecha_factura"
+                  (ngModelChange)="updateMaxDate()"
+                  required
+                  [max]="currentDate"
+                />
+              </div>
+              <div class="mt-2">
+                <label for="" class="pa">Ruta Archivo</label>
+                <input
+                  type="text"
+                  name="rutaArchivo"
+                  id="rutaArchivo"
+                  class="form-control"
+                  [(ngModel)]="equipo.rutaArchivo"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item co mt-2">
+          <h2 class="accordion-header" id="headingFive">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseFive"
+              aria-expanded="false"
+              aria-controls="collapseFive"
+            >
+              Licencias
+            </button>
+          </h2>
+          <div
+            id="collapseFive"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingFive"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body">
+              <div
+                class="mt-2"
+                *ngIf="
+                  (asignando == 0 && validacionEliminar == 0) ||
+                  (asignando == 1 && validacionEliminar == 0)
+                "
+              >
+                <label for=""
+                  >Asignar Licencias: (Ctrl+Click para varios)</label
+                >
+                <select
+                  multiple
+                  [(ngModel)]="equipo.licencias"
+                  name="licencias"
+                  class="form-select"
+                  (ngModelChange)="licenciasSeleccionados = $event"
+                  (click)="asignandoLicencias()"
+                >
+                  <ng-container *ngFor="let item of licencias">
+                    <option [value]="item" *ngIf="filtroLicencia(item)">
+                      {{ item.nombre }}
+                    </option>
+                  </ng-container>
+                </select>
+              </div>
+
+              <div
+                class="mt-2"
+                *ngIf="
+                  (asignando == 0 && validacionEliminar == 0) ||
+                  (asignando == 0 && validacionEliminar == 1)
+                "
+              >
+                <label for="">Eliminar licencias:</label>
+                <select
+                  multiple
+                  name="licencias2"
+                  class="form-select"
+                  [(ngModel)]="licenciasSeleccionadosEliminar"
+                  [(ngModel)]="licenciasSeleccionadosEstado"
+                  (click)="validacionEliminarRelacion()"
+                >
+                  <ng-container
+                    *ngFor="let item of licenciasSeleccionadosAntesEliminar"
+                  >
+                    <option [value]="item">{{ item.nombre }}</option>
+                  </ng-container>
+                </select>
+              </div>
+
+              <div class="mt-2">
+                <label for="">Licencias asignadas:</label>
+                <select multiple name="licencias2" class="form-select" disabled>
+                  <ng-container
+                    *ngFor="
+                      let licenciasSeleccionadosAntes of licenciasSeleccionadosAntes
+                    "
+                  >
+                    <option [value]="licenciasSeleccionadosAntes.id">
+                      {{ licenciasSeleccionadosAntes.nombre }}
+                    </option>
+                  </ng-container>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="accordion-item co mt-2">
+          <h2 class="accordion-header" id="headingFour">
+            <button
+              class="accordion-button collapsed"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseFour"
+              aria-expanded="false"
+              aria-controls="collapseFour"
+            >
+              Otros
+            </button>
+          </h2>
+          <div
+            id="collapseFour"
+            class="accordion-collapse collapse"
+            aria-labelledby="headingFour"
+            data-bs-parent="#accordionExample"
+          >
+            <div class="accordion-body">
+              <div class="mt-2">
+                <label for="" class="pa">Ticket</label>
+                <input
+                  type="text"
+                  name="tiket"
+                  id="tiket"
+                  class="form-control"
+                  [(ngModel)]="equipo.tiket"
+                  required
+                />
+              </div>
+              <div
+                *ngIf="permissions.permi4equ == 'CyJlhVqcyf4Yx5q'"
+                class="mt-2"
+              >
+                <label for="" class="pa">¿Dar de baja?</label>
+                <select
+                  class="form-select text-uppercase"
+                  aria-label="Default select example"
+                  name="mostrar"
+                  id="mostrar"
+                  [(ngModel)]="equipo.mostrar"
+                  (change)="fileDescartar(equipo.id_equipo)"
+                  required
+                >
+                  <option *ngFor="let item of mostrar">{{ item }}</option>
+                </select>
+              </div>
+              <div class="mt-2">
+                <label for="" class="pa">Observaciones</label>
+                <textarea
+                  name="observaciones"
+                  cols="70"
+                  rows="4"
+                  class="form-control"
+                  [(ngModel)]="equipo.observaciones"
+                  (change)="getObservation(equipo.observaciones)"
+                  required
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group mt-2 d-flex w-25">
+          <button
+            class="btn bot btn-sm"
+            (click)="onUpdateEquipo()"
+            [disabled]="f.invalid"
+          >
+            Actualizar
+          </button>
+          <button class="btn botr btn-sm" [routerLink]="['/equipos/ver']">Regresar</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

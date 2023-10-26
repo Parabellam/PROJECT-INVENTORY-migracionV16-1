@@ -1,0 +1,302 @@
+<header class="container bg-white shadow position-relative" style="z-index: 9999">
+  <div class="container mt-2" style="z-index: 9999">
+    <button
+      (click)="generatePDF()"
+      id="downloadButton"
+      class="btn btnAdd mt-2 float-end"
+      title="Exportar PDF"
+      style="z-index: 9999"
+    >
+      <i class="fa-solid fa-download"></i>
+    </button>
+  </div>
+</header>
+<div
+  id="pdfContent"
+  data-aos="fade-right"
+  data-aos-duration="1100"
+  *ngIf="permissions.permi18tickets == 'sz3Kqfh0k3qtIWU'"
+>
+  <!-- El resto de tu contenido HTML -->
+
+  <div class="container mt-2">
+    <h4 class="text-center mt-2 mb-4 mx-auto">INDICADORES</h4>
+    <div class="row">
+      <div class="col p-2 bg-white shadow">
+        <form>
+          <div class="form-group mx-4 w-50">
+            <label for=""><strong>Departamento</strong></label>
+            <select
+              type="text"
+              class="form-select"
+              [(ngModel)]="selectDepartament"
+              (change)="getDep(selectDepartament)"
+              (change)="listarTicket()"
+              name="departamento"
+            >
+              <option
+                [value]="item.departamento"
+                *ngFor="let item of tDepartament"
+              >
+                {{ item.departamento }}
+              </option>
+            </select>
+          </div>
+          <div style="display: block">
+            <canvas
+              baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [legend]="barChartLegend"
+              [type]="barcharType"
+            >
+            </canvas>
+          </div>
+        </form>
+      </div>
+
+      <div class="col p-3 bg-white shadow perifericos mx-2">
+        <form action="">
+          <label>Mes</label>
+          <div class="form-group d-flex">
+            <input
+              type="month"
+              name="mes"
+              class="form-control"
+              style="width: 34%"
+              [(ngModel)]="selectMes"
+              (change)="getTicketsByUser(); getMonth(selectMes)"
+              [max]="getCurrentMonthYear()"
+            />
+            <h4 class="text-center mx-3">Funcionarios</h4>
+          </div>
+
+          <div style="display: block">
+            <canvas id="barChart"></canvas>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-2">
+    <div class="row">
+      <div class="col p-2 bg-white shadow perifericos">
+        <form action="">
+          <label>Mes</label>
+          <div class="form-group d-flex">
+            <input
+              type="month"
+              name="mesAsunto"
+              class="form-control"
+              style="width: 34%"
+              [(ngModel)]="selectMesAsunto"
+              (change)="getTicketsByAsunto(); getMonthAsunto(selectMesAsunto)"
+              [max]="getCurrentMonthYear()"
+            />
+            <h4 class="text-center mx-3">Tema de Ayuda</h4>
+          </div>
+
+          <div style="display: block">
+            <canvas id="barChartGestion"></canvas>
+          </div>
+        </form>
+      </div>
+
+      <div class="col p-3 bg-white shadow perifericos mx-2">
+        <form action="">
+          <label>Mes</label>
+          <input
+            class="form-group d-flex form-control"
+            type="month"
+            name="fecha_factura"
+            id="fecha_factura"
+            style="margin-right: 25%; width: 35%"
+            [(ngModel)]="selectMes2"
+            (ngModelChange)="getTicketsDonut(); getMonth2(selectMes2)"
+            [max]="getCurrentMonthYear2()"
+          />
+          <div class="dona">
+            <canvas
+              baseChart
+              [datasets]="donutChartData1"
+              [labels]="donutChartLabels"
+              [options]="donutChartOptions"
+              (chartClick)="onChartClick($event)"
+              [type]="donutChartType"
+            >
+            </canvas>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="container mt-3">
+    <div class="row">
+      <div class="col bg-white mt-3">
+        <div class="container">
+          <span class="float-end">
+            <strong>Tickets abiertos:</strong>
+            {{ (ticketsTabla | ticket : filterPost).length }}
+          </span>
+        </div>
+        <!-- Tabla y paginación -->
+        <div>
+          <table
+            id="table1"
+            class="table table-sm bg-white text-center table-responsive shadow-lg"
+          >
+            <thead class="th">
+              <tr>
+                <th>N° Ticket</th>
+                <th>Departamento</th>
+                <th>Fecha Ingreso</th>
+                <th>ANS</th>
+                <th>Asunto</th>
+                <th>Asignado a</th>
+                <th>Días Abierto</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let item of ticketsTabla
+                    | ticket : filterPost
+                    | paginate
+                      : { itemsPerPage: 5, currentPage: page1, id: 'tabla1' }
+                "
+              >
+                <td>{{ item.numeroTicket }}</td>
+                <td>{{ item.departamento }}</td>
+                <td>{{ item.fechaIngreso }}</td>
+                <td>{{ item.respuesta }}</td>
+                <td>{{ item.asunto }}</td>
+                <td>{{ item.asignadoA }}</td>
+                <td
+                  [style.background-color]="
+                    getBackgroundColor(
+                      item.respuesta,
+                      calculateDaysOpen(item.fechaIngreso)
+                    )
+                  "
+                >
+                  <strong> {{ calculateDaysOpen(item.fechaIngreso) }}</strong>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <pagination-controls
+          id="tabla1"
+          class="text-center paginacion"
+          (pageChange)="page1 = $event"
+          previousLabel="Anterior"
+          nextLabel="Siguiente"
+        ></pagination-controls>
+      </div>
+
+      <div class="col-md-6" style="margin-top: 2px">
+        <div class="container">
+          <span class="float-end" style="margin-top: 3%">
+            <strong>Tickets cerrados:</strong>
+            {{ (ticketsTabla2 | ticket2 : filterPost2).length }}
+          </span>
+          <input
+            class="form-control float-end d-inline-block"
+            type="month"
+            name="fecha_factura"
+            id="fecha_factura"
+            style="margin-right: 5%; width: 32%"
+            [(ngModel)]="selectMes3"
+            (ngModelChange)="getTicketsTable2(); getMonth3(selectMes3)"
+            [max]="getCurrentMonthYear3()"
+          />
+        </div>
+        <!-- Tabla y paginación -->
+        <div>
+          <table
+            id="table2"
+            class="table table-sm container bg-white text-center table-responsive shadow-lg"
+          >
+            <thead class="th">
+              <tr>
+                <th>N° Ticket</th>
+                <th>Departamento</th>
+                <th>Fecha Ingreso</th>
+                <th>ANS</th>
+                <th>Asunto</th>
+                <th>Asignado a</th>
+                <th>Días de Gestión</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="
+                  let item of ticketsTabla2
+                    | ticket2 : filterPost2
+                    | paginate
+                      : { itemsPerPage: 5, currentPage: page2, id: 'tabla2' }
+                "
+              >
+                <td>{{ item.numeroTicket }}</td>
+                <td>{{ item.departamento }}</td>
+                <td>{{ item.fechaIngreso }}</td>
+                <td>{{ item.respuesta }}</td>
+                <td>{{ item.asunto }}</td>
+                <td>{{ item.asignadoA }}</td>
+                <td
+                  [style.background-color]="
+                    getBackgroundColor(
+                      item.respuesta,
+                      calculateDaysOpen2(item.fechaIngreso, item.fechaCierre)
+                    )
+                  "
+                >
+                  <strong>
+                    {{
+                      calculateDaysOpen2(item.fechaIngreso, item.fechaCierre)
+                    }}</strong
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <pagination-controls
+          id="tabla2"
+          class="text-center paginacion"
+          (pageChange)="page2 = $event"
+          previousLabel="Anterior"
+          nextLabel="Siguiente"
+        ></pagination-controls>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div class="col-md-6" style="width: 30%"></div>
+  </div>
+
+  <div class="pdf-data">
+    <div class="row bg-white shadow-lg mt-4">
+      <div class="col-md-4">
+        <div class="pdf-data" style="display: block">
+          <div class="static-labels">
+            <div
+              class="pdf-data"
+              *ngFor="let label of donutChartLabels; let i = index"
+            >
+              <span class="pdf-data"
+                >{{ label }}: {{ getDonutDataValue(i) }} Unidades</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

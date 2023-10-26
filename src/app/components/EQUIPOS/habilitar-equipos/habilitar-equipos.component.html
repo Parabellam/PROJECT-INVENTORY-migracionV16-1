@@ -1,0 +1,107 @@
+<div
+  *ngIf="permissions.permi14heq == '9qT23HdNEHoK1EZ'"
+  class="container"
+  data-aos="fade-right"
+>
+  <div class="ms-5">
+    <div class="p-3 container" data-aos="fade-right">
+      <div class="mb-4 border-top-0" data-aos="fade-right">
+        <h2 class="text-shadow text-uppercase">Equipos Ocultos</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6 w-25"></div>
+        <div class="col-md-6 search d-flex">
+          <label for="" class="p"><b>BUSCAR</b></label>
+          <input
+            type="search"
+            class="form-control w-50 shadow end"
+            name="filterPost"
+            [(ngModel)]="filterPost"
+          />
+        </div>
+      </div>
+      <span class="mt-5 float-end">
+        <strong>Total de Resultados:</strong>
+        {{
+          filterPost === ""
+            ? equiposFiltrados.length
+            : (equiposFiltrados | accesorio : filterPost).length
+        }}
+      </span>
+    </div>
+
+    <div class="mt-4" data-aos="fade-right" data-aos-duration="900">
+      <table
+        id="table"
+        class="table table-sm container bg-white text-center table-responsive shadow-lg"
+      >
+        <thead class="th un_first">
+          <tr>
+            <th>Código Equipo</th>
+            <th>Estado</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Procesador</th>
+            <th>OS</th>
+            <th>Ram</th>
+            <th>Disco</th>
+            <th>Serial</th>
+            <th>N° Factura</th>
+            <th>Fecha Factura</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr
+            *ngFor="
+              let item of teams
+                | equipo : filterPost
+                | filtrarOcultos
+                | paginate : { itemsPerPage: 10, currentPage: page }
+            "
+          >
+            <ng-container
+              *ngIf="
+                item.mostrar === 'Si' &&
+                item.mostrar_cliente === clienteSeleccionado
+              "
+            >
+              <td>
+                {{ item.parametros?.tipo_parametro }}-0{{ item.codigo_equipo }}
+              </td>
+              <td>{{ item.estado }}</td>
+              <td>{{ item.marca }}</td>
+              <td>{{ item.modelo }}</td>
+              <td>{{ item.procesador }}</td>
+              <td>{{ item.os }}</td>
+              <td>{{ item.ram }}</td>
+              <td>{{ item.almacenamiento }}</td>
+              <td>{{ item.seriall }}</td>
+              <td>{{ item.factura }}</td>
+              <td>{{ item.fecha_factura }}</td>
+              <td class="text-uppercase text-center">
+                <div class="d-flex">
+                  <button
+                    class="mx-auto btn bel text-dark"
+                    routerLink="/equipos/habilitar/{{ item.id_equipo }} "
+                    title="Editar"
+                  >
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                </div>
+              </td>
+            </ng-container>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <pagination-controls
+      class="text-center"
+      (pageChange)="page = $event"
+      previousLabel="Anterior"
+      nextLabel="Siguiente"
+    ></pagination-controls>
+  </div>
+</div>

@@ -1,0 +1,118 @@
+<div *ngIf="permissions.permi17hpe == 'zH31IvM3Sz8Z9Sb'" class="calambombo">
+  <div class="container mt-4 mb-4 shadow-lg p-3 co w-75" data-aos="fade-right">
+    <h3 class="text-center">Actualizar Periférico Oculto</h3>
+    <hr class="mt-3" />
+    <form action="" #f="ngForm" class="form">
+      <div class="row">
+        <div class="col">
+          <div class="mt-2">
+            <label for="" class="pa">Estado</label>
+            <select
+              class="form-select text-uppercase"
+              aria-label="Default select example"
+              name="estado"
+              id="estado"
+              [(ngModel)]="accesorio.estado"
+              required
+            >
+              <option *ngFor="let item of estado">{{ item }}</option>
+            </select>
+          </div>
+          <div class="mt-1">
+            <label for="" class="pa">Tipo Periférico</label>
+            <input
+              type="text"
+              name="tipo"
+              id="tipo"
+              class="form-control"
+              [(ngModel)]="accesorio.tipo"
+              disabled
+            />
+          </div>
+          <div class="mt-1">
+            <label for="" class="pa">Fecha de Factura</label>
+            <input
+              type="date"
+              name="fecha_factura"
+              id="factura"
+              class="form-control"
+              [(ngModel)]="accesorio.fecha_factura"
+              disabled
+            />
+          </div>
+          <div class="mt-1">
+            <label for="" class="pa">Orden de Factura</label>
+            <input
+              type="text"
+              name="orden"
+              id="factura"
+              class="form-control"
+              [(ngModel)]="accesorio.orden"
+              disabled
+            />
+          </div>
+          <div class="mt-2">
+            <label class="pa">¿Habilitar Periférico?</label>
+            <br />
+            <input
+              class="form-check-input mt-2"
+              type="checkbox"
+              id="siguiente-checkbox"
+              name="siguiente-checkbox"
+              [(ngModel)]="siguienteCheckboxSeleccionado"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div class="mt-2">
+            <label for="" class="pa">Precio</label>
+            <input
+              class="form-control"
+              [(ngModel)]="accesorio.precio"
+              name="precio"
+              id="precio"
+              disabled
+              appOnlyNumbers
+              appSeparateThousands
+            />
+          </div>
+          <div class="mt-2">
+            <label for="" class="pa">N° Factura</label>
+            <input
+              type="text"
+              name="factura"
+              id="factura"
+              class="form-control"
+              [(ngModel)]="accesorio.factura"
+              disabled
+            />
+          </div>
+          <div class="mt-3">
+            <label for="" class="pa">Observaciones</label>
+            <textarea
+              name="observaciones"
+              cols="70"
+              rows="3"
+              class="form-control"
+              [(ngModel)]="accesorio.observaciones"
+              disabled
+            ></textarea>
+          </div>
+        </div>
+        <hr class="mt-3" />
+
+        <div class="pa">
+          <div class="form-group mt-3 mx w-25">
+            <button class="btn bot" (click)="onUpdate()" [disabled]="f.invalid">
+              Actualizar
+            </button>
+            <button class="btn botr" [routerLink]="['/perifericos/habilitar']">
+              Regresar
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <br />
+</div>

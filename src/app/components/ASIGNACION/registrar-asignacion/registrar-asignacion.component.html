@@ -1,0 +1,166 @@
+<div
+  *ngIf="
+    permissions.permi1asi == 'LRWAgJ6Lp8WeyGn' ||
+    permissions.permi1asi == '1gxYGKqZnikfUZu'
+  "
+  class="container cont w-50"
+  style="padding: 20px 10px 11px"
+  data-aos="fade-right"
+  data-aos-duration="800"
+>
+  <div class="row">
+    <div class="card shadow-lg">
+      <div class="card-head">
+        <h3 class="text-center">Registrar Asignación Propio</h3>
+      </div>
+      <hr />
+      <div class="card-body">
+        <form action="" #f="ngForm">
+          <div class="mb-3">
+            <label class="form-label">Funcionario</label>
+            <select
+              name="funcionario"
+              id="funcionario"
+              class="form-select"
+              [(ngModel)]="asignacion.funcionario.id_funcionario"
+              (change)="fileFuncionario(asignacion.funcionario.id_funcionario)"
+              required
+            >
+              <option value="-1">[Seleccione]</option>
+              <ng-container *ngFor="let item of funcionario">
+                <option
+                  [value]="item.id_funcionario"
+                  *ngIf="filtroFuncionario(item)"
+                >
+                  {{ item.nombre }}
+                </option>
+              </ng-container>
+            </select>
+          </div>
+          <div class="mt-2">
+            <label class="form-label">Equipo</label>
+            <div *ngIf="clienteSeleccionado == 'Nexos'">
+              <select
+                name="equipo"
+                id="equipo"
+                class="form-select"
+                [(ngModel)]="asignacion.equipo.id_equipo"
+                (change)="fileEquipo(asignacion.equipo.id_equipo)"
+                (change)="selectEquipo(asignacion.equipo.id_equipo)"
+                required
+              >
+                <option value="-1">Seleccione</option>
+                <ng-container *ngFor="let item of equipo">
+                  <option
+                    [value]="item.id_equipo"
+                    *ngIf="filtroFuncionario(item)"
+                  >
+                    {{ item.parametros.tipo_parametro }}-0{{
+                      item.codigo_equipo
+                    }}
+                  </option>
+                </ng-container>
+              </select>
+            </div>
+            <div *ngIf="clienteSeleccionado != 'Nexos'">
+              <select
+                name="equipo"
+                id="equipo"
+                class="form-select"
+                [(ngModel)]="asignacion.equipo.id_equipo"
+                (change)="fileEquipo(asignacion.equipo.id_equipo)"
+                (change)="selectEquipo(asignacion.equipo.id_equipo)"
+                required
+              >
+                <option value="-1">Seleccione</option>
+                <ng-container *ngFor="let item of equipo">
+                  <option
+                    [value]="item.id_equipo"
+                    *ngIf="filtroFuncionario(item)"
+                  >
+                    {{ item.codigo_equipo }}
+                  </option>
+                </ng-container>
+              </select>
+            </div>
+          </div>
+
+          <div class="mt-2">
+            <label class="form-label">Sede</label>
+            <select
+              name="sede"
+              id="sede"
+              class="form-select"
+              [(ngModel)]="asignacion.sede"
+              required
+            >
+              <option value="-1">[Seleccione]</option>
+              <option [value]="item.nombre" *ngFor="let item of sede">
+                {{ item.nombre }}
+              </option>
+            </select>
+          </div>
+
+          <div class="mt-2">
+            <label class="form-label">Fecha de Entrega</label>
+            <input
+              type="date"
+              name="fecha_entrega"
+              id="fecha_entrega"
+              [(ngModel)]="asignacion.fecha_entrega"
+              class="form-control"
+              (ngModelChange)="updateMinDate()"
+              [min]="minDate"
+              required
+              [max]="currentDate"
+            />
+          </div>
+          <div class="mt-2">
+            <label for="">Perifericos a Asignar (Ctrl+Click para varios)</label>
+            <select
+              multiple
+              [(ngModel)]="asignacion.accesorios"
+              name="accesorios"
+              class="form-select"
+              (ngModelChange)="accesoriosSeleccionados = $event"
+            >
+              <ng-container *ngFor="let item of accesorio">
+                <option [value]="item" *ngIf="filtroPeriferico(item)">
+                  {{ item.tipo }}
+                </option>
+              </ng-container>
+            </select>
+          </div>
+          <div class="mt-2">
+            <label for="" class="pa">Observaciones</label>
+            <textarea
+              type="text"
+              name="procesador"
+              id="procesador"
+              class="form-control"
+              [(ngModel)]="asignacion.descripcion"
+              required
+            >
+            </textarea>
+          </div>
+
+          <hr />
+          <div class="pa">
+            <div class="form-group float-end mt-2 d-flex">
+              <button
+                class="btn bot btn-sm"
+                (click)="onCreateAsignacion()"
+                [disabled]="f.invalid"
+              >
+                Agregar
+              </button>
+              <button class="btn botr btn-sm" [routerLink]="['/asignaciones/ver']">
+                Regresar
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,184 @@
+<div *ngIf="permissions.permi18tickets == 'sz3Kqfh0k3qtIWU'" class="calambombo">
+  <div class="card container mb-5 shadow-lg co w-50" data-aos="fade-right">
+    <h3 class="text-center">Detalles Ticket</h3>
+    <form action="" #f="ngForm" class="form">
+      <div class="row mt-3">
+        <div class="col">
+          <div class="mt-2">
+            <label for="" class="pa">Número de Ticket</label>
+            <input
+              type="text"
+              name="numeroT"
+              id="numeroT"
+              class="form-control"
+              [(ngModel)]="ticket.numeroTicket"
+            />
+          </div>
+
+          <div class="mt-2">
+            <label for="" class="pa">Usuario</label>
+            <input
+              type="text"
+              name="user"
+              id="user"
+              class="form-control"
+              [(ngModel)]="ticket.usuario"
+            />
+          </div>
+
+          <div class="mt-2">
+            <label for="" class="pa">Correo</label>
+            <input
+              type="text"
+              name="correo"
+              id="correo"
+              class="form-control"
+              [(ngModel)]="ticket.correo"
+              required
+            />
+          </div>
+
+          <div class="mt-2">
+            <label for="" class="pa">Problema</label>
+            <input
+              type="text"
+              name="problema"
+              id="problema"
+              class="form-control"
+              [(ngModel)]="ticket.problema"
+              required
+            />
+          </div>
+
+          <div class="mt-2">
+            <label for="" class="pa">Departamento</label>
+            <input
+              type="text"
+              name="departamento"
+              id="departamento"
+              class="form-control"
+              [(ngModel)]="ticket.departamento"
+              required
+            />
+          </div>
+
+          <div class="mt-2">
+            <label for="" class="pa">Fecha de Ingreso</label>
+            <input
+              type="text"
+              name="fechaIngreso"
+              id="fechaIngreso"
+              class="form-control"
+              [(ngModel)]="ticket.fechaIngreso"
+              required
+            />
+          </div>
+
+          <div class="mt-2">
+            <label for="" class="pa">Prioridad</label>
+            <input
+              type="text"
+              name="prioridad"
+              id="prioridad"
+              class="form-control"
+              [(ngModel)]="ticket.prioridad"
+              required
+            />
+          </div>
+
+          <div class="mt-2">
+            <label for="" class="pa">Enviado via</label>
+            <input
+              type="text"
+              name="enviadoVia"
+              id="enviadoVia"
+              class="form-control"
+              [(ngModel)]="ticket.enviadoVia"
+              required
+            />
+          </div>
+
+          <div class="mt-2">
+            <label for="" class="pa">Asunto</label>
+            <input
+              type="text"
+              name="asunto"
+              id="asunto"
+              class="form-control"
+              [(ngModel)]="ticket.asunto"
+              required
+            />
+          </div>
+
+          <div class="mt-2">
+            <label for="" class="pa">Asignado a</label>
+            <input
+              type="text"
+              name="asignadoA"
+              id="asignadoA"
+              class="form-control"
+              [(ngModel)]="ticket.asignadoA"
+              required
+            />
+          </div>
+
+          <div class="mt-2">
+            <label for="" class="pa">ANS</label>
+            <input
+              type="text"
+              name="ANS"
+              id="ANS"
+              class="form-control"
+              [(ngModel)]="ticket.respuesta"
+              required
+            />
+          </div>
+
+          <div class="mt-2">
+            <label for="" class="pa">Estado Final</label>
+            <input
+              type="text"
+              name="estadoFinal"
+              id="estadoFinal"
+              class="form-control"
+              [(ngModel)]="ticket.estadoFinal"
+              required
+            />
+          </div>
+
+          <div class="mt-2">
+            <label for="" class="pa">Fecha de cierre</label>
+            <input
+              type="text"
+              name="fechaCierre"
+              id="fechaCierre"
+              class="form-control"
+              [(ngModel)]="ticket.fechaCierre"
+              required
+            />
+          </div>
+
+          <div class="mt-2">
+            <label for="" class="pa">Fecha de actualización</label>
+            <input
+              type="text"
+              name="fechaActualizacion"
+              id="fechaActualizacion"
+              class="form-control"
+              [(ngModel)]="ticket.fechaActualizacion"
+              required
+            />
+          </div>
+        </div>
+        <div class="pa">
+          <div class="form-group mt-3 mb-3">
+            <button class="btn botr d-block  mx-auto" [routerLink]="['/tickets/ver']">
+              Regresar
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <br />
+</div>

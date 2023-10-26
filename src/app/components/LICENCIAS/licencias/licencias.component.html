@@ -1,0 +1,221 @@
+<div
+  *ngIf="
+    permissions.permi6lic == 'ftVXCWeFJJa4ljZ' ||
+    permissions.permi6lic == 'LT8npsAKUZ8Ikvu' ||
+    permissions.permi6lic == 'JnNCNG8fu9OD9pS' ||
+    permissions.permi6lic == 'M9Csxpgi4jkdt4n'
+  "
+  class="container"
+  data-aos="fade-right"
+>
+  <div class="ms-5">
+    <div class="p-2 container" data-aos="fade-right">
+      <div class="mb-4 border-top-0" data-aos="fade-right">
+        <h2 class="text-shadow text-uppercase">Licencias</h2>
+      </div>
+
+      <button
+        *ngIf="
+          permissions.permi6lic == 'LT8npsAKUZ8Ikvu' ||
+          permissions.permi6lic == 'JnNCNG8fu9OD9pS' ||
+          permissions.permi6lic == 'M9Csxpgi4jkdt4n'
+        "
+        class="btn float-end mx-2 btnAdd"
+        (click)="exportExcel()"
+        title="Exportar Tabla"
+      >
+        <i class="fa-solid fa-file-csv fa-2x text-white"></i>
+      </button>
+      <button
+        *ngIf="
+          permissions.permi6lic == 'LT8npsAKUZ8Ikvu' ||
+          permissions.permi6lic == 'JnNCNG8fu9OD9pS' ||
+          permissions.permi6lic == 'M9Csxpgi4jkdt4n'
+        "
+        class="btn float-end mx-2 btnAdd"
+        (click)="exportarPDF()"
+        title="Exportar Informe"
+      >
+        <i class="fa-solid fa-file-invoice fa-2x text-white"></i>
+      </button>
+
+      <div class="container">
+        <div class="row w-25">
+          <div class="col">
+            <button
+              class="btnAdd fs text-white btn-sm"
+              routerLink="/licencias/crear"
+              title="Agregar Licencia"
+              *ngIf="
+                permissions.permi6lic == 'JnNCNG8fu9OD9pS' ||
+                permissions.permi6lic == 'M9Csxpgi4jkdt4n'
+              "
+            >
+              <i class="fa-solid fa-person-breastfeeding fa-lg"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <br />
+
+      <div class="d-flex align-items-center">
+        <div class="me-1">
+          <label for="" class="mx-1"><b>Mostrar</b></label>
+        </div>
+
+        <div class="me-2 w-10">
+          <select
+            name="ipp"
+            id="ipp"
+            class="form-select mx-2 shadow end"
+            [(ngModel)]="ipp"
+            (change)="ippclick(ipp)"
+          >
+            <option *ngFor="let item of ippdd">{{ item }}</option>
+          </select>
+        </div>
+
+        <div class="float start w-75">
+          <label for="" class="mx-3"><b>registros</b></label>
+        </div>
+
+        <div class="is-relative me-2 d-flex align-items-center w-25">
+          <label for="" class="mx-1"><b>Buscar</b></label>
+          <input
+            type="search"
+            class="form-control shadow end w-100"
+            name="filterPost"
+            id="filterPost"
+            [(ngModel)]="filterPost"
+            (input)="resetPage()"
+          />
+        </div>
+      </div>
+
+      <span class="mt-4 float-end">
+        <strong>Total de Resultados:</strong>
+        {{
+          filterPost === ""
+            ? licencias.length
+            : (licencias | licencia : filterPost).length
+        }}
+      </span>
+    </div>
+
+    <div class="mt-2" data-aos="fade-right" data-aos-duration="900">
+      <table
+        id="table responsive-table"
+        class="table table-sm container bg-white text-center table-responsive shadow-lg"
+      >
+        <thead class="th un_first">
+          <tr>
+            <th>Nombre</th>
+            <th>Versión</th>
+            <th>Fabricante</th>
+            <th>Tipo</th>
+            <th>Serial</th>
+            <th>Orden de Compra</th>
+            <th>Factura</th>
+            <th>Fecha Factura</th>
+            <th>Estado</th>
+            <th>Observaciones</th>
+            <th
+              *ngIf="
+                permissions.permi6lic == 'ftVXCWeFJJa4ljZ' ||
+                permissions.permi6lic == 'LT8npsAKUZ8Ikvu' ||
+                permissions.permi6lic == 'JnNCNG8fu9OD9pS' ||
+                permissions.permi6lic == 'M9Csxpgi4jkdt4n'
+              "
+            >
+              Factura
+            </th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <ng-container
+            *ngFor="
+              let item of licencias
+                | licencia : filterPost
+                | paginate : { itemsPerPage: selectedIpp, currentPage: page }
+            "
+          >
+            <ng-container>
+              <tr>
+                <td>{{ item.nombre }}</td>
+                <td>{{ item.version }}</td>
+                <td>{{ item.fabricante }}</td>
+                <td>{{ item.tipo }}</td>
+                <td>{{ item.serial }}</td>
+                <td>{{ item.orden_compra }}</td>
+                <td>{{ item.factura }}</td>
+                <td>{{ item.fecha }}</td>
+                <td>{{ item.estado }}</td>
+                <td>{{ item.observaciones | truncate : 25 }}</td>
+                <td
+                  *ngIf="
+                    permissions.permi6lic == 'ftVXCWeFJJa4ljZ' ||
+                    permissions.permi6lic == 'LT8npsAKUZ8Ikvu' ||
+                    permissions.permi6lic == 'JnNCNG8fu9OD9pS' ||
+                    permissions.permi6lic == 'M9Csxpgi4jkdt4n'
+                  "
+                >
+                  <button
+                    class="btn bel text-dark ms-sm-2"
+                    (click)="item.rutaArchivo && openNewTab(item.rutaArchivo)"
+                    title="Ruta Archivo"
+                  >
+                    <i class="fa-solid fa-link"></i>
+                  </button>
+                </td>
+                <td
+                  *ngIf="
+                    permissions.permi6lic == 'ftVXCWeFJJa4ljZ' ||
+                    permissions.permi6lic == 'LT8npsAKUZ8Ikvu' ||
+                    permissions.permi6lic == 'JnNCNG8fu9OD9pS' ||
+                    permissions.permi6lic == 'M9Csxpgi4jkdt4n'
+                  "
+                >
+                  <div class="d-flex justify-content-center">
+                    <button
+                      *ngIf="
+                        permissions.permi6lic == 'JnNCNG8fu9OD9pS' ||
+                        permissions.permi6lic == 'M9Csxpgi4jkdt4n'
+                      "
+                      class="btn text-uppercase bel text-dark"
+                      routerLink="/licencias/editar/{{ item.id }} "
+                      title="Editar"
+                    >
+                      <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                    <button
+                      *ngIf="
+                        permissions.permi6lic == 'ftVXCWeFJJa4ljZ' ||
+                        permissions.permi6lic == 'LT8npsAKUZ8Ikvu' ||
+                        permissions.permi6lic == 'JnNCNG8fu9OD9pS' ||
+                        permissions.permi6lic == 'M9Csxpgi4jkdt4n'
+                      "
+                      class="btn bel text-dark ms-sm-2"
+                      routerLink="/licencias/ver/{{ item.id }}"
+                      title="Ver Detalles"
+                    >
+                      <i class="fa-solid fa-eye"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </ng-container>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+
+    <pagination-controls
+      class="text-center paginacion"
+      (pageChange)="page = $event"
+      previousLabel="Anterior"
+      nextLabel="Siguiente"
+    ></pagination-controls>
+  </div>
+</div>

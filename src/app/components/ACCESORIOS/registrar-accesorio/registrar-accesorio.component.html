@@ -1,0 +1,132 @@
+<div
+  *ngIf="
+    permissions.permi7per == 'uLuiTT5rFVcPzoX' ||
+    permissions.permi7per == 'EmxZBnH3nJ2xrG2'
+  "
+  class="calambombo"
+>
+  <div class="card container mb-4 shadow-lg p-3 co w-75" data-aos="fade-right">
+    <h3 class="text-center">Registrar Periféricos</h3>
+    <hr />
+    <form action="" [formGroup]="myForm" class="form">
+      <div class="row">
+        <div class="col">
+          <div class="">
+            <label for="" class="pa">Tipo de Periférico</label>
+            <select
+              type="text"
+
+              formControlName="Tipo_de_Periferico"
+              id="tipo"
+              class="form-select"
+              [(ngModel)]="tipo"
+            >
+              <option *ngFor="let item of tipoPeriferico">
+                {{ item }}
+              </option>
+              <option value="otro">Otro</option>
+            </select>
+            <div class="mt-2" *ngIf="tipo === 'otro'">
+              <input
+                [(ngModel)]="other"
+                class="form-control"
+                placeholder="Ingresa Otro Tipo"
+                name="tipo"
+                id="tipo"
+              />
+            </div>
+          </div>
+          <div class="mt-2">
+            <label for="" class="pa">Fecha de Factura</label>
+            <input
+              type="date"
+
+              id="factura"
+              formControlName="Fecha"
+              class="form-control"
+              [(ngModel)]="accesorio.fecha_factura"
+              (ngModelChange)="updateMaxDate()"
+              [max]="currentDate"
+            />
+          </div>
+          <div class="mt-2">
+            <label for="" class="pa">Orden de Compra</label>
+            <input
+              type="text"
+
+              id="factura"
+              formControlName="Orden_de_Compra"
+              class="form-control"
+              [(ngModel)]="accesorio.orden"
+            />
+          </div>
+          <div class="mt-2">
+            <label for="" class="pa">Ruta Archivo</label>
+            <input
+              type="text"
+              name="rutaArchivo"
+              id="rutaArchivo"
+              class="form-control"
+              [(ngModel)]="accesorio.rutaArchivo"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <div class="">
+            <label for="" class="pa">N° Factura</label>
+            <input
+              type="text"
+
+              id="factura"
+              formControlName="Factura"
+              class="form-control"
+              [(ngModel)]="accesorio.factura"
+            />
+          </div>
+          <div class="mt-2">
+            <label for="" class="pa">Precio</label>
+            <input
+              formControlName="Precio"
+              class="form-control"
+              [(ngModel)]="accesorio.precio"
+
+              id="precio"
+              appOnlyNumbers
+              appSeparateThousands
+            />
+          </div>
+
+          <div class="mt-2">
+            <label for="" class="pa">Observaciones</label>
+            <textarea
+
+              cols="70"
+              rows="4"
+              formControlName="Observaciones"
+              class="form-control"
+              [(ngModel)]="accesorio.observaciones"
+            ></textarea>
+          </div>
+        </div>
+        <hr class="mt-3" />
+        <div class="pa">
+          <div class="d-flexbox float-end mx w-25">
+            <button
+              class="btn botr btn-sm float-end m-1 d-flex"
+              [routerLink]="['/perifericos/ver']"
+            >
+              Regresar
+            </button>
+            <button
+              class="btn bot btn-sm float-end m-1 d-flex"
+              (click)="onCreate()"
+            >
+              Agregar
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+  <br />
+</div>

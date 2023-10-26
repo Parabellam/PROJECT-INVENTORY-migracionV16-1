@@ -1,0 +1,215 @@
+<div
+  *ngIf="
+    permissions.permi1asi == 'LRWAgJ6Lp8WeyGn' ||
+    permissions.permi1asi == '1gxYGKqZnikfUZu' ||
+    permissions.permi1asi == 'UEtPmNDwhrfIgt0' ||
+    permissions.permi1asi == 'Awoa1mUqQvKbjbV'
+  "
+  class="container"
+  data-aos="fade-right"
+>
+  <div class="ms-5">
+    <div class="p-2 container" data-aos="fade-right" data-aos-duration="800">
+      <div class="mb-4 border-top-0" data-aos="fade-right">
+        <h2 class="text-shadow text-uppercase">Asignaciones</h2>
+      </div>
+
+      <button
+        *ngIf="
+          permissions.permi1asi == 'LRWAgJ6Lp8WeyGn' ||
+          permissions.permi1asi == '1gxYGKqZnikfUZu' ||
+          permissions.permi1asi == 'UEtPmNDwhrfIgt0'
+        "
+        class="btn float-end mx-2 btnAdd"
+        (click)="exportExcel()"
+        title="Exportar Excel"
+      >
+        <i class="fa-solid fa-file-csv fa-2x text-white"></i>
+      </button>
+
+      <div
+        *ngIf="
+          permissions.permi1asi == 'LRWAgJ6Lp8WeyGn' ||
+          permissions.permi1asi == '1gxYGKqZnikfUZu'
+        "
+        class="container"
+      >
+        <div class="row w-25">
+          <div class="col">
+            <button
+              class="btnAdd fs text-white btn-sm"
+              routerLink="/asignaciones/crear"
+              title="Agregar Asignación PROPIO"
+            >
+              <i class="fa-solid mt-2 fa-people-carry-box fa-lg"></i>
+            </button>
+          </div>
+          <div class="col">
+            <button
+              class="btnAdd fs text-white btn-sm"
+              routerLink="/asignaciones/alquilado/crear"
+              title="Agregar Asignación ALQUILADO"
+            >
+              <i class="fa-solid mt-2 fa-handshake fa-lg"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <br />
+
+      <div class="d-flex align-items-center">
+        <div class="me-1">
+          <label for="" class="mx-1"><b>Mostrar</b></label>
+        </div>
+
+        <div class="me-2 w-10">
+          <select
+            name="ipp"
+            id="ipp"
+            class="form-select mx-2 shadow end"
+            [(ngModel)]="ipp"
+            (change)="ippclick(ipp)"
+          >
+            <option *ngFor="let item of ippdd">{{ item }}</option>
+          </select>
+        </div>
+
+        <div class="float start w-75">
+          <label for="" class="mx-3"><b>registros</b></label>
+        </div>
+
+        <div class="is-relative d-flex align-items-center w-25">
+          <label for="" class="mx-1"><b>Tipo</b></label>
+          <select
+            class="form-select mx-2 shadow end"
+            name="filterPostTipo"
+            id="filterPostTipo"
+            [(ngModel)]="filterPostTipo"
+            (change)="resetPage()"
+          >
+            <option *ngFor="let item of tipodd">{{ item }}</option>
+          </select>
+        </div>
+
+        <div class="is-relative me-2 d-flex align-items-center w-50">
+          <label for="" class="mx-1"><b>Buscar</b></label>
+          <input
+            type="search"
+            class="form-control shadow end w-100"
+            name="filterPost"
+            id="filterPost"
+            [(ngModel)]="filterPost"
+            (input)="resetPage()"
+          />
+        </div>
+      </div>
+
+      <span class="mt-4 float-end"
+        ><strong> Total de Búsqueda:</strong>
+        <span
+          *ngIf="
+            filterPost !== '' ||
+            filterPost == '' ||
+            filterPostTipo !== '' ||
+            filterPostTipo == ''
+          "
+        >
+          {{ getResultsCount() }}
+        </span>
+      </span>
+    </div>
+
+    <div class="mt-4" data-aos="fade-right" data-aos-duration="800">
+      <table
+        id="table"
+        class="table table-sm container bg-white text-center table-responsive shadow-lg"
+      >
+        <thead class="th">
+          <tr>
+            <th>Equipo Asignado</th>
+            <th>Tipo</th>
+            <th>Funcionario</th>
+            <th>Fecha Entrega</th>
+            <th>Sede</th>
+            <th>Periféricos Asignados</th>
+            <th>Observaciones</th>
+            <th
+              *ngIf="
+                permissions.permi1asi == 'LRWAgJ6Lp8WeyGn' ||
+                permissions.permi1asi == '1gxYGKqZnikfUZu'
+              "
+            >
+              Acciones
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container
+            *ngFor="
+              let item of asignacion
+                | asignacion : filterPost
+                | asignacion : filterPostTipo
+                | filtrarMostrados
+                | paginate : { itemsPerPage: selectedIpp, currentPage: page }
+            "
+          >
+            <tr>
+              <td>{{ item.codigo_e_a }}</td>
+              <td>{{ item.tipo }}</td>
+              <td>{{ item.funcionario.nombre }}</td>
+              <td>{{ item.fecha_entrega }}</td>
+              <td>{{ item.sede }}</td>
+              <td>
+                <ul class="list-inline">
+                  <li
+                    *ngFor="let i of item.accesorios"
+                    class="list-inline-item"
+                  >
+                    {{ i.tipo }}
+                  </li>
+                </ul>
+              </td>
+              <td>{{ item.descripcion | truncate : 20 }}</td>
+              <td
+                *ngIf="
+                  permissions.permi1asi == 'LRWAgJ6Lp8WeyGn' ||
+                  permissions.permi1asi == '1gxYGKqZnikfUZu' ||
+                  permissions.permi1asi == 'UEtPmNDwhrfIgt0' ||
+                  permissions.permi1asi == 'Awoa1mUqQvKbjbV'
+                "
+              >
+                <div class="d-flex justify-content-center">
+                  <button
+                    *ngIf="
+                      permissions.permi1asi == 'LRWAgJ6Lp8WeyGn' ||
+                      permissions.permi1asi == '1gxYGKqZnikfUZu'
+                    "
+                    class="btn text-uppercase bel text-dark"
+                    title="Editar"
+                    routerLink="/asignaciones/editar/{{ item.id_asignacion }}"
+                  >
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                  <button
+                    class="btn bel text-dark ms-sm-2"
+                    title="Ver"
+                    routerLink="/asignaciones/ver/{{ item.id_asignacion }}"
+                  >
+                    <i class="fa-solid fa-eye"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+
+    <pagination-controls
+      class="text-center"
+      (pageChange)="page = $event"
+      previousLabel="Anterior"
+      nextLabel="Siguiente"
+    ></pagination-controls>
+  </div>
+</div>

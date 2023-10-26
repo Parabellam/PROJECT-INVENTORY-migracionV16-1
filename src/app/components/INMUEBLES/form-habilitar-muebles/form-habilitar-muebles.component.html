@@ -1,0 +1,127 @@
+<div *ngIf="permissions.permi16hmu == 'UIyuIllroGhsKkJ'" class="calambombo">
+  <div class="card container bg-dark cont w-50 mt-4" data-aos="fade-right">
+    <div class="row">
+      <div class="card shadow-lg">
+        <div class="card-head">
+          <h3 class="text-center">Actualizar Mueble Oculto</h3>
+        </div>
+        <hr />
+        <div class="card-body">
+          <form action="" #f="ngForm">
+            <div class="row">
+              <div class="col">
+                <div class="mb-1">
+                  <label class="form-label">Código Mueble</label>
+                  <input
+                    type="text"
+                    name="codigo_inmueble"
+                    id="codigo_inmueble"
+                    class="form-control"
+                    [(ngModel)]="muebles.codigo_inmueble"
+                    disabled
+                  />
+                </div>
+
+                <div class="mb-1">
+                  <label for="" class="form-label">Estado</label>
+                  <select
+                    class="form-select text-uppercase"
+                    aria-label="Default select example"
+                    name="estado"
+                    id="estado"
+                    [(ngModel)]="muebles.estado"
+                    required
+                  >
+                    <option *ngFor="let item of estado">{{ item }}</option>
+                  </select>
+                </div>
+
+                <div class="mb-1">
+                  <label for="" class="form-label">Fecha Factura</label>
+                  <input
+                    type="date"
+                    name="fecha_factura"
+                    id="fecha_factura"
+                    class="form-control"
+                    [(ngModel)]="muebles.fecha_factura"
+                    disabled
+                  />
+                </div>
+                <div class="mb-1">
+                  <label for="" class="form-label">N° Factura</label>
+                  <input
+                    type="text"
+                    name="factura"
+                    id="factura"
+                    class="form-control"
+                    [(ngModel)]="muebles.factura"
+                    disabled
+                  />
+                </div>
+              </div>
+              <div class="col">
+                <div class="mb-1">
+                  <label for="" class="form-label">Observación</label>
+                  <input
+                    type="text"
+                    name="observacion"
+                    id="observacion"
+                    class="form-control"
+                    [(ngModel)]="muebles.observacion"
+                    disabled
+                  />
+                </div>
+                <div class="mb-1">
+                  <label for="" class="form-label">Precio</label>
+                  <input
+                    appOnlyNumbers
+                    type="text"
+                    name="precio"
+                    id="precio"
+                    class="form-control"
+                    [(ngModel)]="muebles.precio"
+                    disabled
+                  />
+                </div>
+                <div class="mb-1">
+                  <label for="" class="form-label">Orden</label>
+                  <input
+                    type="text"
+                    name="orden"
+                    id="orden"
+                    class="form-control"
+                    [(ngModel)]="muebles.orden"
+                    disabled
+                  />
+                </div>
+                <div class="mt-2">
+                  <label class="pa">¿Habilitar Periférico?</label>
+                  <br />
+                  <input
+                    class="form-check-input"
+                    type="checkbox"
+                    id="siguiente-checkbox"
+                    name="siguiente-checkbox"
+                    [(ngModel)]="siguienteCheckboxSeleccionado"
+                  />
+                </div>
+              </div>
+              <div class="form-group float-end mt-2 d-flex">
+                <button
+                  class="btn bot"
+                  (click)="onUpdate()"
+                  [disabled]="f.invalid"
+                >
+                  Actualizar
+                </button>
+                <button class="btn botr" [routerLink]="['/muebles/habilitar']">
+                  Regresar
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

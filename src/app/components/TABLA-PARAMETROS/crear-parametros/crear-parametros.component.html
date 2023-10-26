@@ -1,0 +1,70 @@
+<div
+  *ngIf="
+    permissions.permi10gpa == 'm7HI003lIchj8FN' ||
+    permissions.permi10gpa == 'FlMKuG1RnzRXA2E'
+  "
+  class="container cont"
+  data-aos="fade-right"
+>
+  <div class="row">
+    <div class="card shadow-lg mt-5">
+      <div class="card-head">
+        <h3 class="text-center">Registrar Nuevo Parámetro</h3>
+      </div>
+      <hr />
+      <div class="card-body">
+        <form action="" #f="ngForm">
+          <div class="form-group">
+            <label for="">Tipo Parámetro</label>
+            <select
+              name="tipo_parametro"
+              id="parametro"
+              class="form-control"
+              [(ngModel)]="parametro.tipo_parametro"
+            >
+              <option value="">Seleccione</option>
+              <option *ngFor="let item of tipoParametro" [value]="item">
+                {{ item }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group mt-3">
+            <label for="">Valor</label>
+            <input
+              type="text"
+              name="valor"
+              id="valor"
+              class="form-control"
+              [(ngModel)]="parametro.valor"
+              required
+            />
+          </div>
+          <div class="form-group mt-3">
+            <label for="">Descripción</label>
+            <input
+              type="text"
+              name="descripcion"
+              id="descripcion"
+              class="form-control"
+              [(ngModel)]="parametro.descripcion"
+              required
+            />
+          </div>
+
+          <div class="form-group float-end mt-3 d-flex">
+            <button
+              class="btn bot btn-sm"
+              (click)="onCreate()"
+              [disabled]="f.invalid"
+            >
+              Agregar
+            </button>
+            <button class="btn botr btn-sm" [routerLink]="['/parametros/ver']">
+              Regresar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

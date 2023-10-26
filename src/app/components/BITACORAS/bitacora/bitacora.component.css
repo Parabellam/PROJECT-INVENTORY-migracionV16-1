@@ -1,0 +1,102 @@
+.div1,
+.div2,
+.div3 {
+  display: inline-block;
+}
+
+.mr-20 {
+  margin-right: 6%;
+}
+
+/* Alineacion mostrar registros */
+.asdf {
+  margin-top: 1%;
+}
+
+.linea {
+  margin-top: 5%;
+}
+
+.h {
+  height: 40px;
+  scale: 0.95;
+}
+
+.bel {
+  background-color: rgb(250, 125, 52);
+  color: white;
+  height: 40px;
+  width: 40px;
+  border-radius: 15px;
+}
+
+.bel:hover {
+  box-shadow: 0 4px 20px rgb(250, 125, 52);
+  transition: all 0.2s ease;
+}
+
+.fs {
+  font-size: 20px;
+}
+
+.search {
+  margin-left: 50%;
+  margin-top: -4%;
+}
+
+.btnAdd {
+  background-color: #011431;
+}
+
+.btnAdd:hover {
+  box-shadow: 0 4px 10px #011431;
+  transition: all 0.5s ease;
+}
+
+.th {
+  background-color: #011431;
+  color: white;
+}
+
+.end {
+  margin-left: auto;
+}
+
+.p {
+  margin-left: 200px;
+  margin-top: 14px;
+}
+
+/* Este elemento debe tener "position: relative" */
+div#is-relative {
+  max-width: 420px;
+  position: relative;
+}
+
+/* El icono debe ser "position: absolute"
+ * Ademas le damos un "display: block" y lo posicionamos */
+#icon {
+  position: absolute;
+  display: block;
+  top: 67%;
+
+  right: 1.5rem;
+
+  user-select: none;
+  cursor: pointer;
+}
+input.input {
+  padding-right: 2.5rem;
+}
+
+.table {
+  border: solid 1px #a3a9b3;
+}
+
+td {
+  border-right: 1px solid #c9c7c7;
+  padding: auto;
+}
+td:last-child {
+  border-right: none;
+}

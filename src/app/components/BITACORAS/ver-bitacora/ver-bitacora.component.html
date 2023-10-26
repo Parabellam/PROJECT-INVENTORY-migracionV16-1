@@ -1,0 +1,73 @@
+<div
+  *ngIf="
+    permissions.permi8bit == 'GTbnxLGw2otSag4' ||
+    permissions.permi8bit == 'WlUJ8lgrWcui0Hy' ||
+    permissions.permi8bit == '8IlNUd0FNJuhSpd' ||
+    permissions.permi8bit == '0Y4oNoiABbnNIK5'
+  "
+  class="calambombo"
+>
+  <div class="card container bg-dark cont w-50 mt-4" data-aos="fade-right">
+    <div class="row">
+      <div class="card shadow-lg">
+        <div class="card-head">
+          <h3 class="text-center">Detalles Bitácora</h3>
+        </div>
+        <hr />
+        <div class="card-body">
+          <form action="" #f="ngForm">
+            <div class="row">
+              <div class="mb-1">
+                <label class="form-label">Código</label>
+                <input
+                  type="text"
+                  name="codigo"
+                  id="codigo"
+                  class="form-control"
+                  [(ngModel)]="bitacoras.codigoEquipo"
+                  disabled
+                />
+              </div>
+
+              <div class="mb-1">
+                <label for="" class="form-label">Fecha</label>
+                <input
+                  type="date"
+                  name="fecha"
+                  id="fecha"
+                  class="form-control"
+                  [(ngModel)]="bitacoras.fecha"
+                  disabled
+                />
+              </div>
+              <div class="mb-1">
+                <label for="" class="form-label">Actividad</label>
+                <textarea
+                  type="text"
+                  name="actividad"
+                  id="actividad"
+                  class="form-control"
+                  [(ngModel)]="bitacoras.actividad"
+                  required
+                  cols="30"
+                  rows="5"
+                  class="form-control"
+                  disabled
+                ></textarea>
+              </div>
+              <hr />
+              <div class="form-group mx-auto mt-2 w-50">
+                <button
+                  class="btn botr m-auto d-block w-75"
+                  [routerLink]="['/bitacoras/ver']"
+                >
+                  Regresar
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

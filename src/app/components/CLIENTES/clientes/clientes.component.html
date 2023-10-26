@@ -1,0 +1,153 @@
+<div
+  *ngIf="
+    permissions.permi9gcl == 'IDAMHc7AGXpcfMy' ||
+    permissions.permi9gcl == 'hQxqN1kkm5Wb7eX' ||
+    permissions.permi9gcl == 'lrrX9taf07qNxMs' ||
+    permissions.permi9gcl == 'IToGYuj9agiXK2K'
+  "
+  class="container"
+  data-aos="fade-right"
+>
+  <div class="ms-5">
+    <div class="p-2 container" data-aos="fade-right">
+      <div class="mb-4 border-top-0" data-aos="fade-right">
+        <h2 class="text-shadow text-uppercase">Clientes</h2>
+      </div>
+
+      <button
+        *ngIf="
+          permissions.permi9gcl == 'hQxqN1kkm5Wb7eX' ||
+          permissions.permi9gcl == 'lrrX9taf07qNxMs' ||
+          permissions.permi9gcl == 'IToGYuj9agiXK2K'
+        "
+        class="btn float-end mx-2 btnAdd"
+        (click)="exportExcel()"
+        title="Exportar Excel"
+      >
+        <i class="fa-solid fa-file-csv fa-2x text-white"></i>
+      </button>
+
+      <div class="container">
+        <div class="row w-25">
+          <div class="col">
+            <button
+              class="btnAdd fs text-white btn-sm"
+              routerLink="/clientes/crear"
+              title="Agregar Cliente"
+              *ngIf="
+                permissions.permi9gcl == 'lrrX9taf07qNxMs' ||
+                permissions.permi9gcl == 'IToGYuj9agiXK2K'
+              "
+            >
+              <i class="fa-solid fa-person-breastfeeding fa-lg"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <br />
+
+      <div class="d-flex align-items-center">
+        <div class="me-1">
+          <label for="" class="mx-1"><b>Mostrar</b></label>
+        </div>
+
+        <div class="me-2 w-10">
+          <select
+            name="ipp"
+            id="ipp"
+            class="form-select mx-2 shadow end"
+            [(ngModel)]="ipp"
+            (change)="ippclick(ipp)"
+          >
+            <option *ngFor="let item of ippdd">{{ item }}</option>
+          </select>
+        </div>
+
+        <div class="float start w-75">
+          <label for="" class="mx-3"><b>registros</b></label>
+        </div>
+
+        <div class="is-relative me-2 d-flex align-items-center w-25">
+          <label for="" class="mx-1"><b>Buscar</b></label>
+          <input
+            type="search"
+            class="form-control shadow end w-100"
+            name="filterPost"
+            id="filterPost"
+            [(ngModel)]="filterPost"
+            (input)="resetPage()"
+          />
+        </div>
+      </div>
+
+      <span class="mt-4 float-end">
+        <strong>Total de Resultados:</strong>
+        {{
+          filterPost === ""
+            ? clientes.length
+            : (clientes | cliente : filterPost).length
+        }}
+      </span>
+    </div>
+    <div class="mt-2" data-aos="fade-right" data-aos-duration="900">
+      <table
+        id="table"
+        class="table table-sm container bg-white text-center table-responsive shadow-lg"
+      >
+        <thead class="th">
+          <tr>
+            <!-- Visualmente los campos Nombre y Codigo están al revés -->
+            <th>Nombre</th>
+            <th
+              *ngIf="
+                permissions.permi9gcl == 'lrrX9taf07qNxMs' ||
+                permissions.permi9gcl == 'IToGYuj9agiXK2K'
+              "
+            >
+              Acciones
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <ng-container
+            *ngFor="
+              let item of clientes
+                | cliente : filterPost
+                | paginate : { itemsPerPage: selectedIpp, currentPage: page }
+            "
+          >
+            <ng-container>
+              <tr>
+                <td>{{ item.codigo }}</td>
+                <td
+                  *ngIf="
+                    permissions.permi9gcl == 'lrrX9taf07qNxMs' ||
+                    permissions.permi9gcl == 'IToGYuj9agiXK2K'
+                  "
+                >
+                  <div class="d-flex h">
+                    <button
+                      class="btn bel text-dark mx-auto"
+                      routerLink="/clientes/editar/{{ item.id }} "
+                      title="Editar"
+                    >
+                      <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </ng-container>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+
+    <pagination-controls
+      class="text-center paginacion"
+      (pageChange)="page = $event"
+      previousLabel="Anterior"
+      nextLabel="Siguiente"
+    ></pagination-controls>
+  </div>
+</div>

@@ -1,0 +1,123 @@
+<body
+  style="
+    background-image: url('assets/images/login2.jpg');
+    overflow-y: hidden;
+    background-size: cover;
+    height: 100vh;
+    margin-bottom: -10%;
+  "
+>
+  <div
+    class="container mt-5"
+    style="padding-left: 20%; padding-right: 20%"
+    data-aos="fade-up"
+    data-aos-duration="1000"
+  >
+    <div class="d-flex text-center">
+      <div class="card">
+        <div class="card-header">
+          <img
+            style="margin-left: auto"
+            src="assets/images/nexos-login.png"
+            alt=""
+            width="70%"
+          />
+
+          <h3 class="text-white">Restablecer Contraseña</h3>
+        </div>
+        <div class="card-body">
+          <form action="" #f="ngForm">
+            <div class="form-group" style="margin-bottom: 2px">
+              <div class="form-group d-flex">
+                <span
+                  class="input-group-text"
+                  style="margin-right: 5%; background-color: red; color: white"
+                >
+                  <i class="fas fa-lock"></i
+                ></span>
+                <input
+                  [(ngModel)]="token"
+                  type="text"
+                  style="border-radius: 5px"
+                  class="form-control w-75"
+                  placeholder="Código"
+                  id="key"
+                  name="key"
+                />
+                <span (click)="validarToken()" title="Validar token">
+                <i class="fa-solid fa-magnifying-glass" style="color: #fafafa; margin-left: 10px; margin-top: 12px;"></i>
+              </span>
+              </div>
+
+              <div *ngIf="validacionToken==1" class="form-group d-flex mt-5">
+                <span
+                  class="input-group-text"
+                  style="margin-right: 5%; background-color: red; color: white"
+                >
+                  <i class="fas fa-key"></i
+                ></span>
+                <input
+                  [(ngModel)]="newPassword"
+                  type="password"
+                  style="border-radius: 5px"
+                  class="form-control w-75"
+                  placeholder="Nueva Contraseña"
+                  id="password2"
+                  name="password2"
+                />
+              </div>
+
+              <div *ngIf="validacionToken==1" class="form-group d-flex mt-2">
+                <span
+                  class="input-group-text"
+                  style="margin-right: 5%; background-color: red; color: white"
+                >
+                  <i class="fas fa-key"></i
+                ></span>
+                <input
+                  [(ngModel)]="confirmar"
+                  (change)="confirmando()"
+                  type="password"
+                  style="border-radius: 5px"
+                  class="form-control w-75"
+                  placeholder="Confirmar Nueva Contraseña"
+                  id="confirmar"
+                  name="confirmar"
+                />
+              </div>
+            </div>
+            <div
+              class="form-group col-auto justify-content-center mt-3"
+              style="text-align: center"
+            >
+              <div
+                class="form-group col-auto justify-content-center"
+                style="text-align: center"
+              >
+                <button
+                  type="submit"
+                  name="button"
+                  class="btn botr btn-sm mx-2"
+                  [routerLink]="['/login']"
+                >
+                  Ir al inicio
+                </button>
+                <button
+                *ngIf="validacionToken==1"
+                  type="submit"
+                  name="button"
+                  class="btn botr btn-sm"
+                  [disabled]="f.invalid"
+                  (click)="onSubmit()"
+                  required
+                >
+                  Restablecer
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>

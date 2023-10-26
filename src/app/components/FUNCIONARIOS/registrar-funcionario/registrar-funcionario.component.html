@@ -1,0 +1,89 @@
+<div
+  *ngIf="
+    permissions.permi5fun == 'UAZkeJDNF7pOhuV' ||
+    permissions.permi5fun == 'CfDSYV3qEt07d7a'
+  "
+  class="calambombo"
+>
+  <div class="container cont w-50" data-aos="fade-right">
+    <div class="row">
+      <div class="card shadow-lg">
+        <div class="card-head">
+          <h3 class="text-center">Registrar Funcionario</h3>
+        </div>
+        <hr />
+        <div class="card-body">
+          <form action="" [formGroup]="myForm">
+            <div class="">
+              <label class="form-label">Documento</label>
+              <input
+                appOnlyNumbers
+                formControlName="Documento"
+                type="text"
+                name="documento"
+                id="documento"
+                class="form-control"
+                [(ngModel)]="funcionarios.documento"
+              />
+            </div>
+            <div class="mt-2">
+              <label for="" class="form-label">Nombre</label>
+              <input
+                formControlName="Nombre"
+                appOnlyLetters
+                type="text"
+                name="nombre"
+                id="nombre"
+                class="form-control"
+                [(ngModel)]="funcionarios.nombre"
+              />
+            </div>
+            <div class="mt-2">
+              <label for="" class="form-label">Email</label>
+              <input
+                formControlName="Email"
+                type="text"
+                name="email"
+                id="email"
+                class="form-control"
+                [(ngModel)]="funcionarios.email"
+              />
+            </div>
+            <div class="mt-2">
+              <label for="" class="form-label">Celular</label>
+              <input
+                formControlName="Celular"
+                appOnlyNumbers
+                type="text"
+                name="celular"
+                id="celular"
+                class="form-control"
+                [(ngModel)]="funcionarios.celular"
+              />
+            </div>
+            <div class="mt-2">
+              <label for="" class="form-label">Observaciones</label>
+              <input
+                formControlName="Observaciones"
+                type="text"
+                name="observaciones"
+                id="observaciones"
+                class="form-control"
+                [(ngModel)]="funcionarios.observaciones"
+              />
+            </div>
+            <hr />
+            <div class="form-group float-end mt-2 d-flex">
+              <button class="btn bot btn-sm" (click)="onCreateFuncionario()">
+                Agregar
+              </button>
+              <button class="btn botr btn-sm" [routerLink]="['/funcionarios/ver']">
+                Regresar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

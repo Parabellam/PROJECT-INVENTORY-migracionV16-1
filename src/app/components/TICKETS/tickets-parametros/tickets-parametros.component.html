@@ -1,0 +1,79 @@
+<div
+  *ngIf="permissions.permi18tickets == 'sz3Kqfh0k3qtIWU'"
+  class="container"
+  data-aos="fade-right"
+>
+  <div class="ms-5">
+    <div class="container p-2" data-aos="fade-right">
+      <div class="mb-4 mx-1 border-top-0" data-aos="fade-right">
+        <h3 class="text-shadow text-uppercase">Parámetros Tickets</h3>
+      </div>
+      <div class="row">
+        <div class="col-md-6 search d-flex">
+          <label for="" class="p" style="margin-right: 3%; margin-bottom: 2%"
+            ><b>BUSCAR</b></label
+          >
+          <input
+            type="search"
+            class="form-control shadow end w-100"
+            name="filterPost"
+            [(ngModel)]="filterPost"
+          />
+        </div>
+      </div>
+      <span class="mt-2 float-end"
+        ><strong> Total de Resultados:</strong>
+        {{ (sla | filter : filterPost).length }}
+      </span>
+    </div>
+
+    <div class="mt-4 mb-2" data-aos="fade-right" data-aos-duration="900">
+      <table
+        id="table"
+        class="table table-sm container bg-white text-center table-responsive shadow-lg"
+      >
+        <thead class="th">
+          <tr>
+            <th>Tiempo</th>
+            <th>Nombre</th>
+            <th>Fecha Creación</th>
+            <th>Fecha Actualización</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let item of sla
+                | filter : filterPost
+                | paginate : { itemsPerPage: 10, currentPage: page }
+            "
+          >
+            <td>{{ item.tiempo }}</td>
+            <td>{{ item.nombre }}</td>
+            <td>{{ item.fechaCreado }}</td>
+            <td>{{ item.fechaActualizado }}</td>
+            <td class="text-uppercase text-center">
+              <div class="d-block h">
+                <button
+                  class="btn text-uppercase bel text-dark"
+                  routerLink="/tickets/editar/{{ item.id }} "
+                  title=" Editar"
+                >
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <pagination-controls
+      class="text-center paginacion"
+      (pageChange)="page = $event"
+      previousLabel="Anterior"
+      nextLabel="Siguiente"
+    ></pagination-controls>
+  </div>
+</div>

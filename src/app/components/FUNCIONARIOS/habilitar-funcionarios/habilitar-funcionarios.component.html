@@ -1,0 +1,99 @@
+<div
+  *ngIf="
+    permissions.permi15hfu == 'BAa7IDeFXUA89hl' ||
+    permissions.permi15hfu == 'U32T4jcCvUP8IQ6'
+  "
+  class="container"
+  data-aos="fade-right"
+>
+  <div class="ms-5">
+    <div class="p-3 container" data-aos="fade-right">
+      <div class="mb-4 border-top-0" data-aos="fade-right">
+        <h2 class="text-shadow text-uppercase">Funcionarios Ocultos</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6 w-25"></div>
+        <div class="col-md-6 search d-flex">
+          <label for="" class="p"><b>BUSCAR</b></label>
+          <input
+            type="search"
+            class="form-control w-50 shadow end"
+            name="filterPost"
+            [(ngModel)]="filterPost"
+          />
+        </div>
+      </div>
+
+      <span class="mt-5 float-end">
+        <strong>Total de Resultados:</strong>
+        {{
+          filterPost === ""
+            ? funcionariosFiltrados.length
+            : (funcionariosFiltrados | funcionario : filterPost).length
+        }}
+      </span>
+    </div>
+
+    <div class="mt-4" data-aos="fade-right" data-aos-duration="900">
+      <table
+        id="table"
+        class="table table-sm container bg-white text-center table-responsive shadow-lg"
+      >
+        <thead class="th">
+          <tr>
+            <th>Documento</th>
+            <th>Nombre</th>
+            <th>Email</th>
+            <th>Celular</th>
+            <th>Observaciones</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let item of funcionario
+                | funcionario : filterPost
+                | filtrarOcultos
+                | paginate : { itemsPerPage: 10, currentPage: page }
+            "
+          >
+            <ng-container
+              *ngIf="
+                item.mostrar === 'Si' &&
+                item.mostrar_cliente === clienteSeleccionado
+              "
+            >
+              <!-- *ngIf Para ocultar los perfiles que no se usen pero quedan en DB -->
+              <td>{{ item.documento }}</td>
+              <td>{{ item.nombre }}</td>
+              <td>{{ item.email }}</td>
+              <td>{{ item.celular }}</td>
+              <td>{{ item.observaciones }}</td>
+              <td>{{ item.estado }}</td>
+              <td>
+                <button
+                  class="btn text-uppercase bel text-dark"
+                  routerLink="/funcionarios/habilitar/{{ item.id_funcionario }}"
+                  title="Editar"
+                >
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+              </td>
+            </ng-container>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div data-aos="fade-right">
+      <pagination-controls
+        class="text-center"
+        (pageChange)="page = $event"
+        previousLabel="Anterior"
+        nextLabel="Siguiente"
+      ></pagination-controls>
+    </div>
+  </div>
+</div>

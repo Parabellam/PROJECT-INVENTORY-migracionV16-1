@@ -1,0 +1,72 @@
+<div
+  *ngIf="
+    permissions.permi8bit == 'WlUJ8lgrWcui0Hy' ||
+    permissions.permi8bit == '8IlNUd0FNJuhSpd' ||
+    permissions.permi8bit == '0Y4oNoiABbnNIK5'
+  "
+  class="calambombo"
+>
+  <div class="container cont w-50" data-aos="fade-right">
+    <div class="row">
+      <div class="card shadow-lg">
+        <div class="card-head">
+          <h3 class="text-center">Exportar Bitácora</h3>
+        </div>
+        <hr />
+        <div class="card-body">
+          <form action="" #f="ngForm">
+            <div class="row">
+              <div class="col">
+                <div class="mt-2">
+                  <label for="" class="form-label">Desde la fecha: </label>
+                  <input
+                    type="date"
+                    name="desde"
+                    id="desde"
+                    class="form-control"
+                    (ngModelChange)="
+                      FiltrarBitacoraXFecha(desde.value, hasta.value)
+                    "
+                    [min]="minDate"
+                    required
+                    [max]="currentDate"
+                    #desde
+                  />
+                </div>
+                <div class="mt-2">
+                  <label for="" class="form-label">Hasta:</label>
+                  <input
+                    type="date"
+                    name="hasta"
+                    id="hasta"
+                    class="form-control"
+                    (ngModelChange)="
+                      FiltrarBitacoraXFecha(desde.value, hasta.value)
+                    "
+                    [min]="minDate"
+                    required
+                    [max]="currentDate"
+                    #hasta
+                  />
+                </div>
+              </div>
+            </div>
+            <hr />
+            <div class="form-group float-end mt-2 d-flex">
+              <button
+                class="btn bot btn-sm"
+                (click)="exportExcel()"
+                [disabled]="f.invalid"
+              >
+                Exportar
+              </button>
+              <button class="btn botr btn-sm" [routerLink]="['/bitacoras/ver']">
+                Regresar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

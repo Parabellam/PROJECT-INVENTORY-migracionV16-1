@@ -1,0 +1,95 @@
+<div
+  *ngIf="permissions.permi12hal == 'oQ5fIsYrt2qfiNZ'"
+  class="container"
+  data-aos="fade-right"
+>
+  <div class="ms-5">
+    <div class="p-2 container" data-aos="fade-right">
+      <div class="mb-4 border-top-0" data-aos="fade-right">
+        <h2 class="text-shadow text-uppercase">Alquilados Ocultos</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6 w-25"></div>
+        <div class="col-md-6 search d-flex">
+          <label for="" class="p"><b>BUSCAR</b></label>
+          <input
+            type="search"
+            class="form-control w-50 shadow end"
+            name="filterPost"
+            [(ngModel)]="filterPost"
+          />
+        </div>
+      </div>
+      <span class="mt-4 float-end">
+        <strong>Total de Resultados:</strong>
+        {{
+          filterPost === ""
+            ? alquiladoFiltrados.length
+            : (alquiladoFiltrados | alquilado : filterPost).length
+        }}
+      </span>
+    </div>
+
+    <div class="mt-4" data-aos="fade-right" data-aos-duration="900">
+      <table
+        id="table"
+        class="table table-sm container bg-white text-center table-responsive shadow-lg"
+      >
+        <thead class="th">
+          <tr>
+            <th>Código Equipo</th>
+            <th>Fecha</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <ng-container
+            *ngFor="
+              let item of alquilado
+                | alquilado : filterPost
+                | filtrarOcultos
+                | paginate : { itemsPerPage: 10, currentPage: page }
+            "
+          >
+            <ng-container
+              *ngIf="
+                item.mostrar === 'Si' &&
+                item.mostrar_cliente === clienteSeleccionado
+              "
+            >
+              <tr>
+                <td>{{ item.codigo_equipo }}</td>
+                <td>{{ item.fecha }}</td>
+                <td>{{ item.descripcion }}</td>
+                <td [appFormatNumber]="item.precio">{{ item.precio }}</td>
+                <td>{{ item.estado }}</td>
+                <td>
+                  <div class="d-flex h">
+                    <button
+                      class="btn bel text-dark mx-auto"
+                      routerLink="/alquilados/habilitar/{{ item.id }} "
+                      title="Editar"
+                    >
+                      <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </ng-container>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+
+    <pagination-controls
+      class="text-center paginacion"
+      (pageChange)="page = $event"
+      previousLabel="Anterior"
+      nextLabel="Siguiente"
+    ></pagination-controls>
+  </div>
+</div>

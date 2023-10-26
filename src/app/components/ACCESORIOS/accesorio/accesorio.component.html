@@ -1,0 +1,196 @@
+<div
+  *ngIf="
+    permissions.permi7per == 'sMcpUli2VOEA41j' ||
+    permissions.permi7per == 'pByuNT3KvphzTP7' ||
+    permissions.permi7per == 'EmxZBnH3nJ2xrG2' ||
+    permissions.permi7per == 'uLuiTT5rFVcPzoX'
+  "
+  class="container"
+  data-aos="fade-right"
+>
+  <div class="ms-5">
+    <div class="p-2 container" data-aos="fade-right">
+      <div class="mb-4 border-top-0" data-aos="fade-right">
+        <h2 class="text-shadow text-uppercase">Periféricos</h2>
+      </div>
+
+      <button
+        *ngIf="
+          permissions.permi7per == 'pByuNT3KvphzTP7' ||
+          permissions.permi7per == 'uLuiTT5rFVcPzoX' ||
+          permissions.permi7per == 'EmxZBnH3nJ2xrG2'
+        "
+        class="btn float-end mx-2 btnAdd"
+        (click)="exportExcel()"
+        title="Exportar Excel"
+      >
+        <i class="fa-solid fa-file-csv fa-2x text-white"></i>
+      </button>
+
+      <div class="container">
+        <div class="row w-25">
+          <div class="col">
+            <button
+              class="btnAdd fs text-white btn-sm"
+              routerLink="/perifericos/crear"
+              title="Agregar Periférico"
+              *ngIf="
+                permissions.permi7per == 'uLuiTT5rFVcPzoX' ||
+                permissions.permi7per == 'EmxZBnH3nJ2xrG2'
+              "
+            >
+              <i class="fa-solid fa-keyboard fa-lg"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <br />
+
+      <div class="d-flex align-items-center">
+        <div class="me-1">
+          <label for="" class="mx-1"><b>Mostrar</b></label>
+        </div>
+
+        <div class="me-2 w-10">
+          <select
+            name="ipp"
+            id="ipp"
+            class="form-select mx-2 shadow end"
+            [(ngModel)]="ipp"
+            (change)="ippclick(ipp)"
+          >
+            <option *ngFor="let item of ippdd">{{ item }}</option>
+          </select>
+        </div>
+
+        <div class="float start w-75">
+          <label for="" class="mx-3"><b>registros</b></label>
+        </div>
+
+        <div class="is-relative me-2 d-flex align-items-center w-25">
+          <label for="" class="mx-1"><b>Buscar</b></label>
+          <input
+            type="search"
+            class="form-control shadow end w-100"
+            name="filterPost"
+            id="filterPost"
+            [(ngModel)]="filterPost"
+            (input)="resetPage()"
+          />
+        </div>
+      </div>
+
+      <span class="mt-4 float-end">
+        <strong>Total de Resultados:</strong>
+        {{
+          filterPost === ""
+            ? accesorio.length
+            : (accesorio | accesorio : filterPost).length
+        }}
+      </span>
+    </div>
+
+    <div class="mt-2" data-aos="fade-right" data-aos-duration="900">
+      <table
+        id="table"
+        class="table table-sm container bg-white text-center table-responsive shadow-lg"
+      >
+        <thead class="th">
+          <tr>
+            <th>Tipo de Periférico</th>
+            <th>Precio</th>
+            <th>Factura</th>
+            <th>Fecha Factura</th>
+            <th>Orden de Compra</th>
+            <th>Estado</th>
+            <th>Observaciones</th>
+            <th
+              *ngIf="
+                permissions.permi7per == 'sMcpUli2VOEA41j' ||
+                permissions.permi7per == 'pByuNT3KvphzTP7' ||
+                permissions.permi7per == 'EmxZBnH3nJ2xrG2' ||
+                permissions.permi7per == 'uLuiTT5rFVcPzoX'
+              "
+            >
+              Factura
+            </th>
+            <th
+              *ngIf="
+                permissions.permi7per == 'uLuiTT5rFVcPzoX' ||
+                permissions.permi7per == 'EmxZBnH3nJ2xrG2'
+              "
+            >
+              Acciones
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <ng-container
+            *ngFor="
+              let item of accesorio
+                | accesorio : filterPost
+                | filtrarMostrados
+                | paginate : { itemsPerPage: selectedIpp, currentPage: page }
+            "
+          >
+            <ng-container>
+              <tr>
+                <td>{{ item.tipo }}</td>
+                <td [appFormatNumber]="item.precio">{{ item.precio }}</td>
+                <td>{{ item.factura }}</td>
+                <td>{{ item.fecha_factura }}</td>
+                <td>{{ item.orden }}</td>
+                <td>{{ item.estado }}</td>
+                <td>{{ item.observaciones }}</td>
+                <td
+                  *ngIf="
+                    permissions.permi7per == 'sMcpUli2VOEA41j' ||
+                    permissions.permi7per == 'pByuNT3KvphzTP7' ||
+                    permissions.permi7per == 'EmxZBnH3nJ2xrG2' ||
+                    permissions.permi7per == 'uLuiTT5rFVcPzoX'
+                  "
+                >
+                  <button
+                    class="btn bel text-dark mx-auto"
+                    (click)="item.rutaArchivo && openNewTab(item.rutaArchivo)"
+                    title="Ruta Archivo"
+                  >
+                    <i class="fa-solid fa-link"></i>
+                  </button>
+                </td>
+                <td
+                  *ngIf="
+                    permissions.permi7per == 'uLuiTT5rFVcPzoX' ||
+                    permissions.permi7per == 'EmxZBnH3nJ2xrG2'
+                  "
+                >
+                  <div class="d-flex h">
+                    <button
+                      *ngIf="
+                        permissions.permi7per == 'uLuiTT5rFVcPzoX' ||
+                        permissions.permi7per == 'EmxZBnH3nJ2xrG2'
+                      "
+                      class="btn bel text-dark mx-auto"
+                      routerLink="/perifericos/editar/{{ item.id }} "
+                      title="Editar"
+                    >
+                      <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            </ng-container>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+
+    <pagination-controls
+      class="text-center paginacion"
+      (pageChange)="page = $event"
+      previousLabel="Anterior"
+      nextLabel="Siguiente"
+    ></pagination-controls>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+<div
+  *ngIf="
+    permissions.permi8bit == '8IlNUd0FNJuhSpd' ||
+    permissions.permi8bit == '0Y4oNoiABbnNIK5'
+  "
+  class="calambombo"
+>
+  <div
+    class="card container mt-3 bg-dark cont w-50"
+    data-aos="fade-right"
+    data-aos-duration="900"
+  >
+    <div class="row">
+      <div class="card shadow-lg">
+        <div class="card-head">
+          <h3 class="text-center">Registrar Bitácora</h3>
+        </div>
+        <hr />
+        <div class="card-body">
+          <form action="" #f="ngForm">
+            <div class="row">
+              <div class="mb-1">
+                <label class="form-label">Código</label>
+                <select
+                  type="text"
+                  name="captura"
+                  id="captura"
+                  class="form-select"
+                  [(ngModel)]="captura"
+                >
+                  <option value="-1">--[SELECCIONE]--</option>
+                  <option *ngFor="let item of bitacora">
+                    {{ item.codigoEquipo }}
+                  </option>
+                </select>
+              </div>
+
+              <div class="mb-1">
+                <label for="" class="form-label">Fecha</label>
+                <input
+                  type="date"
+                  name="fecha"
+                  id="fecha"
+                  class="form-control"
+                  [(ngModel)]="bitacoras.fecha"
+                  [min]="minDate"
+                  required
+                  [max]="currentDate"
+                />
+              </div>
+              <div class="mb-1">
+                <label for="" class="form-label">Actividad</label>
+                <textarea
+                  type="text"
+                  name="actividad"
+                  id="actividad"
+                  class="form-control"
+                  [(ngModel)]="bitacoras.actividad"
+                  required
+                  cols="30"
+                  rows="5"
+                  class="form-control"
+                ></textarea>
+              </div>
+              <hr class="linea" />
+              <div class="form-group float-end mt-2 d-flex">
+                <button
+                  class="btn bot btn-sm"
+                  (click)="crearBitacora()"
+                  [disabled]="f.invalid"
+                >
+                  Agregar
+                </button>
+                <button class="btn botr btn-sm" [routerLink]="['/bitacoras/ver']">
+                  Regresar
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

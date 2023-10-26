@@ -1,0 +1,82 @@
+<div
+  *ngIf="
+    permissions.permi9gcl == 'lrrX9taf07qNxMs' ||
+    permissions.permi9gcl == 'IToGYuj9agiXK2K'
+  "
+  class="calambombo"
+>
+  <div
+    class="card container mb-4 shadow-lg p-3 co w-50"
+    data-aos="fade-right"
+    data-aos-duration="900"
+  >
+    <h3 class="text-center">Editar Sede</h3>
+    <hr />
+    <form action="" #f="ngForm" class="form">
+      <div class="row">
+        <div class="col">
+          <div>
+            <label for="" class="pa">Nombre sede</label>
+            <input
+              type="text"
+              name="nombre"
+              id="nombre"
+              class="form-control"
+              [(ngModel)]="sede.nombre"
+              required
+            />
+          </div>
+          <div class="mt-2">
+            <label for="">Cliente</label>
+            <select
+              [(ngModel)]="sede.cliente"
+              name="cliente"
+              class="form-select"
+              (ngModelChange)="clientesSeleccionados = $event"
+            >
+              <ng-container *ngFor="let item of clientes">
+                <option [value]="item.nombre">
+                  {{ item.nombre }}
+                </option>
+              </ng-container>
+            </select>
+          </div>
+          <div
+            *ngIf="permissions.permi9gcl == 'IToGYuj9agiXK2K'"
+            class="form-group mb-2 mt-3"
+          >
+            <label for="" class="form-label">¿Dar de Baja?</label><br />
+            <select
+              class="form-select text-uppercase"
+              aria-label="Default select example"
+              name="mostrar"
+              id="mostrar"
+              [(ngModel)]="sede.mostrar"
+              required
+            >
+              <option *ngFor="let item of mostrar">{{ item }}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <hr class="mt-3" />
+
+      <div class="form-group float-end d-flex">
+        <button
+          class="btn botr btn-sm float-end m-1 d-flex"
+          [routerLink]="['/sedes/ver']"
+        >
+          Regresar
+        </button>
+        <button
+          class="btn bot btn-sm float-end m-1 d-flex"
+          (click)="onUpdate()"
+          [disabled]="f.invalid"
+        >
+          Actualizar
+        </button>
+      </div>
+    </form>
+  </div>
+  <br />
+</div>

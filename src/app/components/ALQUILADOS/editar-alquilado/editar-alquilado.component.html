@@ -1,0 +1,112 @@
+<div
+  *ngIf="
+    permissions.permi2alq == 'sJocm9Vp1kqeQlr' ||
+    permissions.permi2alq == 'drzwGAHVb602GWL'
+  "
+  class="calambombo"
+>
+  <div class="card container mb-4 shadow-lg p-3 co w-50" data-aos="fade-right">
+    <h3 class="text-center">Editar Equipo Alquilado</h3>
+    <hr />
+    <form action="" #f="ngForm" class="form">
+      <div class="mt-2">
+        <label for="" class="pa">Fecha</label>
+        <input
+          type="date"
+          name="fecha_factura"
+          id="factura"
+          class="form-control"
+          [(ngModel)]="alquilado.fecha"
+          (ngModelChange)="updateMaxDate()"
+          required
+          [max]="currentDate"
+        />
+      </div>
+      <div class="mt-2">
+        <label for="" class="pa">Código de Equipo</label>
+        <input
+          type="text"
+          name="orden"
+          id="factura"
+          class="form-control"
+          [(ngModel)]="alquilado.codigo_equipo"
+          disabled
+        />
+      </div>
+      <div class="col">
+        <div class="">
+          <label for="" class="pa">Precio</label>
+          <input
+            class="form-control"
+            [(ngModel)]="alquilado.precio"
+            name="precio"
+            id="precio"
+            required
+            appOnlyNumbers
+            appSeparateThousands
+          />
+        </div>
+
+        <div class="mt-2">
+          <label for="" class="pa">Ruta Archivo</label>
+          <input
+            type="text"
+            name="rutaArchivo"
+            id="rutaArchivo"
+            class="form-control"
+            [(ngModel)]="alquilado.rutaArchivo"
+          />
+        </div>
+
+        <div class="mt-2">
+          <label for="" class="pa">Descripción</label>
+          <textarea
+            name="observaciones"
+            cols="70"
+            rows="4"
+            class="form-control"
+            [(ngModel)]="alquilado.descripcion"
+            required
+          ></textarea>
+        </div>
+      </div>
+      <div
+        *ngIf="
+          permissions.permi2alq == 'sJocm9Vp1kqeQlr' &&
+          alquilado.estado == 'Disponible'
+        "
+        class="form-group mb-2 mt-2"
+      >
+        <label for="" class="form-label">¿Dar de Baja?</label><br />
+        <select
+          class="form-select text-uppercase"
+          aria-label="Default select example"
+          name="mostrar"
+          id="mostrar"
+          [(ngModel)]="alquilado.mostrar"
+          (change)="fileDescartar(alquilado.id)"
+          required
+        >
+          <option *ngFor="let item of mostrar">{{ item }}</option>
+        </select>
+      </div>
+      <hr class="mt-3" />
+
+      <div class="pa">
+        <div class="form-group float-end mt-2 d-flex">
+          <button
+            class="btn bot btn-sm"
+            (click)="onUpdate()"
+            [disabled]="f.invalid"
+          >
+            Actualizar
+          </button>
+          <button class="btn botr btn-sm" [routerLink]="['/alquilados/ver']">
+            Regresar
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <br />
+</div>

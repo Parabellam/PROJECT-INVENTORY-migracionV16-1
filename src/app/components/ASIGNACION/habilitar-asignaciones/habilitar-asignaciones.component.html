@@ -1,0 +1,100 @@
+<!--
+<div class="container" data-aos="fade-right">
+  <div class="ms-5">
+    <div class="p-3 container" data-aos="fade-right" data-aos-duration="800">
+      <div class="mb-4 border-top-0" data-aos="fade-right">
+        <h2 class="text-shadow text-uppercase">Asignaciones Ocultas</h2>
+      </div>
+      <div class="row">
+        <div class="col-md-6 w-25"></div>
+        <div class="col-md-6 search d-flex">
+          <label for="" class="p"><b>BUSCAR</b></label>
+          <input
+            type="search"
+            class="form-control w-50 shadow end"
+            name="filterPost"
+            [(ngModel)]="filterPost"
+          />
+        </div>
+      </div>
+      <span class="mt-5 float-end"
+        ><strong> Total de Búsqueda:</strong>
+        {{
+          filterPost === ""
+            ? asignacionesFiltrados.length
+            : (asignacionesFiltrados | asignacion : filterPost).length
+        }}
+      </span>
+    </div>
+
+    <div class="mt-4" data-aos="fade-right" data-aos-duration="800">
+      <table
+        id="table"
+        class="table table-sm container bg-white text-center table-responsive shadow-lg"
+      >
+        <thead class="th">
+          <tr>
+            <th>Equipo Asignado</th>
+            <th>Funcionario</th>
+            <th>Fecha Entrega</th>
+            <th>Audífonos</th>
+            <th>Mouse</th>
+            <th>Teclado</th>
+            <th>Cargador</th>
+            <th>Base</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let item of asignacion
+                | asignacion : filterPost
+                | paginate : { itemsPerPage: 10, currentPage: page }
+            "
+          >
+            <ng-container
+              *ngIf="
+                item.mostrar === 'Si' &&
+                item.mostrar_cliente === clienteSeleccionado
+              "
+            >
+              <td>
+                {{ item.equipo.parametros.tipo_parametro }}-0{{
+                  item.equipo.codigo_equipo
+                }}
+                /
+                {{ item.equipo.marca }}
+              </td>
+              <td>{{ item.funcionario.nombre }}</td>
+              <td>{{ item.fecha_entrega }}</td>
+              <td>{{ item.audifonos }}</td>
+              <td>{{ item.mouse }}</td>
+              <td>{{ item.teclado }}</td>
+              <td>{{ item.cargador }}</td>
+              <td>{{ item.base }}</td>
+              <td>
+                <button
+                  class="btn text-uppercase bel text-dark"
+                  title="Editar"
+                  routerLink="/asignaciones/habilitar/{{ item.id_asignacion }}"
+                  disabled
+                >
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </button>
+              </td>
+            </ng-container>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <pagination-controls
+      class="text-center"
+      (pageChange)="page = $event"
+      previousLabel="Anterior"
+      nextLabel="Siguiente"
+    ></pagination-controls>
+  </div>
+</div>
+-->

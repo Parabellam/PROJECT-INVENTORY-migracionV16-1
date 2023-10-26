@@ -1,0 +1,68 @@
+.molecule-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+}
+
+.molecule {
+  position: absolute;
+  animation-name: move1, move2, move3;
+  animation-duration: 4s, 4s, 4s;
+  animation-delay: 0s, 5s, 10s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  z-index: 7;
+}
+
+.molecule:hover {
+  opacity: 0;
+  transition: opacity 1s ease-out;
+}
+
+.molecule-wrapper {
+  position: relative;
+  overflow: hidden;
+  z-index: 6;
+}
+
+@keyframes move1 {
+  0%,
+  100% {
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    transform: translate(
+      calc(var(--random-x1) * 1%),
+      calc(var(--random-y1) * 1%)
+    );
+  }
+}
+
+@keyframes move2 {
+  0%,
+  100% {
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    transform: translate(
+      calc(var(--random-x2) * 1%),
+      calc(var(--random-y2) * 1%)
+    );
+  }
+}
+
+@keyframes move3 {
+  0%,
+  100% {
+    transform: translate(-50%, -50%);
+  }
+  50% {
+    transform: translate(
+      calc(var(--random-x3) * 1%),
+      calc(var(--random-y3) * 1%)
+    );
+  }
+}

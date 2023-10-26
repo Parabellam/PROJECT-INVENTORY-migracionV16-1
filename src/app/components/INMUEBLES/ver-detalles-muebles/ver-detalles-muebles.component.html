@@ -1,0 +1,74 @@
+<div class="calambombo">
+  <div class="card container bg-dark cont w-50 mt-4" data-aos="fade-right">
+    <div class="row">
+      <div class="card shadow-lg">
+        <div class="card-head">
+          <h3 class="text-center">Detalles Muebles y Enseres</h3>
+        </div>
+        <hr />
+        <div class="card-body">
+          <form action="" #f="ngForm">
+            <div class="row">
+              <div class="col">
+                <div class="mb-1">
+                  <label class="form-label">Código Mueble</label>
+                  <input type="text" name="codigo_inmueble" id="codigo_inmueble" class="form-control"
+                    [(ngModel)]="muebles.codigo_inmueble" required disabled />
+                </div>
+
+                <div class="mb-1">
+                  <label for="" class="form-label">Estado</label>
+                  <select class="form-select text-uppercase" aria-label="Default select example" name="estado"
+                    id="estado" [(ngModel)]="muebles.estado" required disabled>
+                    <option *ngFor="let item of estado">{{ item }}</option>
+                  </select>
+                </div>
+
+                <div class="mb-1">
+                  <label for="" class="form-label">Fecha Factura</label>
+                  <input type="date" name="fecha_factura" id="fecha_factura" class="form-control"
+                    [(ngModel)]="muebles.fecha_factura" required disabled />
+                </div>
+                <div class="mb-1">
+                  <label for="" class="form-label">N° Factura</label>
+                  <input type="text" name="factura" id="factura" class="form-control" [(ngModel)]="muebles.factura"
+                    required disabled />
+                </div>
+              </div>
+              <div class="col">
+                <div class="mb-1">
+                  <label for="" class="form-label">Observación</label>
+                  <input type="text" name="observacion" id="observacion" class="form-control"
+                    [(ngModel)]="muebles.observacion" required disabled />
+                </div>
+                <div class="mb-1">
+                  <label for="" class="form-label">Precio</label>
+                  <input appOnlyNumbers type="text" name="precio" id="precio" class="form-control"
+                    [(ngModel)]="muebles.precio" required disabled />
+                </div>
+                <div class="mb-1">
+                  <label for="" class="form-label">Orden</label>
+                  <input type="text" name="orden" id="orden" class="form-control" [(ngModel)]="muebles.orden" required
+                    disabled />
+                </div>
+                <div class="mt-1">
+                  <label for="" class="form-label">¿De Baja?</label><br />
+                  <select class="form-select text-uppercase" aria-label="Default select example" name="mostrar"
+                    id="mostrar" [(ngModel)]="muebles.mostrar" required disabled>
+                    <option *ngFor="let item of mostrar">{{ item }}</option>
+                  </select>
+                </div>
+              </div>
+              <hr />
+              <div class="form-group mx-auto mt-2 w-50">
+                <button class="btn botr m-auto d-block  w-75" [routerLink]="['/muebles/ver']">
+                  Regresar
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

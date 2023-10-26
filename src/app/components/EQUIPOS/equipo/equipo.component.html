@@ -1,0 +1,223 @@
+<div
+  *ngIf="
+    permissions.permi4equ == 'Sjy1wcui39ZBMrn' ||
+    permissions.permi4equ == 'z8Wzh4te4a8q0sX' ||
+    permissions.permi4equ == 'gLM2KweKZBD5Rtw' ||
+    permissions.permi4equ == 'CyJlhVqcyf4Yx5q'
+  "
+  class="container"
+  data-aos="fade-right"
+>
+  <div class="ms-5">
+    <div class="p-2 container" data-aos="fade-right" data-aos-duration="900">
+      <div class="mb-4 mx-3 border-top-0">
+        <h2 class="text-shadow text-uppercase">Equipos</h2>
+      </div>
+
+      <button
+        *ngIf="
+          permissions.permi4equ == 'z8Wzh4te4a8q0sX' ||
+          permissions.permi4equ == 'gLM2KweKZBD5Rtw' ||
+          permissions.permi4equ == 'CyJlhVqcyf4Yx5q'
+        "
+        class="btn float-end mx-2 btnAdd"
+        (click)="exportExcel()"
+        title="Exportar Excel"
+      >
+        <i class="fa-solid fa-file-csv fa-2x text-white"></i>
+      </button>
+
+      <div class="container">
+        <div class="row w-25">
+          <div class="col">
+            <button
+              *ngIf="
+                permissions.permi4equ == 'gLM2KweKZBD5Rtw' ||
+                permissions.permi4equ == 'CyJlhVqcyf4Yx5q'
+              "
+              class="btnAdd fs text-white btn-sm"
+              [routerLink]="['/equipos/crear']"
+              title="Agregar Equipo"
+            >
+              <i class="fa-solid fa-laptop-medical fa-lg"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <br />
+
+      <div class="d-flex align-items-center">
+        <div class="me-1">
+          <label for="" class="mx-1"><b>Mostrar</b></label>
+        </div>
+
+        <div class="me-2 w-10">
+          <select
+            name="ipp"
+            id="ipp"
+            class="form-select mx-2 shadow end"
+            [(ngModel)]="ipp"
+            (change)="ippclick(ipp)"
+          >
+            <option *ngFor="let item of ippdd">{{ item }}</option>
+          </select>
+        </div>
+
+        <div class="float start w-75">
+          <label for="" class="mx-1"><b>registros</b></label>
+        </div>
+
+        <div *ngIf="clienteSeleccionado == 'Nexos'" class="float start w-10">
+          <label for="" class="mx-1"><b>Código</b></label>
+        </div>
+
+        <div *ngIf="clienteSeleccionado == 'Nexos'" class="me-4 w-10">
+          <select
+            name="ipp"
+            id="ipp"
+            class="form-select mx-2 shadow"
+            [(ngModel)]="code"
+            (change)="filtroCodigo(code)"
+          >
+            <option *ngFor="let item of codigos">{{ item }}</option>
+          </select>
+        </div>
+
+        <div class="is-relative me-2 d-flex align-items-center w-25">
+          <label for="" class="mx-1"><b>Buscar</b></label>
+          <input
+            type="search"
+            class="form-control shadow end w-100"
+            name="filterPost"
+            id="filterPost"
+            [(ngModel)]="filterPost"
+            (change)="resetPage()"
+          />
+        </div>
+      </div>
+
+      <span class="mt-4 float-end">
+        <strong>Total de Resultados:</strong>
+        {{
+          filterPost === ""
+            ? teams2?.length
+            : (teams2 | equipo : filterPost)?.length
+        }}
+      </span>
+    </div>
+
+    <div
+      class="w d-block mx-auto"
+      data-aos="fade-right"
+      data-aos-duration="900"
+    >
+      <table
+        id="table responsive-table"
+        class="table table-sm container bg-white text-center table-responsive shadow-lg"
+      >
+        <thead class="th un_first">
+          <tr>
+            <th>Código Equipo</th>
+            <th>Estado</th>
+            <th>Marca</th>
+            <th>Modelo</th>
+            <th>Procesador</th>
+            <th>OS</th>
+            <th>Ram</th>
+            <th>Disco</th>
+            <th>Fecha Factura</th>
+            <th
+              *ngIf="
+                permissions.permi4equ == 'Sjy1wcui39ZBMrn' ||
+                permissions.permi4equ == 'z8Wzh4te4a8q0sX' ||
+                permissions.permi4equ == 'gLM2KweKZBD5Rtw' ||
+                permissions.permi4equ == 'CyJlhVqcyf4Yx5q'
+              "
+            >
+              Factura
+            </th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let item of teams2
+                | equipo : filterPost
+                | filtrarMostrados
+                | paginate : { itemsPerPage: selectedIpp, currentPage: page }
+            "
+          >
+            <ng-container>
+              <td *ngIf="clienteSeleccionado == 'Nexos'">
+                {{ item.parametros?.tipo_parametro }}-0{{ item.codigo_equipo }}
+              </td>
+              <td *ngIf="clienteSeleccionado != 'Nexos'">
+                {{ item.codigo_equipo }}
+              </td>
+              <td>{{ item.estado }}</td>
+              <td>{{ item.marca }}</td>
+              <td>{{ item.modelo | truncate : 15 }}</td>
+              <td>{{ item.procesador | truncate : 15 }}</td>
+              <td>{{ item.os }}</td>
+              <td>{{ item.ram }}</td>
+              <td>{{ item.almacenamiento }}</td>
+              <td>{{ item.fecha_factura }}</td>
+              <td
+                *ngIf="
+                  permissions.permi4equ == 'Sjy1wcui39ZBMrn' ||
+                  permissions.permi4equ == 'z8Wzh4te4a8q0sX' ||
+                  permissions.permi4equ == 'gLM2KweKZBD5Rtw' ||
+                  permissions.permi4equ == 'CyJlhVqcyf4Yx5q'
+                "
+              >
+                <button
+                  class="btn bel text-dark mx-auto"
+                  (click)="item.rutaArchivo && openNewTab(item.rutaArchivo)"
+                  title="Ruta Archivo"
+                >
+                  <i class="fa-solid fa-link"></i>
+                </button>
+              </td>
+              <td>
+                <div class="d-flex justify-content-center">
+                  <button
+                    *ngIf="
+                      permissions.permi4equ == 'gLM2KweKZBD5Rtw' ||
+                      permissions.permi4equ == 'CyJlhVqcyf4Yx5q'
+                    "
+                    class="btn text-uppercase bel text-dark"
+                    routerLink="/equipos/editar/{{ item.id_equipo }}"
+                    title="Editar"
+                  >
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                  <button
+                    *ngIf="
+                      permissions.permi4equ == 'Sjy1wcui39ZBMrn' ||
+                      permissions.permi4equ == 'z8Wzh4te4a8q0sX' ||
+                      permissions.permi4equ == 'gLM2KweKZBD5Rtw' ||
+                      permissions.permi4equ == 'CyJlhVqcyf4Yx5q'
+                    "
+                    class="btn bel text-dark ms-sm-2"
+                    routerLink="/equipos/ver/{{ item.id_equipo }}"
+                    title="Ver Detalles"
+                  >
+                    <i class="fa-solid fa-eye"></i>
+                  </button>
+                </div>
+              </td>
+            </ng-container>
+          </tr>
+        </tbody>
+      </table>
+
+      <pagination-controls
+        class="text-center"
+        (pageChange)="page = $event"
+        previousLabel="Anterior"
+        nextLabel="Siguiente"
+      ></pagination-controls>
+    </div>
+  </div>
+</div>

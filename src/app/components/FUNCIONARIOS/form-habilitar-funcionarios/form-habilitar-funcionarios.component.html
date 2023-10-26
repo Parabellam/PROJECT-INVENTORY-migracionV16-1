@@ -1,0 +1,110 @@
+<div
+  *ngIf="
+    permissions.permi15hfu == 'BAa7IDeFXUA89hl' ||
+    permissions.permi15hfu == 'U32T4jcCvUP8IQ6'
+  "
+  class="calambombo"
+>
+  <div class="card container bg-dark cont" data-aos="fade-right">
+    <div class="row">
+      <div class="card shadow-lg">
+        <div class="card-head">
+          <h3 class="text-center">Actualizar Funcionario Oculto</h3>
+        </div>
+        <hr />
+        <div class="card-body">
+          <form action="" #f="ngForm">
+            <div class="mb-1">
+              <label class="form-label">Documento</label>
+              <input
+                appOnlyNumbers
+                type="text"
+                name="documento"
+                id="documento"
+                class="form-control"
+                [(ngModel)]="funcionarios.documento"
+                disabled
+                maxlength="10"
+              />
+            </div>
+            <div class="mb-1">
+              <label for="" class="form-label">Nombre</label>
+              <input
+                appOnlyLetters
+                type="text"
+                name="nombre"
+                id="nombre"
+                class="form-control"
+                [(ngModel)]="funcionarios.nombre"
+                disabled
+              />
+            </div>
+            <div class="mb-1">
+              <label for="" class="form-label">Email</label>
+              <input
+                type="text"
+                name="email"
+                id="email"
+                class="form-control"
+                [(ngModel)]="funcionarios.email"
+                disabled
+              />
+            </div>
+
+            <div class="mb-1">
+              <label for="" class="form-label">Celular</label>
+              <input
+                appOnlyNumbers
+                type="text"
+                name="celular"
+                id="celular"
+                class="form-control"
+                [(ngModel)]="funcionarios.celular"
+                disabled
+              />
+            </div>
+            <div class="mb-1">
+              <label for="" class="form-label">Observaciones</label>
+              <input
+                type="text"
+                name="observaciones"
+                id="observaciones"
+                class="form-control"
+                [(ngModel)]="funcionarios.observaciones"
+                disabled
+              />
+            </div>
+            <div class="mt-2">
+              <label class="pa">¿Habilitar Funcionario?</label>
+              <br />
+              <input
+                class="form-check-input mt-2"
+                type="checkbox"
+                id="siguiente-checkbox"
+                name="siguiente-checkbox"
+                [(ngModel)]="siguienteCheckboxSeleccionado"
+              />
+            </div>
+
+            <hr />
+            <div class="form-group float-end mt-2 d-flex">
+              <button
+                class="btn bot"
+                (click)="onUpdateFuncionario()"
+                [disabled]="f.invalid"
+              >
+                Actualizar
+              </button>
+              <button
+                class="btn botr"
+                [routerLink]="['/funcionarios/habilitar']"
+              >
+                Regresar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
